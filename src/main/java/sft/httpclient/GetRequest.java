@@ -1,5 +1,7 @@
 package sft.httpclient;
 
+import org.junit.Assert;
+
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -15,10 +17,10 @@ public class GetRequest {
 		
 		Response response = hit_request(endPoint);
 		
-		if(response.getStatusCode() == 200)
+		if(response.getStatusCode() == 201)
 			return response.getBody().asString();
 		else
-			throw_exception(endPoint);
+			Assert.fail("[[[[[Error in api hit: " + endPoint + "]]]]]");
 		return null;
 	}
 
@@ -28,7 +30,7 @@ public class GetRequest {
 		if(response.getStatusCode() == 200)
 			return response.getBody().jsonPath();
 		else
-			throw_exception(endPoint);
+			Assert.fail("[[[[[Error in api hit: " + endPoint + "]]]]]");
 		return null;
 	}
 	
@@ -46,11 +48,9 @@ public class GetRequest {
 	private void throw_exception(final String endPoint)
 	{
 		try {
-			throw new Exception("Error in api hit: " + endPoint);
+			throw new Exception("[[[[[Error in api hit: " + endPoint + "]]]]]");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		finally {
 			System.exit(1);
 		}
 	}
