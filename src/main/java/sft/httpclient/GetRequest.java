@@ -17,7 +17,7 @@ public class GetRequest {
 		
 		Response response = hit_request(endPoint);
 		
-		if(response.getStatusCode() == 201)
+		if(response.getStatusCode() == 200)
 			return response.getBody().asString();
 		else
 			Assert.fail("[[[[[Error in api hit: " + endPoint + "]]]]]");
