@@ -16,24 +16,12 @@ public class SftSetup
 {
 	private static String token;
 	static Map<String, String> map = new HashedMap();
+	final static String setup_file = "SftSetup.json";
+	
 	@SuppressWarnings("unchecked")
-	public static String generate_token(String file_name)
+	public static String generate_token()
 	{
-		
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			map = mapper.readValue(new File(System.getProperty("user.dir") + File.separator + file_name), Map.class);
-		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		read_sftsetup();
 		RestAssured.baseURI = map.get("oauth_url");
 		token =  RestAssured.given()
 	        .formParam("username", map.get("username"))
@@ -47,16 +35,36 @@ public class SftSetup
 		return token;
 	}
 	
+	
+	public static void read_sftsetup()
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			map = mapper.readValue(new File(System.getProperty("user.dir") + File.separator + setup_file), Map.class);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	@SuppressWarnings("unchecked")
 	public static Map<String, String> getSftSetup()
 	{
+		read_sftsetup();
 		final Map<String, String> sftsetup = new HashedMap(map);	
 		return sftsetup;
 	}
 	
 	public static void main(String []args)
 	{	
-		System.out.println(SftSetup.generate_token("SftSetup.json"));
+		System.out.println(SftSetup.generate_token());
 		System.out.println(System.getProperty("AccessToken"));
 		
 	}

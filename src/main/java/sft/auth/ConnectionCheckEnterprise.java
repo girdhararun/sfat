@@ -1,4 +1,4 @@
-package sft;
+package sft.auth;
 
 import com.sforce.soap.enterprise.Connector;
 import com.sforce.soap.enterprise.EnterpriseConnection;
@@ -15,6 +15,7 @@ public class ConnectionCheckEnterprise {
     public static void main(String[] args) {
 
         ConnectorConfig config = new ConnectorConfig();
+        System.out.println(USERNAME + "  " + PASSWORD);
         config.setUsername(USERNAME);
         config.setPassword(PASSWORD);
 
