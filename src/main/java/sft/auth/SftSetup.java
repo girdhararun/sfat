@@ -9,22 +9,23 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sforce.ws.shade.org.apache.commons.collections.map.HashedMap;
-
 import io.restassured.RestAssured;
 
 public class SftSetup {
 	private static String token;
-	static HashMap<String, String> map = new HashMap<>();
+	static HashMap<String, String> map = new HashMap<String,String>();
 	final static String setup_file = System.getProperty("user.dir") + File.separator + "SftSetup.json";
 
 	public static String generate_token() {
 		read_sftsetup();
-		RestAssured.baseURI = map.get("oauth_url");
+		
+		//Setting the base URI for all rest calls further
+		RestAssured.baseURI = map.get("domain_url")+"/"+map.get("api_version")+"/";
+		
 		token = RestAssured.given().formParam("username", map.get("username"))
 				.formParam("password", map.get("password")).formParam("grant_type", map.get("grant_type"))
 				.formParam("client_id", map.get("client_id")).formParam("client_secret", map.get("client_secret"))
-				.post().jsonPath().get("access_token");
+				.post(map.get("oauth_url")).jsonPath().get("access_token");
 
 		System.setProperty("AccessToken", token);
 		return token;
@@ -47,10 +48,10 @@ public class SftSetup {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public static Map<String, String> getSftSetup() {
 		read_sftsetup();
-		final Map<String, String> sftsetup = new HashedMap(map);
+		final Map<String, String> sftsetup = new HashMap<String, String>(map);
 		return sftsetup;
 	}
 
@@ -58,7 +59,6 @@ public class SftSetup {
 		System.out.println(SftSetup.generate_token());
 		System.out.println(System.getProperty("AccessToken"));
 		System.out.println(getSftSetup().get("username"));
-
 	}
 
 }
