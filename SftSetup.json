@@ -1,8 +1,0 @@
-{
-  "username" : "username",
-  "password" : "password + secret",
-  "grant_type" : "password",
-  "client_id" : "clientId",
-  "client_secret" : "clientSecret",
-  "oauth_url" : "https://login.salesforce.com/services/oauth2/token"
-}
