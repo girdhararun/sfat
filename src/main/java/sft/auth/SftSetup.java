@@ -12,13 +12,14 @@ import com.sforce.ws.shade.org.apache.commons.collections.map.HashedMap;
 
 import io.restassured.RestAssured;
 
-public class Token 
+public class SftSetup 
 {
 	private static String token;
+	static Map<String, String> map = new HashedMap();
 	@SuppressWarnings("unchecked")
-	public static String generate(String file_name)
+	public static String generate_token(String file_name)
 	{
-		Map<String, String> map = new HashedMap();
+		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			map = mapper.readValue( new File(System.getProperty("user.dir")
@@ -51,11 +52,18 @@ public class Token
 		return token;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static Map<String, String> getSftSetup()
+	{
+		final Map<String, String> sftsetup = new HashedMap(map);	
+		return sftsetup;
+	}
 	
 	public static void main(String []args)
 	{	
-		System.out.println(Token.generate("SftSetup.json"));
+		System.out.println(SftSetup.generate_token("SftSetup.json"));
 		System.out.println(System.getProperty("AccessToken"));
+		
 	}
 	
 }
