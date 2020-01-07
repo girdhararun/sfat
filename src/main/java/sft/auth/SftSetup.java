@@ -66,6 +66,7 @@ public class SftSetup
 	{	
 		System.out.println(SftSetup.generate_token());
 		System.out.println(System.getProperty("AccessToken"));
+		System.out.println(getSftSetup().get("username"));
 		
 	}
 	

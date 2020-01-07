@@ -13,9 +13,7 @@ public class ConnectionCheckEnterprise {
     static EnterpriseConnection connection;
 
     public static void main(String[] args) {
-
         ConnectorConfig config = new ConnectorConfig();
-        System.out.println(USERNAME + "  " + PASSWORD);
         config.setUsername(USERNAME);
         config.setPassword(PASSWORD);
 
