@@ -1,8 +1,0 @@
-{
-  "username" : "akash.verma@qainfotech.com",
-  "password" : "akashvermaqa68SsvkoUfkAjU8ARCDeQHWhPv2D",
-  "grant_type" : "password",
-  "client_id" : "3MVG9n_HvETGhr3DpwtYsx6iGnKhmw9D3gtXiRIL3LcsYs5GaD8AFPLIBspM2M38R.AwGn_43OS09Bf_LZlHc",
-  "client_secret" : "F58E49E19802A193772E1E3ED6351E6B5FB6B3E2D1481A0E0184282428214583",
-  "oauth_url" : "https://login.salesforce.com/services/oauth2/token"
-}

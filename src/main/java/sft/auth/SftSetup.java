@@ -22,12 +22,7 @@ public class SftSetup
 		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			map = mapper.readValue( new File(System.getProperty("user.dir")
-					+File.separator+"src"
-					+File.separator+"main"
-					+File.separator+"resources"+
-					File.separator+file_name)
-					, Map.class);
+			map = mapper.readValue(new File(System.getProperty("user.dir") + File.separator + file_name), Map.class);
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

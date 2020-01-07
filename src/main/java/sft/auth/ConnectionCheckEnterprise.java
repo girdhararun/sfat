@@ -6,8 +6,10 @@ import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
 
 public class ConnectionCheckEnterprise {
-    static final String USERNAME = "arungirdhar@qainfotech.com";
-    static final String PASSWORD = "Info@21230tkDcRiDTqUFscGJCKQYJ4nh";
+    
+
+    static final String USERNAME = SftSetup.getSftSetup().get("username");
+    static final String PASSWORD = SftSetup.getSftSetup().get("password");
     static EnterpriseConnection connection;
 
     public static void main(String[] args) {
