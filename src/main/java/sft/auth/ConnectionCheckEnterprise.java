@@ -1,4 +1,4 @@
-package sft;
+package sft.auth;
 
 import com.sforce.soap.enterprise.Connector;
 import com.sforce.soap.enterprise.EnterpriseConnection;
