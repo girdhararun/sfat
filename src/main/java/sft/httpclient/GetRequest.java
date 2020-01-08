@@ -1,9 +1,7 @@
 package sft.httpclient;
 
 import org.junit.Assert;
-
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import sft.auth.SftSetup;
 
