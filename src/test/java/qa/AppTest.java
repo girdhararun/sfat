@@ -7,18 +7,18 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sft.SFObject.GetSFObject;
-import sft.SFObject.describeLayoutPOJO.Test;
+import sft.SFObject.describeLayoutPOJO.SFVFDescription;
 
 public class AppTest 
 {
 	
 	public static void main(String []args)
 	{
-		Test t = new Test();
+		SFVFDescription t = new SFVFDescription();
 		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
-			t = mapper.readValue(GetSFObject.getDescribeLayout("Lead"), Test.class);
+			t = mapper.readValue(GetSFObject.getDescribeLayout("Lead"), SFVFDescription.class);
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

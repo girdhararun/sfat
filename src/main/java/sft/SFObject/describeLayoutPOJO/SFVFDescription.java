@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "recordTypeMappings",
     "recordTypeSelectorRequired"
 })
-public class Test {
+public class SFVFDescription {
 
     @JsonProperty("layouts")
     private List<Layout> layouts = new ArrayList<Layout>();
@@ -39,7 +39,7 @@ public class Test {
         this.layouts = layouts;
     }
 
-    public Test withLayouts(List<Layout> layouts) {
+    public SFVFDescription withLayouts(List<Layout> layouts) {
         this.layouts = layouts;
         return this;
     }
@@ -54,7 +54,7 @@ public class Test {
         this.recordTypeMappings = recordTypeMappings;
     }
 
-    public Test withRecordTypeMappings(List<RecordTypeMapping> recordTypeMappings) {
+    public SFVFDescription withRecordTypeMappings(List<RecordTypeMapping> recordTypeMappings) {
         this.recordTypeMappings = recordTypeMappings;
         return this;
     }
@@ -69,7 +69,7 @@ public class Test {
         this.recordTypeSelectorRequired = recordTypeSelectorRequired;
     }
 
-    public Test withRecordTypeSelectorRequired(List<Boolean> recordTypeSelectorRequired) {
+    public SFVFDescription withRecordTypeSelectorRequired(List<Boolean> recordTypeSelectorRequired) {
         this.recordTypeSelectorRequired = recordTypeSelectorRequired;
         return this;
     }
@@ -84,7 +84,7 @@ public class Test {
         this.additionalProperties.put(name, value);
     }
 
-    public Test withAdditionalProperty(String name, Object value) {
+    public SFVFDescription withAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
         return this;
     }
@@ -92,7 +92,7 @@ public class Test {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(Test.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
+        sb.append(SFVFDescription.class.getName()).append('@').append(Integer.toHexString(System.identityHashCode(this))).append('[');
         sb.append("layouts");
         sb.append('=');
         sb.append(((this.layouts == null)?"<null>":this.layouts));
@@ -132,10 +132,10 @@ public class Test {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Test) == false) {
+        if ((other instanceof SFVFDescription) == false) {
             return false;
         }
-        Test rhs = ((Test) other);
+        SFVFDescription rhs = ((SFVFDescription) other);
         return (((((this.additionalProperties == rhs.additionalProperties)||((this.additionalProperties!= null)&&this.additionalProperties.equals(rhs.additionalProperties)))&&((this.layouts == rhs.layouts)||((this.layouts!= null)&&this.layouts.equals(rhs.layouts))))&&((this.recordTypeMappings == rhs.recordTypeMappings)||((this.recordTypeMappings!= null)&&this.recordTypeMappings.equals(rhs.recordTypeMappings))))&&((this.recordTypeSelectorRequired == rhs.recordTypeSelectorRequired)||((this.recordTypeSelectorRequired!= null)&&this.recordTypeSelectorRequired.equals(rhs.recordTypeSelectorRequired))));
     }
 
