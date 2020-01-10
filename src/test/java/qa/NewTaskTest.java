@@ -73,7 +73,7 @@ public class NewTaskTest
 	@Test(priority=4)
 	public void fill_form1() throws ConnectionException
 	{
-		taskFields.getObject("Assigned To").set("AKASH VERMA");
+//		taskFields.getObject("Assigned To").set("AKASH VERMA");
 		taskFields.getObject("Name").set("Tester Tester");	
 		
 	}

@@ -10,8 +10,9 @@ import sft.DataFields;
 import sft.SFField;
 import sft.ForceObject.ForceObject;
 import sft.SFObject.describeLayoutPOJO.PicklistValue;
+import sft.utils.SFUtils;
 
-public class Select implements ForceObject
+public class Select extends SFUtils implements ForceObject
 {
 	private String fieldName,domDataType;
 	private WebDriver driver;
@@ -68,14 +69,5 @@ public class Select implements ForceObject
 
 	public void clear() {
 
-	}
-
-	private void hardwait(int sec)
-	{
-		try {
-			Thread.sleep(sec * 1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 }
