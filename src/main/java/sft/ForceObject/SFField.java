@@ -1,4 +1,4 @@
-package sft;
+package sft.ForceObject;
 
 import sft.SFObject.describeLayoutPOJO.Details;
 

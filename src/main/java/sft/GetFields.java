@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.WebDriver;
 import sft.ForceObject.ForceObject;
+import sft.ForceObject.SFField;
 import sft.ForceObject.Input.CurrencyInput;
 import sft.ForceObject.Input.DateInput;
 import sft.ForceObject.Input.DoubleInput;

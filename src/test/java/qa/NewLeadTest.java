@@ -22,14 +22,13 @@ import com.sforce.ws.ConnectionException;
 
 import sft.GetFields;
 import sft.auth.SftSetup;
+import sft.utils.SFUtils;
 
-public class NewLeadTest 
+public class NewLeadTest
 {
-	
 	static WebDriver driver;
 	WebDriverWait wait;
 	GetFields leadFields;
-	
 	
 	@BeforeClass
 	public void tierUp()
@@ -86,32 +85,21 @@ public class NewLeadTest
 //		driver.quit();
 	}
 
-
-	public void click(By locator)
+	protected void click(By locator)
 	{
 		WebElement element = driver.findElement(locator);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
 	
-	public void click_js(String locator)
+	protected void click_js(String locator)
 	{
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		String script = "document.querySelector(\"html\").querySelector(\""+locator+"\").click()";
 		executor.executeScript(script);
 	}
-	
-	public void hardwait(int sec)
-	{
-		try {
-			Thread.sleep(sec * 1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	public void writeToFile(String s, String filename)
+	protected void writeToFile(String s, String filename)
 	{
 		File file = new File(filename);
 		FileWriter filewriter;
@@ -126,10 +114,18 @@ public class NewLeadTest
 		
 	}
 	
-	public void send_keys(WebElement e, String k)
+	protected void send_keys(WebElement e, String k)
 	{
 		if(e != null)
 			e.sendKeys(k);
 	}
 
+	protected void hardwait(int sec)
+	{
+		try {
+			Thread.sleep(sec * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -7,18 +7,19 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import sft.DataFields;
-import sft.SFField;
 import sft.ForceObject.ForceObject;
+import sft.ForceObject.SFField;
 import sft.utils.SFUtils;
 
 
 public class Input extends SFUtils implements ForceObject
 {
-	private String fieldName,domDataType;
-	private WebDriver driver;
-	private static Map<String,String> dataTypes = DataFields.fields();
+	protected String fieldName,domDataType;
+	protected WebDriver driver;
+	protected static Map<String,String> dataTypes = DataFields.fields();
 	public Input(SFField field,WebDriver driver)
 	{
+		super(driver);
 		this.driver = driver;
 		fieldName = field.getLabel();
 		domDataType = dataTypes.get(field.getDetails().getType());
@@ -32,7 +33,7 @@ public class Input extends SFUtils implements ForceObject
 		{
 			divs = driver.findElements(By.cssSelector("div[class *='"+ domDataType +"']"));
 			WebElement div = divs.get(i);
-			String spanText = div.findElement(By.cssSelector("span")).getText();
+			String spanText = div.findElement(By.cssSelector("span")).getText().replace('*',' ').trim();
 			if(spanText.equalsIgnoreCase(fieldName))
 			{
 				return div.findElement(By.cssSelector("input"));

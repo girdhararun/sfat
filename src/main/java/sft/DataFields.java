@@ -15,15 +15,14 @@ public class DataFields
 	public static final String TEXTAREA = "uiInput--textarea"; //textarea
 	public static final String SEARCHINPUT = "forceSearchInputLookupDesktop";
 	public static final String DATE = "uiInput--datetime";
-
-	//To add
 	public static final String CHECKBOX = "uiInput--checkbox";
+	
+	//To add
 	public static final String COMBOBOX = "forceTextEnumLookup";
 
 	public static Map<String,String> fields()
 	{
 		Map<String,String> map = new HashMap<String,String>();
-
 		map.put("phone",PHONE);
 		map.put("email",EMAIL);
 		map.put("url",URL);
@@ -36,6 +35,7 @@ public class DataFields
 		map.put("reference", SEARCHINPUT);
 		map.put("combobox",COMBOBOX);
 		map.put("date",DATE);
+		map.put("boolean", CHECKBOX);
 		return map;
 	}
 }

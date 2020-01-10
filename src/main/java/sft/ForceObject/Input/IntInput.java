@@ -2,7 +2,7 @@ package sft.ForceObject.Input;
 
 import org.openqa.selenium.WebDriver;
 
-import sft.SFField;
+import sft.ForceObject.SFField;
 
 public class IntInput extends Input{
 

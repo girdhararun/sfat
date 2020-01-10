@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import sft.DataFields;
-import sft.SFField;
+import sft.ForceObject.SFField;
 import sft.ForceObject.ForceObject;
 import sft.SFObject.describeLayoutPOJO.PicklistValue;
 import sft.utils.SFUtils;
@@ -20,6 +20,7 @@ public class Select extends SFUtils implements ForceObject
 	private SFField details;
 	public Select(SFField field,WebDriver driver)
 	{
+		super(driver);
 		this.driver = driver;
 		details = field;
 		fieldName = field.getLabel();

@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import sft.DataFields;
-import sft.SFField;
+import sft.ForceObject.SFField;
 import sft.ForceObject.ForceObject;
 import sft.utils.SFUtils;
 
@@ -19,6 +19,7 @@ public class TextArea extends SFUtils implements ForceObject
 
 	public TextArea(SFField field,WebDriver driver)
 	{
+		super(driver);
 		this.driver = driver;
 		fieldName = field.getLabel();
 		domDataType = dataTypes.get(field.getDetails().getType());

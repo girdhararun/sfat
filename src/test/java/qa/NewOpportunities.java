@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,18 +16,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import com.sforce.ws.ConnectionException;
-
 import sft.GetFields;
 import sft.auth.SftSetup;
 
-public class NewTaskTest 
+public class NewOpportunities 
 {
 	static WebDriver driver;
 	WebDriverWait wait;
-	GetFields taskFields;
-	
+	GetFields opportunities;
 	
 	@BeforeClass
 	public void tierUp()
@@ -42,9 +38,8 @@ public class NewTaskTest
 		wait = new WebDriverWait(driver,30000);
 		
 		
-		taskFields = new GetFields("Task",driver);
+		opportunities = new GetFields("Opportunity",driver);
 	}
-	
 	@Test(priority=1)
 	public void login()
 	{
@@ -61,20 +56,20 @@ public class NewTaskTest
 		hardwait(5);
 	}
 	@Test(priority=3)
-	public void create_new_lead()
+	public void create_new_opportunities()
 	{	
-		click_js("a[title='Tasks']");
-		click(By.cssSelector("li[class='oneActionsDropDown'] a"));
-		click(By.cssSelector("li[role='presentation'] a[title='New Task']"));
+		click_js("a[title='Opportunities']");
+		click(By.cssSelector("a[title=\"New\"]"));
+		hardwait(2);
 	}
 
 	@Test(priority=4)
 	public void fill_form1() throws ConnectionException
-	{
-		taskFields.getObject("Due Date").set("3/10/2020");
+	{	
+//		opportunities.getObject("Amount").set("10000");
+		opportunities.getObject("Private").set("click");
 	}
 
-	
 	@AfterClass
 	public void tierDown()
 	{
@@ -82,32 +77,21 @@ public class NewTaskTest
 //		driver.quit();
 	}
 
-
-	public void click(By locator)
+	protected void click(By locator)
 	{
 		WebElement element = driver.findElement(locator);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
 	
-	public void click_js(String locator)
+	protected void click_js(String locator)
 	{
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		String script = "document.querySelector(\"html\").querySelector(\""+locator+"\").click()";
 		executor.executeScript(script);
 	}
-	
-	public void hardwait(int sec)
-	{
-		try {
-			Thread.sleep(sec * 1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	public void writeToFile(String s, String filename)
+	protected void writeToFile(String s, String filename)
 	{
 		File file = new File(filename);
 		FileWriter filewriter;
@@ -122,9 +106,18 @@ public class NewTaskTest
 		
 	}
 	
-	public void send_keys(WebElement e, String k)
+	protected void send_keys(WebElement e, String k)
 	{
 		if(e != null)
 			e.sendKeys(k);
+	}
+
+	protected void hardwait(int sec)
+	{
+		try {
+			Thread.sleep(sec * 1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
