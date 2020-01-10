@@ -5,13 +5,16 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import sft.auth.SftSetup;
 
-public class GetRequest {
+public class GetRequest 
+{
 	private String authToken;
-	public GetRequest(){
+	
+	public GetRequest()
+	{
 		authToken = SftSetup.generate_token();
 	}
-	
-	public String getRequestWithOauth(final String endPoint) {
+
+	public String getRequestWithOauth(final String endPoint) {		
 		Response response = getRequest(endPoint);
 		if(response.getStatusCode() == 200)
 			return response.getBody().asString();
@@ -22,15 +25,6 @@ public class GetRequest {
 	
 	private Response getRequest(final String endPoint)
 	{
-		 return RestAssured.given().header("Authorization", "Bearer " + authToken).contentType("application/json").get(endPoint);
+		return RestAssured.given().header("Authorization", "Bearer " + authToken).contentType("application/json").get(endPoint);
 	}
-	
-	
-	//Testing
-	public static void main(String []args)
-	{
-		GetRequest get_request = new GetRequest();
-		System.out.println(get_request.getRequestWithOauth("sobjects/Lead/describe/layouts"));
-	}
-	
 }

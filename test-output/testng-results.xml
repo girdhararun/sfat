@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="41178" started-at="2020-01-10T11:37:08 IST" finished-at="2020-01-10T11:37:49 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="41178" started-at="2020-01-10T11:37:08 IST" finished-at="2020-01-10T11:37:49 IST">
+      <class name="qa.NewTaskTest">
+        <test-method status="PASS" signature="tierUp()[pri:0, instance:qa.NewTaskTest@3b088d51]" name="tierUp" is-config="true" duration-ms="12605" started-at="2020-01-10T11:37:08 IST" finished-at="2020-01-10T11:37:21 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tierUp -->
+        <test-method status="PASS" signature="login()[pri:1, instance:qa.NewTaskTest@3b088d51]" name="login" duration-ms="6351" started-at="2020-01-10T11:37:21 IST" finished-at="2020-01-10T11:37:27 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method status="PASS" signature="app_launch()[pri:2, instance:qa.NewTaskTest@3b088d51]" name="app_launch" duration-ms="13243" started-at="2020-01-10T11:37:27 IST" finished-at="2020-01-10T11:37:40 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- app_launch -->
+        <test-method status="PASS" signature="create_new_lead()[pri:3, instance:qa.NewTaskTest@3b088d51]" name="create_new_lead" duration-ms="2486" started-at="2020-01-10T11:37:40 IST" finished-at="2020-01-10T11:37:43 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- create_new_lead -->
+        <test-method status="PASS" signature="fill_form1()[pri:4, instance:qa.NewTaskTest@3b088d51]" name="fill_form1" duration-ms="6437" started-at="2020-01-10T11:37:43 IST" finished-at="2020-01-10T11:37:49 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fill_form1 -->
+        <test-method status="PASS" signature="tierDown()[pri:0, instance:qa.NewTaskTest@3b088d51]" name="tierDown" is-config="true" duration-ms="0" started-at="2020-01-10T11:37:49 IST" finished-at="2020-01-10T11:37:49 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tierDown -->
+      </class> <!-- qa.NewTaskTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
