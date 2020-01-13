@@ -6,6 +6,7 @@ import java.util.Map;
 import org.openqa.selenium.WebDriver;
 import sft.ForceObject.ForceObject;
 import sft.ForceObject.SFField;
+import sft.ForceObject.Checkbox.CheckBox;
 import sft.ForceObject.Input.CurrencyInput;
 import sft.ForceObject.Input.DateInput;
 import sft.ForceObject.Input.DoubleInput;
@@ -114,7 +115,9 @@ public final class GetFields {
 		case "reference" : o = new ReferenceInput(f, driver); break;
 		case "date" : o = new DateInput(f, driver); break;
 		case "textarea" : o = new TextArea(f, driver); break;
-		case "picklist" : o = new Select(f,driver);
+		case "picklist" : o = new Select(f,driver); break;
+		case "boolean" : o = new CheckBox(f, driver); break;
+		default : System.out.println("[Error]-------------------------Matching Data Type not found----------------------------");
 		}
 		return o;
 	}

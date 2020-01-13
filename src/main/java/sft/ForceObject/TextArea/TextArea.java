@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
 import sft.DataFields;
 import sft.ForceObject.SFField;
 import sft.ForceObject.ForceObject;
-import sft.utils.SFUtils;
+import sft.utils.SFBase;
 
-public class TextArea extends SFUtils implements ForceObject
+public class TextArea extends SFBase implements ForceObject
 {
 
 	private String fieldName,domDataType;

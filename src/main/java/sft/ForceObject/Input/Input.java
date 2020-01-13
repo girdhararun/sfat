@@ -9,13 +9,13 @@ import org.openqa.selenium.WebElement;
 import sft.DataFields;
 import sft.ForceObject.ForceObject;
 import sft.ForceObject.SFField;
-import sft.utils.SFUtils;
+import sft.utils.SFBase;
 
 
-public class Input extends SFUtils implements ForceObject
+public class Input extends SFBase implements ForceObject
 {
 	protected String fieldName,domDataType;
-	protected WebDriver driver;
+//	protected WebDriver driver;
 	protected static Map<String,String> dataTypes = DataFields.fields();
 	public Input(SFField field,WebDriver driver)
 	{

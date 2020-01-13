@@ -5,9 +5,11 @@
     <classes>
       <class name="qa.NewOpportunities">
         <methods>
+          <include name="create_new_opportunities"/>
           <include name="tierUp"/>
           <include name="tierDown"/>
           <include name="fill_form1"/>
+          <include name="app_launch"/>
         </methods>
       </class> <!-- qa.NewOpportunities -->
     </classes>

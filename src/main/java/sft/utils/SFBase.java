@@ -12,15 +12,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SFUtils 
+public class SFBase 
 {
-	private WebDriver driver = null;
-	WebDriverWait wait=null;
+	protected WebDriver driver = null;
+	protected WebDriverWait wait=null;
+	protected JavascriptExecutor executor=null;
 	
-	public SFUtils(WebDriver driver)
+	public SFBase(WebDriver driver)
 	{
 		this.driver = driver;
 		wait = new WebDriverWait(driver,30000);
+		executor = (JavascriptExecutor) driver;
 	}
 	
 	protected void hardwait(int sec)
@@ -39,9 +41,13 @@ public class SFUtils
 		element.click();
 	}
 	
+	protected void clickUsingJavaScript(WebElement element)
+	{
+		executor.executeScript("arguments[0].click()", element);
+	}
+	
 	protected void click_js(String locator)
 	{
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		String script = "document.querySelector(\"html\").querySelector(\""+locator+"\").click()";
 		executor.executeScript(script);
 	}

@@ -22,7 +22,7 @@ import com.sforce.ws.ConnectionException;
 
 import sft.GetFields;
 import sft.auth.SftSetup;
-import sft.utils.SFUtils;
+import sft.utils.SFBase;
 
 public class NewLeadTest
 {

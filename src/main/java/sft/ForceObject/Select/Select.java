@@ -10,9 +10,9 @@ import sft.DataFields;
 import sft.ForceObject.SFField;
 import sft.ForceObject.ForceObject;
 import sft.SFObject.describeLayoutPOJO.PicklistValue;
-import sft.utils.SFUtils;
+import sft.utils.SFBase;
 
-public class Select extends SFUtils implements ForceObject
+public class Select extends SFBase implements ForceObject
 {
 	private String fieldName,domDataType;
 	private WebDriver driver;

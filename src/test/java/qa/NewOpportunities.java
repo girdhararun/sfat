@@ -66,7 +66,7 @@ public class NewOpportunities
 	@Test(priority=4)
 	public void fill_form1() throws ConnectionException
 	{	
-//		opportunities.getObject("Amount").set("10000");
+		opportunities.getObject("Amount").set("10000");
 		opportunities.getObject("Private").set("click");
 	}
 

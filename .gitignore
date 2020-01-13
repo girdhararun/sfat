@@ -1,8 +1,8 @@
 #
 # Standard Maven .gitignore
 #
-target/
-test-output/
+target/*
+test-output/*
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
