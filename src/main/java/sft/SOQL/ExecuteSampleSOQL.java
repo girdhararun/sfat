@@ -5,11 +5,12 @@ import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Contact;
 import com.sforce.soap.enterprise.sobject.SObject;
 import com.sforce.ws.ConnectionException;
+import sft.auth.GetEnterpriseConnection;
 
-public class SOQLCheck {
+public class ExecuteSampleSOQL {
     EnterpriseConnection connection;
 
-    public SOQLCheck(EnterpriseConnection connection) {
+    public ExecuteSampleSOQL(EnterpriseConnection connection) {
         this.connection = connection;
     }
 
