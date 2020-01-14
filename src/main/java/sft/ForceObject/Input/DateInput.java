@@ -16,17 +16,17 @@ public class DateInput extends Input{
 	@Override
 	protected WebElement getWebElement() 
 	{
-		List<WebElement> dateFields = driver.findElements(By.xpath("//div[contains(@class, 'uiInput--datetime')]/../label/span"));
+		List<WebElement> dateFields = driver.findElements(By.xpath("//div[contains(@class, '"+domDataType+"')]/../label/span"));
 		int size = dateFields.size();
 		int i;
 		for(i=0; i<size; i++)
 		{
-			dateFields = driver.findElements(By.xpath("//div[contains(@class, 'uiInput--datetime')]/../label/span"));
+			dateFields = driver.findElements(By.xpath("//div[contains(@class, '"+domDataType+"')]/../label/span"));
 
 			if(dateFields.get(i).getText().replace('*',' ').trim().equals(fieldName))
 				break;
 		}
-		return driver.findElements(By.xpath("//div[contains(@class, 'uiInput--datetime')]/input")).get(i);
+		return driver.findElements(By.xpath("//div[contains(@class, '"+domDataType+"')]/input")).get(i);
 	}
 	
 }

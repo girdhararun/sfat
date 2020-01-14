@@ -2,36 +2,36 @@
 <testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="33657" started-at="2020-01-13T11:45:57 IST" finished-at="2020-01-13T11:46:30 IST">
+  <suite name="Default suite" duration-ms="33030" started-at="2020-01-14T12:00:34 IST" finished-at="2020-01-14T12:01:07 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="33657" started-at="2020-01-13T11:45:57 IST" finished-at="2020-01-13T11:46:30 IST">
-      <class name="qa.NewOpportunities">
-        <test-method status="PASS" signature="tierUp()[pri:0, instance:qa.NewOpportunities@4d95d2a2]" name="tierUp" is-config="true" duration-ms="11291" started-at="2020-01-13T11:45:57 IST" finished-at="2020-01-13T11:46:08 IST">
+    <test name="Default test" duration-ms="33030" started-at="2020-01-14T12:00:34 IST" finished-at="2020-01-14T12:01:07 IST">
+      <class name="qa.NewTaskTest">
+        <test-method status="PASS" signature="tierUp()[pri:0, instance:qa.NewTaskTest@4d95d2a2]" name="tierUp" is-config="true" duration-ms="9886" started-at="2020-01-14T12:00:34 IST" finished-at="2020-01-14T12:00:44 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tierUp -->
-        <test-method status="PASS" signature="login()[pri:1, instance:qa.NewOpportunities@4d95d2a2]" name="login" duration-ms="6702" started-at="2020-01-13T11:46:08 IST" finished-at="2020-01-13T11:46:15 IST">
+        <test-method status="PASS" signature="login()[pri:1, instance:qa.NewTaskTest@4d95d2a2]" name="login" duration-ms="7537" started-at="2020-01-14T12:00:44 IST" finished-at="2020-01-14T12:00:51 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- login -->
-        <test-method status="PASS" signature="app_launch()[pri:2, instance:qa.NewOpportunities@4d95d2a2]" name="app_launch" duration-ms="11953" started-at="2020-01-13T11:46:15 IST" finished-at="2020-01-13T11:46:27 IST">
+        <test-method status="PASS" signature="app_launch()[pri:2, instance:qa.NewTaskTest@4d95d2a2]" name="app_launch" duration-ms="10514" started-at="2020-01-14T12:00:51 IST" finished-at="2020-01-14T12:01:02 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- app_launch -->
-        <test-method status="PASS" signature="create_new_opportunities()[pri:3, instance:qa.NewOpportunities@4d95d2a2]" name="create_new_opportunities" duration-ms="3309" started-at="2020-01-13T11:46:27 IST" finished-at="2020-01-13T11:46:30 IST">
+        <test-method status="PASS" signature="create_new_lead()[pri:3, instance:qa.NewTaskTest@4d95d2a2]" name="create_new_lead" duration-ms="2699" started-at="2020-01-14T12:01:02 IST" finished-at="2020-01-14T12:01:05 IST">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- create_new_opportunities -->
-        <test-method status="PASS" signature="fill_form1()[pri:4, instance:qa.NewOpportunities@4d95d2a2]" name="fill_form1" duration-ms="356" started-at="2020-01-13T11:46:30 IST" finished-at="2020-01-13T11:46:30 IST">
+        </test-method> <!-- create_new_lead -->
+        <test-method status="PASS" signature="fill_form1()[pri:4, instance:qa.NewTaskTest@4d95d2a2]" name="fill_form1" duration-ms="2330" started-at="2020-01-14T12:01:05 IST" finished-at="2020-01-14T12:01:07 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- fill_form1 -->
-        <test-method status="PASS" signature="tierDown()[pri:0, instance:qa.NewOpportunities@4d95d2a2]" name="tierDown" is-config="true" duration-ms="1" started-at="2020-01-13T11:46:30 IST" finished-at="2020-01-13T11:46:30 IST">
+        <test-method status="PASS" signature="tierDown()[pri:0, instance:qa.NewTaskTest@4d95d2a2]" name="tierDown" is-config="true" duration-ms="0" started-at="2020-01-14T12:01:07 IST" finished-at="2020-01-14T12:01:07 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tierDown -->
-      </class> <!-- qa.NewOpportunities -->
+      </class> <!-- qa.NewTaskTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
