@@ -3,15 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="qa.NewOpportunities">
+      <class name="qa.NewTaskTest">
         <methods>
-          <include name="create_new_opportunities"/>
           <include name="tierUp"/>
-          <include name="tierDown"/>
+          <include name="create_new_lead"/>
           <include name="fill_form1"/>
           <include name="app_launch"/>
+          <include name="tierDown"/>
         </methods>
-      </class> <!-- qa.NewOpportunities -->
+      </class> <!-- qa.NewTaskTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
