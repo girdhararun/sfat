@@ -1,10 +1,5 @@
 package sft.utils;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -18,13 +13,14 @@ public class SFBase
 	protected WebDriverWait wait=null;
 	protected JavascriptExecutor executor=null;
 	
+	private int explicitWait = 30000;
 	public SFBase(WebDriver driver)
 	{
 		this.driver = driver;
-		wait = new WebDriverWait(driver,30000);
+		wait = new WebDriverWait(driver,explicitWait);
 		executor = (JavascriptExecutor) driver;
 	}
-	
+
 	protected void hardwait(int sec)
 	{
 		try {
@@ -33,44 +29,44 @@ public class SFBase
 			e.printStackTrace();
 		}
 	}
+
+	//-------------------------------------------------------------Click functions start------------------------------------------------------------------------//
+	
+	protected void click(WebElement element)
+	{
+		wait.until(ExpectedConditions.visibilityOf(element));
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+		element.click();
+	}
 	
 	protected void click(By locator)
 	{
 		WebElement element = driver.findElement(locator);
 		wait.until(ExpectedConditions.visibilityOf(element));
+		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
 	}
-	
+
 	protected void clickUsingJavaScript(WebElement element)
 	{
 		executor.executeScript("arguments[0].click()", element);
 	}
-	
+
 	protected void click_js(String locator)
 	{
 		String script = "document.querySelector(\"html\").querySelector(\""+locator+"\").click()";
 		executor.executeScript(script);
 	}
 
-	protected void writeToFile(String s, String filename)
-	{
-		File file = new File(filename);
-		FileWriter filewriter;
-		try {
-			filewriter = new FileWriter(file);
-			BufferedWriter writer = new BufferedWriter(filewriter);
-			writer.write(s);
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
+	//-------------------------------------------------------------Click functions end------------------------------------------------------------------------//
+
 	
-	protected void send_keys(WebElement e, String k)
+	protected void send_keys(WebElement element, String k)
 	{
-		if(e != null)
-			e.sendKeys(k);
+		if(element != null)
+		{
+			element.clear(); element.sendKeys(k);
+		}
 	}
 
 }
