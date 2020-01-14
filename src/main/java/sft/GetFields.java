@@ -109,7 +109,9 @@ public final class GetFields {
 		case "email" : o = new EmailInput(f, driver); break;
 		case "url" : o = new UrlInput(f, driver); break;
 		case "_int" : o = new IntInput(f, driver); break;
+		case "int" : o = new IntInput(f, driver); break;
 		case "_double" : o = new DoubleInput(f, driver); break;
+		case "double" : o = new DoubleInput(f, driver); break;
 		case "string" :  o = new StringInput(f, driver); break;
 		case "currency" : o = new CurrencyInput(f, driver); break;
 		case "reference" : o = new ReferenceInput(f, driver); break;

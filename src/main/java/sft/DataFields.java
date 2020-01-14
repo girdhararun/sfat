@@ -27,11 +27,13 @@ public class DataFields
 		map.put("email",EMAIL);
 		map.put("url",URL);
 		map.put("_int",NUMBER);
+		map.put("int",NUMBER);
 		map.put("string",TEXT);
 		map.put("currency",CURRENCY);
 		map.put("picklist",SELECT);
 		map.put("textarea",TEXTAREA);
 		map.put("_double", NUMBER);
+		map.put("double", NUMBER);
 		map.put("reference", SEARCHINPUT);
 		map.put("combobox",COMBOBOX);
 		map.put("date",DATE);

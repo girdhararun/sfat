@@ -1,0 +1,121 @@
+{
+	"Lead Information": {
+		"Phone": {
+			"isRequired": true,
+			"editableForNew": true,
+			"editableForUpdate": true,
+			"label": "Phone",
+			"value": "7065586031"
+		},
+		"Mobile": {
+			"label": "Mobile",
+			"value": "12345678"
+		},
+		"Salutation": {
+			"label": "Salutation",
+			"value": "Mr."
+		},
+		"First Name": {
+			"label": "First Name",
+			"value": "Akash"
+		},
+		"Last Name": {
+			"label": "Last Name",
+			"value": "Verma"
+		},
+		"Company": {
+			"label": "Company",
+			"value": "AV Labs"
+		},
+		"Fax": {
+			"label": "Fax",
+			"value": "123456"
+		},
+		"Title": {
+			"label": "Title",
+			"value": "My Title"
+		},
+		"Email": {
+			"label": "Email",
+			"value": "v.akash75@yahoo.in"
+		},
+		"Website": {
+			"label": "Website",
+			"value": "v.akash75@yahoo.in"
+		},
+		"Lead Source": {
+			"label": "Lead Source",
+			"value": "Web"
+		},
+		"Industry": {
+			"label": "Industry",
+			"value": "Banking"
+		},
+		"Lead Status": {
+			"label": "Lead Status",
+			"value": "Working - Contacted"
+		},
+		"Annual Revenue": {
+			"label": "Annual Revenue",
+			"value": "30000000"
+		},
+		"Rating": {
+			"label": "Rating",
+			"value": "Hot"
+		},
+		"No. of Employees": {
+			"label": "No. of Employees",
+			"value": "5000"
+		}
+	},
+	"Address Information": {
+		"Street": {
+			"label": "Street",
+			"value": "My Street"
+		},
+		"City": {
+			"label": "City",
+			"value": "My City"
+		},
+		"State/Province": {
+			"label": "State/Province",
+			"value": "My state"
+		},
+		"Zip/Postal Code": {
+			"label": "Zip/Postal Code",
+			"value": "000000"
+		},
+		"Country": {
+			"label": "Country",
+			"value": "India"
+		}
+	},
+	"Additional Information": {
+		"Product Interest": {
+			"label": "Product Interest",
+			"value": "GC1000 series"
+		},
+		"Current Generator(s)": {
+			"label": "Current Generator(s)",
+			"value": "Nahi pata"
+		},
+		"SIC Code": {
+			"label": "SIC Code",
+			"value": "Nahi pata"
+		},
+		"Primary": {
+			"label": "Primary",
+			"value": "No"
+		},
+		"Number of Locations": {
+			"label": "Number of Locations",
+			"value": "28"
+		}
+	},
+	"Description Information": {
+		"Description": {
+			"label": "Description",
+			"value": "My description"
+		}
+	}
+}
