@@ -5,19 +5,18 @@ import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Contact;
 import com.sforce.soap.enterprise.sobject.SObject;
 import com.sforce.ws.ConnectionException;
-import sft.auth.GetEnterpriseConnection;
 
 public class ExecuteSampleSOQL {
     EnterpriseConnection connection;
-
+    QueryResult qr;
     public ExecuteSampleSOQL(EnterpriseConnection connection) {
         this.connection = connection;
     }
 
-    public void querySample(String soqlQuery) {
+    public void queryContactSample(String soqlQuery) {
 
         try {
-            QueryResult qr = connection.query(soqlQuery);
+            qr = connection.query(soqlQuery);
             boolean done = false;
 
             if (qr.getSize() > 0) {
