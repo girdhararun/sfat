@@ -77,7 +77,7 @@ public class GetDatabaseConnection {
         }
     }
 
-    private void logout() {
+    protected void logout() {
         try {
             connection.logout();
             System.out.println("Logged out.");

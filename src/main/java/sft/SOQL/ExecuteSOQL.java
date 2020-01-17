@@ -15,6 +15,8 @@ public class ExecuteSOQL extends GetDatabaseConnection {
             qr = connection.query(soqlQuery);
         } catch (ConnectionException e) {
             e.printStackTrace();
+        }finally {
+            eDBConnection.logout();
         }
         return qr;
     }
