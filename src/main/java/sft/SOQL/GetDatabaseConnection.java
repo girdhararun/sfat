@@ -1,10 +1,11 @@
-package sft.auth;
+package sft.SOQL;
 
 import com.sforce.soap.enterprise.EnterpriseConnection;
 import com.sforce.soap.enterprise.GetUserInfoResult;
 import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
 import sft.SOQL.ExecuteSampleSOQL;
+import sft.auth.SftSetup;
 
 import java.util.Map;
 
@@ -26,28 +27,20 @@ public class GetDatabaseConnection {
         ec.run();
     }
 
-//    public GetDatabaseConnection getDBConnection(){
-//        ec = new GetDatabaseConnection(setupDetails.get("domain_url")+"/"+setupDetails.get("soap_c"));
-//        return ec;
-//    }
     public void run() {
         // Make a login call
-        if (login()) {
-            GetEnterpriseConnection econn = new GetEnterpriseConnection();
-             ExecuteSampleSOQL soql = new ExecuteSampleSOQL(econn.getEnterpriseConnection());
+             ExecuteSampleSOQL soql = new ExecuteSampleSOQL(login());
             try {
-                 soql.querySample("SELECT FirstName, LastName FROM Contact");
+                 soql.queryContactSample("SELECT FirstName, LastName FROM Contact");
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             logout();
-        }
+
     }
 
-    private boolean login() {
-        boolean success = false;
-
+    protected EnterpriseConnection login() {
         try {
             ConnectorConfig config = new ConnectorConfig();
             config.setUsername(USERNAME);
@@ -59,12 +52,11 @@ public class GetDatabaseConnection {
             connection = new EnterpriseConnection(config);
             printUserInfo(config);
 
-            success = true;
         } catch (ConnectionException ce) {
             ce.printStackTrace();
         }
 
-        return success;
+        return connection;
     }
 
     private void printUserInfo(ConnectorConfig config) {
