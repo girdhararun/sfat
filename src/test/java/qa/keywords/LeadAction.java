@@ -106,13 +106,17 @@ public class LeadAction extends BaseAction
 	
 	public void detail_test()
 	{
-		System.out.println(leadFields.getObject("Description").get());
-		System.out.println(leadFields.getObject("Number of Locations").get());
-		System.out.println(leadFields.getObject("Phone").get());
-		System.out.println(leadFields.getObject("Email").get());
-		System.out.println(leadFields.getObject("Lead Owner").get());
-		System.out.println(leadFields.getObject("Rating").get());
-		System.out.println(leadFields.getObject("SIC Code").get());
+		System.out.println("Description -> " + leadFields.getObject("Description").get());
+		System.out.println("Number of Locations -> " + leadFields.getObject("Number of Locations").get());
+		System.out.println("Phone -> " + leadFields.getObject("Phone").get());
+		System.out.println("Email -> " + leadFields.getObject("Email").get());
+		System.out.println("Lead Owner -> " + leadFields.getObject("Lead Owner").get());
+		System.out.println("Rating -> " + leadFields.getObject("Rating").get());
+		System.out.println("SIC Code -> " + leadFields.getObject("SIC Code").get());
+		System.out.println("Created By -> " + leadFields.getObject("Created By").get());
+		System.out.println("Last Modified By -> " + leadFields.getObject("Last Modified By").get());
+		System.out.println("Address -> " + leadFields.getObject("Address").get());
+		
 	}
 }
 

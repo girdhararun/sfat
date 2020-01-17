@@ -1,5 +1,6 @@
 package sft.ForceObject.Input;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,5 +21,12 @@ public class ReferenceInput extends Input{
 		referenceInput.sendKeys(Keys.ARROW_DOWN);
 		hardwait(1);
 		referenceInput.sendKeys(Keys.ENTER);
+	}
+	
+	@Override
+	public String get() {
+		WebElement textNode = null;
+		textNode = driver.findElement(By.xpath(span + "//a"));
+		return textNode.getText();
 	}
 }

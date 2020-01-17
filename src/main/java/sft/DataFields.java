@@ -19,6 +19,7 @@ public class DataFields
 	
 	//To add
 	public static final String COMBOBOX = "forceTextEnumLookup";
+	public static final String DATETIME = "";
 
 	public static Map<String,String> fields()
 	{
@@ -38,6 +39,7 @@ public class DataFields
 		map.put("combobox",COMBOBOX);
 		map.put("date",DATE);
 		map.put("boolean", CHECKBOX);
+		map.put("datetime", DATETIME);
 		return map;
 	}
 }
