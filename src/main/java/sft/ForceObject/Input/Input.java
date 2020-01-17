@@ -16,11 +16,13 @@ public class Input extends SFBase implements ForceObject
 {
 	protected String fieldName,domDataType;
 //	protected WebDriver driver;
+	private SFField details;
 	protected static Map<String,String> dataTypes = DataFields.fields();
 	public Input(SFField field,WebDriver driver)
 	{
 		super(driver);
 		this.driver = driver;
+		details = field;
 		fieldName = field.getLabel();
 		domDataType = dataTypes.get(field.getDetails().getType());
 	}
@@ -51,5 +53,19 @@ public class Input extends SFBase implements ForceObject
 	{
 		getWebElement().clear();
 	}
-
+	
+	public String get() {	
+		WebElement textNode = null; 
+		String span = "//div[contains(@class, 'forcePageBlockSectionView')]//div[contains(@class, 'forcePageBlockSectionRow')]//div[contains(@class, 'forcePageBlockItem')]//div[contains(@class,'label')]/span[text()='"+fieldName+"']/../../div[last()]/span";
+		
+		String type = details.getDetails().getType();
+		if(type.equals("reference")||type.equals("email")) {
+			String locator = span + "//a";
+			textNode = driver.findElement(By.xpath(locator));
+			}
+		else {
+			textNode = driver.findElement(By.xpath(span));
+		}
+		return textNode.getText();
+	}
 }

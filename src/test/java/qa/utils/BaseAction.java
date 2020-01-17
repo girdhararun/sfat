@@ -59,12 +59,14 @@ public class BaseAction
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
 		waitForPageToLoadCompletely();
+		hardwait(1);
 	}
 
 	protected void clickUsingJavaScript(WebElement element)
 	{
 		executor.executeScript("arguments[0].click()", element);
 		waitForPageToLoadCompletely();
+		hardwait(1);
 	}
 
 	protected void click_js(String locator)
@@ -73,6 +75,7 @@ public class BaseAction
 		String script = "document.querySelector(\"html\").querySelector(\""+locator+"\").click()";
 		executor.executeScript(script);
 		waitForPageToLoadCompletely();
+		hardwait(1);
 	}
 
 	//-------------------------------------------------------------Click functions end------------------------------------------------------------------------//

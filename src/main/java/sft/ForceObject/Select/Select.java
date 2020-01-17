@@ -71,4 +71,12 @@ public class Select extends SFBase implements ForceObject
 	public void clear() {
 
 	}
+
+	@Override
+	public String get() {	
+		WebElement textNode = null; 
+		String span = "//div[contains(@class, 'forcePageBlockSectionView')]//div[contains(@class, 'forcePageBlockSectionRow')]//div[contains(@class, 'forcePageBlockItem')]//div[contains(@class,'label')]/span[text()='"+fieldName+"']/../../div[last()]/span";
+		textNode = driver.findElement(By.xpath(span));	
+		return textNode.getText();
+	}
 }

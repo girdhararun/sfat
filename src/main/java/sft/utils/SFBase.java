@@ -68,5 +68,10 @@ public class SFBase
 			element.clear(); element.sendKeys(k);
 		}
 	}
-
+	
+	public String getText(WebElement e)
+	{
+		return (String) executor.executeScript("arguments[0].innerText", e);
+	}
+	
 }
