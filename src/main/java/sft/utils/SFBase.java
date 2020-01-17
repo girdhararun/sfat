@@ -69,6 +69,11 @@ public class SFBase
 		}
 	}
 	
+	protected void send_keys_js(WebElement element, String k)
+	{
+		executor.executeScript("arguments[0].value='"+k+"'", element);
+	}
+	
 	public String getText(WebElement e)
 	{
 		return (String) executor.executeScript("arguments[0].innerText", e);

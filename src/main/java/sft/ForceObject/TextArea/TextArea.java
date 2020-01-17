@@ -3,6 +3,7 @@ package sft.ForceObject.TextArea;
 import java.util.List;
 import java.util.Map;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import sft.DataFields;
@@ -43,7 +44,7 @@ public class TextArea extends SFBase implements ForceObject
 
 	public void set(String value) 
 	{
-		getWebElement().sendKeys(value);
+		getWebElement().sendKeys(value, Keys.ENTER);
 	}
 
 	public void clear()

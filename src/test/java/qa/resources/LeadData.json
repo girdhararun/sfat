@@ -17,11 +17,11 @@
 		},
 		"First Name": {
 			"label": "First Name",
-			"value": "Akash"
+			"value": "Johny"
 		},
 		"Last Name": {
 			"label": "Last Name",
-			"value": "Verma"
+			"value": "Test"
 		},
 		"Company": {
 			"label": "Company",
@@ -37,11 +37,11 @@
 		},
 		"Email": {
 			"label": "Email",
-			"value": "v.akash75@yahoo.in"
+			"value": "t.tester1@yahoo.in"
 		},
 		"Website": {
 			"label": "Website",
-			"value": "v.akash75@yahoo.in"
+			"value": "t.tester1@yahoo.in"
 		},
 		"Lead Source": {
 			"label": "Lead Source",
@@ -57,7 +57,7 @@
 		},
 		"Annual Revenue": {
 			"label": "Annual Revenue",
-			"value": "30000000"
+			"value": "3000000000"
 		},
 		"Rating": {
 			"label": "Rating",
@@ -97,11 +97,11 @@
 		},
 		"Current Generator(s)": {
 			"label": "Current Generator(s)",
-			"value": "Nahi pata"
+			"value": "1234"
 		},
 		"SIC Code": {
 			"label": "SIC Code",
-			"value": "Nahi pata"
+			"value": "12345678"
 		},
 		"Primary": {
 			"label": "Primary",

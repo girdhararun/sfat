@@ -1,4 +1,4 @@
-package qa;
+package qa.temp;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,13 +22,13 @@ import com.sforce.ws.ConnectionException;
 
 import sft.GetFields;
 import sft.auth.SftSetup;
-import sft.utils.SFBase;
 
-public class NewLeadTest
+public class NewTaskTest 
 {
 	static WebDriver driver;
 	WebDriverWait wait;
-	GetFields leadFields;
+	GetFields taskFields;
+	
 	
 	@BeforeClass
 	public void tierUp()
@@ -42,8 +42,9 @@ public class NewLeadTest
 		wait = new WebDriverWait(driver,30000);
 		
 		
-		leadFields = new GetFields("Lead",driver);
+		taskFields = new GetFields("Task",driver);
 	}
+	
 	@Test(priority=1)
 	public void login()
 	{
@@ -62,19 +63,15 @@ public class NewLeadTest
 	@Test(priority=3)
 	public void create_new_lead()
 	{	
-		click_js("a[title='Leads']");
-		click(By.cssSelector("a[title=\"New\"]"));
+		click_js("a[title='Tasks']");
+		click(By.cssSelector("li[class='oneActionsDropDown'] a"));
+		click(By.cssSelector("li[role='presentation'] a[title='New Task']"));
 	}
 
 	@Test(priority=4)
 	public void fill_form1() throws ConnectionException
-	{	
-		leadFields.getObject("Phone").set("7065586031");
-		leadFields.getObject("Description").set("My Description");
-		leadFields.getObject("Description").clear();
-		
-		leadFields.getObject("Rating").set("Warm");
-		leadFields.getObject("Rating").set("Wa");
+	{
+		taskFields.getObject("Due Date").set("3/10/2020");
 	}
 
 	
@@ -85,21 +82,32 @@ public class NewLeadTest
 //		driver.quit();
 	}
 
-	protected void click(By locator)
+
+	public void click(By locator)
 	{
 		WebElement element = driver.findElement(locator);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
 	
-	protected void click_js(String locator)
+	public void click_js(String locator)
 	{
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		String script = "document.querySelector(\"html\").querySelector(\""+locator+"\").click()";
 		executor.executeScript(script);
 	}
+	
+	public void hardwait(int sec)
+	{
+		try {
+			Thread.sleep(sec * 1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
-	protected void writeToFile(String s, String filename)
+	public void writeToFile(String s, String filename)
 	{
 		File file = new File(filename);
 		FileWriter filewriter;
@@ -114,18 +122,9 @@ public class NewLeadTest
 		
 	}
 	
-	protected void send_keys(WebElement e, String k)
+	public void send_keys(WebElement e, String k)
 	{
 		if(e != null)
 			e.sendKeys(k);
-	}
-
-	protected void hardwait(int sec)
-	{
-		try {
-			Thread.sleep(sec * 1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 }

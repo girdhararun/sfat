@@ -1,4 +1,4 @@
-package qa;
+package qa.temp;
 
 import java.io.IOException;
 

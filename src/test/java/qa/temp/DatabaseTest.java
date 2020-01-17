@@ -1,4 +1,4 @@
-package qa;
+package qa.temp;
 
 //import sft.SOQL.ExecuteSampleSOQL;
 //import sft.auth.GetDatabaseConnection;
