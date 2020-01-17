@@ -103,33 +103,12 @@ public class BaseAction
 	}
 	
 	
-	protected List<JSONObject> fillCompleteForm(JSONObject complete, GetFields formField)
+	protected void fillCompleteForm(List<JSONObject> fields, GetFields formField)
 	{
-		List<JSONObject> fieldsets = new ArrayList<JSONObject>();
-		List<JSONObject> fields = new ArrayList<JSONObject>();
-		
-		Iterator<String> itr = complete.keys();
-		while(itr.hasNext())
-		{
-			fieldsets.add(complete.getJSONObject(itr.next()));
-		}
-		
-		for(JSONObject fieldset : fieldsets)
-		{
-			itr = fieldset.keys();
-			while(itr.hasNext())
-			{
-				fields.add(fieldset.getJSONObject(itr.next()));
-			}
-		}
-		
 		for(JSONObject field : fields)
 		{
 			System.out.println(field.get("label") + "  " + field.get("value")); 
-			formField.getObject(field.get("label").toString()).set(field.get("value").toString());
+			formField.getObject(field.getString("label")).set(field.getString("value"));
 		}
-		
-		return fields;
 	}
-	
 }

@@ -32,8 +32,6 @@ public class JsonReader
 		System.out.println(reader.find("['Lead']['Lead Information']['Phone']"));
 	}
 	
-	
-	
 	public Object find(String path)
 	{
 		DocumentContext jsonContext = JsonPath.parse(ojson);
@@ -56,7 +54,7 @@ public class JsonReader
 	private String readJson(String filename)
 	{
 		String line = "";
-		String json = "";
+		StringBuffer json = new StringBuffer();
 		System.out.println(filename);
 		File file = new File(filename);
 		FileReader file_reader=null;
@@ -67,13 +65,13 @@ public class JsonReader
 			reader = new BufferedReader(file_reader);
 			while( (line=reader.readLine())!=null )
 			{
-				json += line;
+				json.append(line);
 			}
 			reader.close(); file_reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return json;
+		return json.toString();
 	}
 }

@@ -3,18 +3,19 @@ package qa.test;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-
 import qa.keywords.LeadAction;
+import qa.utils.TestDataSetup;
 
 public class LeadTest
 {	
 	private LeadAction lead = new LeadAction();
+	TestDataSetup leadtestdata = new TestDataSetup("LeadData.json");
 	
 	@BeforeClass
 	public void tierUp()
 	{
 		lead.login("akash.verma@qainfotech.com", "akashvermaqa68");
+		
 	}
 	
 	
@@ -40,18 +41,20 @@ public class LeadTest
 	@Test(priority=4)
 	public void fill_lead_form()
 	{
-		 lead.fill_form_and_save("LeadData.json");
+		 lead.fill_form_and_save(leadtestdata.getFields());
 	}
 	
 	@Test(priority=5)
 	public void verify_form_details()
 	{
 		lead.open_lead_details();
-		Assert.assertEquals(lead.getFormDetail("Lead Owner"), "AKASH VERMA");
-		Assert.assertEquals(lead.getFormDetail("Phone"), "(706) 558-6031");
-		Assert.assertEquals(lead.getFormDetail("Company"), "AV Labs");
-		Assert.assertEquals(lead.getFormDetail("Email"), "t.tester1@yahoo.in");
-		Assert.assertEquals(lead.getFormDetail("SIC Code"), "12345678");
+		Assert.assertEquals(lead.getFormDetail("Email"), leadtestdata.getFieldValue("Email"));
+		Assert.assertEquals(lead.getFormDetail("Website"), leadtestdata.getFieldValue("Website"));
+		Assert.assertEquals(lead.getFormDetail("SIC Code"), leadtestdata.getFieldValue("SIC Code"));
+		Assert.assertEquals(lead.getFormDetail("Name"), 
+			leadtestdata.getFieldValue("Salutation") + " " + leadtestdata.getFieldValue("First Name") + " " + leadtestdata.getFieldValue("Last Name"));
+		Assert.assertEquals(lead.getFormDetail("Title"), leadtestdata.getFieldValue("Title"));
+		
 	}
 	
 	

@@ -52,10 +52,9 @@ public class LeadAction extends BaseAction
 		hardwait(2);
 	}
 	
-	public void fill_form_and_save(String formData)
+	public void fill_form_and_save(List<JSONObject> fields)
 	{
-		JsonReader lead_data  = new JsonReader(formData);
-		fields=fillCompleteForm(lead_data.read_asJSONObject(), leadFields);
+		fillCompleteForm(fields, leadFields);
 		click_js("div[class*='forceDetailPanelDesktop']");
 		hardwait(1);
 		click_js("button[title='Save']");
