@@ -1,16 +1,22 @@
 package sft;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import org.openqa.selenium.WebDriver;
 import sft.ForceObject.ForceObject;
 import sft.ForceObject.SFField;
 import sft.ForceObject.Checkbox.CheckBox;
+import sft.ForceObject.DateTime.DateTime;
+import sft.ForceObject.DefaultCase.DefaultCase;
 import sft.ForceObject.Input.CurrencyInput;
 import sft.ForceObject.Input.DateInput;
 import sft.ForceObject.Input.DoubleInput;
 import sft.ForceObject.Input.EmailInput;
+import sft.ForceObject.Input.Input;
 import sft.ForceObject.Input.IntInput;
 import sft.ForceObject.Input.PhoneInput;
 import sft.ForceObject.Input.ReferenceInput;
@@ -19,31 +25,50 @@ import sft.ForceObject.Input.UrlInput;
 import sft.ForceObject.Select.Select;
 import sft.ForceObject.TextArea.TextArea;
 import sft.SFObject.GetSFObject;
+import sft.SFObject.describeLayoutPOJO.Component;
 import sft.SFObject.describeLayoutPOJO.Component__1;
+import sft.SFObject.describeLayoutPOJO.DetailLayoutSection;
 import sft.SFObject.describeLayoutPOJO.Details;
 import sft.SFObject.describeLayoutPOJO.EditLayoutSection;
 import sft.SFObject.describeLayoutPOJO.Layout;
+import sft.SFObject.describeLayoutPOJO.LayoutComponent;
 import sft.SFObject.describeLayoutPOJO.LayoutComponent__1;
+import sft.SFObject.describeLayoutPOJO.LayoutItem;
 import sft.SFObject.describeLayoutPOJO.LayoutItem__1;
+import sft.SFObject.describeLayoutPOJO.LayoutRow;
 import sft.SFObject.describeLayoutPOJO.LayoutRow__1;
 import sft.SFObject.describeLayoutPOJO.SFVFDescription;
 
 public final class GetFields {
 
 	private WebDriver driver;
-	private  static Map<String,SFField>  fields = new HashMap<String, SFField>();
+	private  static Map<String,SFField>  edit_fields = new HashMap<String, SFField>();
+	private  static Map<String,SFField>  detail_fields = new HashMap<String, SFField>();
 	public GetFields(String obj, WebDriver d)
 	{
-		generater(obj);
+		editGenerater(obj);
+		detailGenerater(obj);
 		driver = d;
 	}
-
-	public Map<String,SFField> get()
+	
+	// Please Dont remove for a while :- Akash Verma
+	public static void main(String []arags)
 	{
-		return fields;
+		GetFields g = new GetFields("Lead", null);
+		g.print_map(g.getDetailFields());
+	}
+	
+	public Map<String,SFField> getEditFields()
+	{
+		return edit_fields;
+	}
+	
+	public Map<String,SFField> getDetailFields()
+	{
+		return detail_fields;
 	}
 
-	private  void generater(String obj)
+	private  void editGenerater(String obj)
 	{
 		SFVFDescription sobj = GetSFObject.get(obj);
 		List<Layout> layouts= sobj.getLayouts();
@@ -86,10 +111,10 @@ public final class GetFields {
 											layoutItems.get(l).getEditableForUpdate(),layoutItems.get(l).getPlaceholder(),
 											layoutItems.get(l).getRequired(),collapsedSection,collapse,true,components.get(z).getDetails());
 
-									fields.put(df2.getLabel(), df2);
+									edit_fields.put(df2.getLabel(), df2);
 								}
 							}
-							else{	fields.put(df.getLabel(), df);}
+							else{	edit_fields.put(df.getLabel(), df);}
 						}
 					}	
 				}	
@@ -97,11 +122,74 @@ public final class GetFields {
 		}
 	}
 
+	
+	private  void detailGenerater(String obj)
+	{
+		SFVFDescription sobj = GetSFObject.get(obj);
+		List<Layout> layouts= sobj.getLayouts();
+		for(int i=0; i< layouts.size(); i++)
+		{
+			List<DetailLayoutSection> detailLayoutSections = layouts.get(i).getDetailLayoutSections();
+
+			for(int j=0; j<detailLayoutSections.size(); j++)
+			{
+				String fieldset = detailLayoutSections.get(j).getHeading();
+				Boolean collapsedSection = detailLayoutSections.get(j).getUseCollapsibleSection();
+				Boolean collapse = detailLayoutSections.get(j).getCollapsed();
+				List<LayoutRow> layoutRows = detailLayoutSections.get(j).getLayoutRows();
+
+				for(int k=0; k<layoutRows.size();k++)
+				{
+					List<LayoutItem> layoutItems = layoutRows.get(k).getLayoutItems();
+
+					for(int l=0; l<layoutItems.size(); l++)
+					{
+
+						SFField df = new SFField();
+						df.setFieldsData(fieldset, layoutItems.get(l).getLabel(), layoutItems.get(l).getEditableForNew(), 
+								layoutItems.get(l).getEditableForUpdate(), layoutItems.get(l).getPlaceholder(), 
+								layoutItems.get(l).getRequired(), collapsedSection, collapse, null, null);
+
+						List<LayoutComponent>  layoutComponents = layoutItems.get(l).getLayoutComponents();
+						for(int m=0; m<layoutComponents.size();m++)
+						{
+							Details details = layoutComponents.get(m).getDetails();
+							df.setDetails(layoutComponents.get(m).getDetails());
+							List<Component> components= layoutComponents.get(m).getComponents();
+							if(components.size() != 0)
+							{
+								for(int z=0; z<components.size();z++)
+								{
+									SFField df2 = new SFField();
+									df2.setFieldsData(fieldset,
+											components.get(z).getDetails().getLabel(),layoutItems.get(l).getEditableForNew(),
+											layoutItems.get(l).getEditableForUpdate(),layoutItems.get(l).getPlaceholder(),
+											layoutItems.get(l).getRequired(),collapsedSection,collapse,true,components.get(z).getDetails());
+
+									detail_fields.put(df2.getLabel(), df2);
+								}
+							}
+							else{	detail_fields.put(df.getLabel(), df);}
+						}
+					}	
+				}	
+			}
+		}
+	}
+	
 
 	public ForceObject getObject(String field)
 	{
-		SFField f = fields.get(field);
-		final String type =  f.getDetails().getType();
+		SFField f;
+		String type="default_case";
+		if((f=edit_fields.get(field))==null)
+			f=detail_fields.get(field);
+		if(f != null)
+			type =  f.getDetails().getType();
+		else {
+			f = new SFField(); f.setLabel(field);
+		}
+		
 		ForceObject o = null;
 		switch(type)
 		{
@@ -119,9 +207,24 @@ public final class GetFields {
 		case "textarea" : o = new TextArea(f, driver); break;
 		case "picklist" : o = new Select(f,driver); break;
 		case "boolean" : o = new CheckBox(f, driver); break;
-		default : System.out.println("[Error]-------------------------Matching Data Type not found----------------------------");
+		case "datetime" : o = new DateTime(f, driver); break;
+		default : o = new DefaultCase(f, driver);
+		//Dont remove for debugging
+		//System.out.println("[Error]-------------------------Matching Data Type not found for " + f.getLabel()+" : " +f.getDetails().getType() + "----------------------------");
 		}
 		return o;
 	}
-
+	
+	//For Debugging, please dont remove :- Akash Verma
+	 private static void print_map(Map<String,SFField> map)
+	    {
+	    	Iterator<Entry<String, SFField>> itr = map.entrySet().iterator();
+	    	System.out.print("\n\n");
+	    	while(itr.hasNext())
+	    	{
+	    		Entry<String, SFField> entry = itr.next();
+	    		System.out.println(entry.getKey() + " : " + entry.getValue().getLabel() + ":" +entry.getValue().getDetails().getType());
+	    	}
+	    	System.out.print("\n\n");
+	    } 
 }

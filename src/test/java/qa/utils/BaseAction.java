@@ -3,6 +3,7 @@ package qa.utils;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONObject;
 import org.openqa.selenium.By;
@@ -33,6 +34,11 @@ public class BaseAction
 		waitForPageToLoadCompletely();
 	}
 	
+	public String getPageTitle()
+	{
+		return driver.getTitle();
+	}
+	
 	protected void hardwait(int sec)
 	{
 		try {
@@ -59,12 +65,14 @@ public class BaseAction
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
 		waitForPageToLoadCompletely();
+		hardwait(1);
 	}
 
 	protected void clickUsingJavaScript(WebElement element)
 	{
 		executor.executeScript("arguments[0].click()", element);
 		waitForPageToLoadCompletely();
+		hardwait(1);
 	}
 
 	protected void click_js(String locator)
@@ -73,6 +81,7 @@ public class BaseAction
 		String script = "document.querySelector(\"html\").querySelector(\""+locator+"\").click()";
 		executor.executeScript(script);
 		waitForPageToLoadCompletely();
+		hardwait(1);
 	}
 
 	//-------------------------------------------------------------Click functions end------------------------------------------------------------------------//
@@ -94,7 +103,7 @@ public class BaseAction
 	}
 	
 	
-	protected void fillCompleteForm(JSONObject complete, GetFields formField)
+	protected List<JSONObject> fillCompleteForm(JSONObject complete, GetFields formField)
 	{
 		List<JSONObject> fieldsets = new ArrayList<JSONObject>();
 		List<JSONObject> fields = new ArrayList<JSONObject>();
@@ -118,9 +127,9 @@ public class BaseAction
 		{
 			System.out.println(field.get("label") + "  " + field.get("value")); 
 			formField.getObject(field.get("label").toString()).set(field.get("value").toString());
-		}		
+		}
+		
+		return fields;
 	}
-	
-	
 	
 }

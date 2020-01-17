@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Component {
 
     @JsonProperty("details")
-    private Details__1 details;
+    private Details details;
     @JsonProperty("displayLines")
     private Integer displayLines;
     @JsonProperty("tabOrder")
@@ -34,16 +34,16 @@ public class Component {
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("details")
-    public Details__1 getDetails() {
+    public Details getDetails() {
         return details;
     }
 
     @JsonProperty("details")
-    public void setDetails(Details__1 details) {
+    public void setDetails(Details details) {
         this.details = details;
     }
 
-    public Component withDetails(Details__1 details) {
+    public Component withDetails(Details details) {
         this.details = details;
         return this;
     }
