@@ -18,7 +18,6 @@ public class LeadTest
 		
 	}
 	
-	
 	@Test(priority=1)
 	public void verify_home_page()
 	{
@@ -48,13 +47,29 @@ public class LeadTest
 	public void verify_form_details()
 	{
 		lead.open_lead_details();
-		Assert.assertEquals(lead.getFormDetail("Email"), leadtestdata.getFieldValue("Email"));
-		Assert.assertEquals(lead.getFormDetail("Website"), leadtestdata.getFieldValue("Website"));
-		Assert.assertEquals(lead.getFormDetail("SIC Code"), leadtestdata.getFieldValue("SIC Code"));
 		Assert.assertEquals(lead.getFormDetail("Name"), 
 			leadtestdata.getFieldValue("Salutation") + " " + leadtestdata.getFieldValue("First Name") + " " + leadtestdata.getFieldValue("Last Name"));
+		Assert.assertEquals(lead.getFormDetail("Mobile"), leadtestdata.getFieldValue("Mobile"));
+		Assert.assertEquals(lead.getFormDetail("Company"), leadtestdata.getFieldValue("Company"));
+		Assert.assertEquals(lead.getFormDetail("Fax"), leadtestdata.getFieldValue("Fax"));
 		Assert.assertEquals(lead.getFormDetail("Title"), leadtestdata.getFieldValue("Title"));
-		
+		Assert.assertEquals(lead.getFormDetail("Email"), leadtestdata.getFieldValue("Email"));
+		Assert.assertEquals(lead.getFormDetail("Lead Source"), leadtestdata.getFieldValue("Lead Source"));
+		Assert.assertEquals(lead.getFormDetail("Website"), leadtestdata.getFieldValue("Website"));
+		Assert.assertEquals(lead.getFormDetail("Industry"), leadtestdata.getFieldValue("Industry"));
+		Assert.assertEquals(lead.getFormDetail("Lead Status"), leadtestdata.getFieldValue("Lead Status"));
+		Assert.assertEquals(lead.getFormDetail("Rating"), leadtestdata.getFieldValue("Rating"));
+		Assert.assertEquals(lead.getFormDetail("Address"),
+						leadtestdata.getFieldValue("Street")+"\n"+
+						leadtestdata.getFieldValue("City")+", "+
+						leadtestdata.getFieldValue("State/Province")+" "+
+						leadtestdata.getFieldValue("Zip/Postal Code")+"\n"+
+						leadtestdata.getFieldValue("Country"));
+		Assert.assertEquals(lead.getFormDetail("Product Interest"), leadtestdata.getFieldValue("Product Interest"));
+		Assert.assertEquals(lead.getFormDetail("Current Generator(s)"), leadtestdata.getFieldValue("Current Generator(s)"));
+		Assert.assertEquals(lead.getFormDetail("SIC Code"), leadtestdata.getFieldValue("SIC Code"));
+		Assert.assertEquals(lead.getFormDetail("Primary"), leadtestdata.getFieldValue("Primary"));
+		Assert.assertEquals(lead.getFormDetail("Number of Locations"), leadtestdata.getFieldValue("Number of Locations"));
 	}
 	
 	
