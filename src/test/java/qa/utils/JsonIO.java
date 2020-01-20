@@ -1,34 +1,37 @@
 package qa.utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import org.json.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
-public class JsonReader 
+public class JsonIO 
 {
 	private String ojson="";
-	private String filename;
-	public JsonReader(String file_name)
+	private File file;
+	public JsonIO(String file_name)
 	{
-		filename = System.getProperty("user.dir")+File.separator+
+		String filepath = System.getProperty("user.dir")+File.separator+
 				"src"+File.separator+
 				"test"+File.separator+
 				"java"+File.separator+
 				"qa"+File.separator+
 				"resources"+File.separator+
 				file_name;
-		ojson = readJson(filename);
+		file = new File(filepath);
+		ojson = readJson();
 	}
 	
 	
-	public static void main(String []args) throws JsonProcessingException, IOException
+	public static void main(String []args)
 	{
-		JsonReader reader = new JsonReader("LeadData.json");
+		JsonIO reader = new JsonIO("LeadData.json");
 		System.out.println(reader.find("['Lead']['Lead Information']['Phone']"));
 	}
 	
@@ -51,27 +54,31 @@ public class JsonReader
 		return ojson;
 	}
 	
-	private String readJson(String filename)
+	private String readJson()
 	{
 		String line = "";
 		StringBuffer json = new StringBuffer();
-		System.out.println(filename);
-		File file = new File(filename);
-		FileReader file_reader=null;
 		BufferedReader reader=null;
-			
 		try {
-			file_reader = new FileReader(file);
-			reader = new BufferedReader(file_reader);
+			reader = new BufferedReader(new FileReader(file));
 			while( (line=reader.readLine())!=null )
-			{
 				json.append(line);
-			}
-			reader.close(); file_reader.close();
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return json.toString();
+	}
+	
+	public void writeToFile(String json)
+	{
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+			 writer.write(json);
+			 writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		return json.toString();
 	}
 }

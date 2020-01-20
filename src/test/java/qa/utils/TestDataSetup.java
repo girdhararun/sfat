@@ -11,9 +11,11 @@ public class TestDataSetup
 	private List<JSONObject> fieldsets = new ArrayList<JSONObject>();
 	private List<JSONObject> fields = new ArrayList<JSONObject>();
 	private JSONObject data;
+	private JsonIO rw;
 	public TestDataSetup(String filename)
 	{
-		 data  = new JsonReader(filename).read_asJSONObject();
+		 rw = new JsonIO(filename);
+		 data = rw.read_asJSONObject();
 		 process();
 	}
 	
@@ -27,17 +29,18 @@ public class TestDataSetup
 		return fieldsets;
 	}
 	
-	public String getFieldValue(String label)
+	public String getFieldValue(String fieldSet , String label)
 	{
-		for(JSONObject field : fields)
-		{
-			if(field.getString("label").equals(label))
-				return field.getString("value");
-		}
-		return null;
+		return ((JSONObject)((JSONObject)data.get(fieldSet)).get(label)).getString("value");
+	}
+	public void updateFieldValue(String fieldSet , String label, String value)
+	{
+		data.put(fieldSet, ((JSONObject)data.get(fieldSet)).put(label, ((JSONObject)((JSONObject)data.get(fieldSet)).get(label)).put("value", value)));
+		rw.writeToFile(data.toString());
 	}
 	
-	
+	//No need: keep it for internal efficiency for getFieldValue(String label)
+	// may remove after changing the fill complete form logic : AKASH VERMA
 	public void process()
 	{
 		Iterator<String> itr = data.keys();

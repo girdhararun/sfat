@@ -4,7 +4,7 @@ import java.util.List;
 import org.json.JSONObject;
 import org.openqa.selenium.By;
 import qa.utils.BaseAction;
-import qa.utils.JsonReader;
+import qa.utils.JsonIO;
 import sft.GetFields;
 import sft.auth.SftSetup;
 
