@@ -1,10 +1,17 @@
 package qa.utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.json.JSONObject;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import pojos.leaddata.LeadData;
 
 public class TestDataSetup
 {
@@ -58,4 +65,23 @@ public class TestDataSetup
 			}
 		}
 	}
+	
+	public static <T> T getData(String filename,Class<T> value)
+	{
+		try {
+			return  new ObjectMapper().readValue(new JsonIO(filename).read_asString(),value);
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }
+

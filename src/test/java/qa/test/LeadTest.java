@@ -1,8 +1,11 @@
 package qa.test;
 
+import java.text.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import pojos.leaddata.LeadData;
 import qa.keywords.LeadAction;
 import qa.utils.TestDataSetup;
 
@@ -10,12 +13,12 @@ public class LeadTest
 {	
 	private LeadAction lead = new LeadAction();
 	TestDataSetup leadtestdata = new TestDataSetup("LeadData.json");
-	
+	LeadData leaddata;
 	@BeforeClass
 	public void tierUp()
 	{
 		lead.login("akash.verma@qainfotech.com", "akashvermaqa68");
-		
+		leaddata = TestDataSetup.getData("LeadData.json",LeadData.class);
 	}
 	
 	@Test(priority=1)
@@ -44,8 +47,9 @@ public class LeadTest
 	}
 	
 	@Test(priority=5)
-	public void verify_form_details()
+	public void verify_form_details() throws ParseException
 	{
+	
 		lead.open_lead_details();
 		Assert.assertEquals(lead.getFormDetail("Name"), 
 			leadtestdata.getFieldValue("Lead Information","Salutation") + " " +
@@ -60,6 +64,7 @@ public class LeadTest
 		Assert.assertEquals(lead.getFormDetail("Website"), leadtestdata.getFieldValue("Lead Information","Website"));
 		Assert.assertEquals(lead.getFormDetail("Industry"), leadtestdata.getFieldValue("Lead Information","Industry"));
 		Assert.assertEquals(lead.getFormDetail("Lead Status"), leadtestdata.getFieldValue("Lead Information","Lead Status"));
+		Assert.assertEquals(lead.getFormDetail("Annual Revenue"), "$3,000,000,000");
 		Assert.assertEquals(lead.getFormDetail("Rating"), leadtestdata.getFieldValue("Lead Information","Rating"));
 		Assert.assertEquals(lead.getFormDetail("Address"),
 						leadtestdata.getFieldValue("Address Information","Street")+"\n"+
@@ -74,6 +79,9 @@ public class LeadTest
 		
 		//Update file LeadData.json
 		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
+		System.out.println(leaddata.getAddressInformation().getCity().getValue());
+		
+		
 	}
 	
 	
