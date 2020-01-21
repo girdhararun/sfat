@@ -9,7 +9,7 @@ public class ExecuteSOQL extends GetDatabaseConnection {
     GetDatabaseConnection eDBConnection = new GetDatabaseConnection();
     EnterpriseConnection connection;
 
-    public QueryResult ExecuteSOQL(String soqlQuery) {
+    public QueryResult ExecuteQuery(String soqlQuery) {
         connection = eDBConnection.login();
         try {
             qr = connection.query(soqlQuery);
