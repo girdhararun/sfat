@@ -77,6 +77,19 @@ public class LeadTest
 		Assert.assertEquals(lead.getFormDetail("SIC Code"), leadtestdata.getFieldValue("Additional Information","SIC Code"));
 		Assert.assertEquals(lead.getFormDetail("Primary"), leadtestdata.getFieldValue("Additional Information","Primary"));
 		
+		
+		
+		
+		
+		Assert.assertEquals(lead.getFormDetail("Name"), 
+			leaddata.getLeadInformation().getSalutation().getValue() + " " +
+			leaddata.getLeadInformation().getFirstName().getValue() + " " + 
+			leaddata.getLeadInformation().getLastName().getValue());
+		Assert.assertEquals(lead.getFormDetail("Mobile"), leaddata.getLeadInformation().getMobile().getValue());
+		Assert.assertEquals(lead.getFormDetail("Company"), leaddata.getLeadInformation().getCompany().getValue());
+		Assert.assertEquals(lead.getFormDetail("Fax"), leaddata.getLeadInformation().getFax().getValue());
+		Assert.assertEquals(lead.getFormDetail("Title"), leaddata.getLeadInformation().getTitle().getValue());
+		Assert.assertEquals(lead.getFormDetail("Email"),  leaddata.getLeadInformation().getEmail().getValue());
 		//Update file LeadData.json
 		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
 		System.out.println(leaddata.getAddressInformation().getCity().getValue());
