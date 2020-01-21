@@ -1,10 +1,6 @@
 package qa.utils;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
 import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -27,18 +23,18 @@ public class BaseAction
 		wait = new WebDriverWait(driver,explicitWait);
 		executor = (JavascriptExecutor) driver;
 	}
-	
+
 	protected void launchUrl(String url)
 	{
 		driver.navigate().to(url);
 		waitForPageToLoadCompletely();
 	}
-	
+
 	public String getPageTitle()
 	{
 		return driver.getTitle();
 	}
-	
+
 	protected void hardwait(int sec)
 	{
 		try {
@@ -49,7 +45,7 @@ public class BaseAction
 	}
 
 	//-------------------------------------------------------------Click functions start------------------------------------------------------------------------//
-	
+
 	protected void click(WebElement element)
 	{
 		wait.until(ExpectedConditions.visibilityOf(element));
@@ -57,7 +53,7 @@ public class BaseAction
 		element.click();
 		waitForPageToLoadCompletely();
 	}
-	
+
 	protected void click(By locator)
 	{
 		WebElement element = driver.findElement(locator);
@@ -86,7 +82,7 @@ public class BaseAction
 
 	//-------------------------------------------------------------Click functions end------------------------------------------------------------------------//
 
-	
+
 	protected void send_keys(WebElement element, String k)
 	{
 		if(element != null)
@@ -94,15 +90,15 @@ public class BaseAction
 			element.clear(); element.sendKeys(k);
 		}
 	}
-	
+
 	protected void waitForPageToLoadCompletely()
 	{
 		while(!executor.executeScript("return document.readyState").equals("complete"))
 			hardwait(1);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("*")));
 	}
-	
-	
+
+
 	protected void fillCompleteForm(List<JSONObject> fields, GetFields formField)
 	{
 		for(JSONObject field : fields)
