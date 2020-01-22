@@ -24,15 +24,15 @@ public class LeadAction extends BaseAction
 	public String app_launch(String app)
 	{
 		click(Locators_Common.btn_appLauncher);
-		click(getXpathLocator(Locators_Common.btn_Sales, app));
+		click(Locators_Common.btn_Sales, app);
 		waitForPageToLoadCompletely();
 		hardwait(5);
 		return webelement(Locators_Common.appName).getText();
 	}
 	public String open_tab(String tab)
 	{
-		clickUsingJavaScript(webelement(getCSSLocator(Locators_Common.tab, tab)));
-		return webelement(getXpathLocator(Locators_Common.pageHeading, tab)).getText();
+		clickUsingJavaScript(webelement(Locators_Common.tab, tab));
+		return webelement(Locators_Common.pageHeading, tab).getText();
 	}
 	public String open_new_form()
 	{
@@ -59,11 +59,5 @@ public class LeadAction extends BaseAction
 	public void open_form_details()
 	{
 		click(Locators_Common.formDetails);
-	}
-	
-	
-	public void openLead(String name)
-	{
-		click(By.cssSelector("a[title='"+ name +"']"));
 	}
 }
