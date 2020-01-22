@@ -4,7 +4,6 @@ import java.text.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import pojos.leaddata.LeadData;
 import qa.keywords.LeadAction;
 import qa.utils.TestDataSetup;
@@ -81,7 +80,6 @@ public class LeadTest
 		Assert.assertEquals(lead.getFormDetail("Current Generator(s)"), leadtestdata.getFieldValue("Additional Information","Current Generator(s)"));
 		Assert.assertEquals(lead.getFormDetail("SIC Code"), leadtestdata.getFieldValue("Additional Information","SIC Code"));
 		Assert.assertEquals(lead.getFormDetail("Primary"), leadtestdata.getFieldValue("Additional Information","Primary"));
-		
 		
 		//Using testdata pojo
 		Assert.assertEquals(lead.getFormDetail("Name"), 

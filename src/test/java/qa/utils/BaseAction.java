@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import qa.resources.locators.Locator;
 import sft.GetFields;
 
 public class BaseAction
@@ -61,29 +62,33 @@ public class BaseAction
 
 
 	//-------------------------------------------------------------webelments and locators functions start------------------------------------------------------------------------//
-	protected WebElement webelement(By locator)
+	protected WebElement webelement(Locator locator, String... replacements)	//Done
 	{
-		return driver.findElement(By.cssSelector("html")).findElement(locator);
-	}
-	protected List<WebElement> webelements(By locator)
-	{
-		return driver.findElement(By.cssSelector("html")).findElements(locator);
-	}
-	protected String getLocator(String locator, String... replacements)
-	{
-		for(String replacement : replacements)
-			locator = locator.replaceFirst("\\$\\{.+?\\}", replacement);
-		return locator;
-	}
-	protected By getXpathLocator(String locator, String... replacements)
-	{
-		return By.xpath(getLocator(locator,replacements));
-	}
-	protected By getCSSLocator(String locator, String... replacements)
-	{
-		return By.cssSelector(getLocator(locator,replacements));
+		return driver.findElement(By.cssSelector("html")).findElement(getLocator(locator,replacements));
 	}
 	
+	protected List<WebElement> webelements(Locator locator,String... replacements)	//Done
+	{	
+		return driver.findElement(By.cssSelector("html")).findElements(getLocator(locator,replacements));
+	}
+	protected By getLocator(Locator locator, String... replacements)	//Done
+	{
+		By loc=null;
+		for(String replacement : replacements)
+			locator.value = locator.value.replaceFirst("\\$\\{.+?\\}", replacement);
+		switch(locator.type)
+		{
+		case "css":
+			loc = By.cssSelector(locator.value);	break;
+		case "xpath":
+			loc = By.xpath(locator.value);			break;
+		case "id":
+			loc = By.id(locator.value);				break;
+		case "linktext":
+			loc = By.linkText(locator.value);		break;
+		}
+		return loc;
+	}
 	//-------------------------------------------------------------webelments and locators functions end------------------------------------------------------------------------//
 
 	//-------------------------------------------------------------Click functions start------------------------------------------------------------------------//
@@ -95,9 +100,9 @@ public class BaseAction
 		element.click();
 		waitForPageToLoadCompletely();
 	}
-	protected void click(By locator)
+	protected void click(Locator locator, String... replacements)
 	{
-		WebElement element = webelement(locator);
+		WebElement element = webelement(locator,replacements);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
@@ -116,7 +121,7 @@ public class BaseAction
 	{
 		for(JSONObject field : fields)
 		{
-			System.out.println(field.get("label") + "  " + field.get("value")); 
+			System.out.println(field.get("label") + "  " + field.get("value"));
 			formField.getObject(field.getString("label")).set(field.getString("value"));
 		}
 	}
