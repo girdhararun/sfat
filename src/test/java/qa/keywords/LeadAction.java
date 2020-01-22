@@ -3,85 +3,67 @@ package qa.keywords;
 import java.util.List;
 import org.json.JSONObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import qa.resources.locators.Locators_Common;
+import qa.resources.locators.Locators_Login;
 import qa.utils.BaseAction;
-import qa.utils.JsonIO;
 import sft.GetFields;
 import sft.auth.SftSetup;
 
 public class LeadAction extends BaseAction
 {
 	private GetFields leadFields = new GetFields("Lead",driver);
-	
-	private List<JSONObject> fields;
-	
 	public void login(String username, String password)
 	{
 		launchUrl(SftSetup.getSftSetup().get("domain_url"));
-		driver.findElement(By.cssSelector("input[id=\"username\"]")).sendKeys(username);
-		driver.findElement(By.cssSelector("input[id=\"password\"]")).sendKeys(password);
-		click(driver.findElement(By.cssSelector("input[id=\"Login\"]")));
-		hardwait(10);
+		webelement(Locators_Login.input_username).sendKeys(username);
+		webelement(Locators_Login.input_password).sendKeys(password);
+		click(Locators_Login.btn_login);
+		hardwait(15);
 	}
-
-	
 	public String app_launch(String app)
 	{
-		click((By.cssSelector("nav button[class *= \"AppLauncher\"]")));
-		click(By.xpath("//div[contains(@class,\"dragArea\")]//a[text()=\""+app+"\"]"));
+		click(Locators_Common.btn_appLauncher);
+		click(getXpathLocator(Locators_Common.btn_Sales, app));
 		waitForPageToLoadCompletely();
 		hardwait(5);
-		return "";
-		//return driver.findElement(By.cssSelector("span[class*='appName']")).getText();
+		return webelement(Locators_Common.appName).getText();
 	}
-	
-	
-	public void open_lead_tab()
+	public String open_tab(String tab)
 	{
-		click_js("a[title='Leads']");
+		clickUsingJavaScript(webelement(getCSSLocator(Locators_Common.tab, tab)));
+		return webelement(getXpathLocator(Locators_Common.pageHeading, tab)).getText();
 	}
-	
-	public void open_lead_details()
+	public String open_new_form()
 	{
-		click(By.xpath("//a[@class='tabHeader']/span[text()='Details']/..//self::a"));
+		click(Locators_Common.newForm);
+		List<WebElement> formTitles = webelements(Locators_Common.formTitle);
+		
+		for(WebElement e : formTitles)
+		{
+			if(e.isDisplayed())
+				return e.getText();
+		}
+		return null;
 	}
-	
-	public void open_new_lead_form()
-	{
-		open_lead_tab();
-		click(By.cssSelector("a[title=\"New\"]"));
-		hardwait(2);
-	}
-	
-	public void fill_form_and_save(List<JSONObject> fields)
+	public String fill_form_and_save(List<JSONObject> fields)
 	{
 		fillCompleteForm(fields, leadFields);
-		click_js("div[class*='forceDetailPanelDesktop']");
-		hardwait(1);
-		click_js("button[title='Save']");
+		clickUsingJavaScript(webelement(Locators_Common.saveForm));
+		return webelement(Locators_Common.newFormBearer).getText();
 	}
-	
-	public void openLead(String name)
-	{
-		click(By.cssSelector("a[title='"+ name +"']"));
-	}
-	
 	public String getFormDetail(String field)
 	{
 		return leadFields.getObject(field).get();
 	}
-	
-	public void detail_test()
+	public void open_form_details()
 	{
-		System.out.println("Description -> " + leadFields.getObject("Description").get());
-		System.out.println("Number of Locations -> " + leadFields.getObject("Number of Locations").get());
-		System.out.println("Phone -> " + leadFields.getObject("Phone").get());
-		System.out.println("Email -> " + leadFields.getObject("Email").get());
-		System.out.println("Lead Owner -> " + leadFields.getObject("Lead Owner").get());
-		System.out.println("Rating -> " + leadFields.getObject("Rating").get());
-		System.out.println("SIC Code -> " + leadFields.getObject("SIC Code").get());
-		System.out.println("Created By -> " + leadFields.getObject("Created By").get());
-		System.out.println("Last Modified By -> " + leadFields.getObject("Last Modified By").get());
-		System.out.println("Address -> " + leadFields.getObject("Address").get());
-		
+		click(Locators_Common.formDetails);
+	}
+	
+	
+	public void openLead(String name)
+	{
+		click(By.cssSelector("a[title='"+ name +"']"));
 	}
 }

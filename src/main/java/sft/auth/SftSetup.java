@@ -29,9 +29,8 @@ public class SftSetup {
 	}
 
 	public static void read_sftsetup() {
-		final ObjectMapper mapper = new ObjectMapper();
 		try {
-			setup = mapper.readValue(new File(setup_file), new TypeReference<Map<String, String>>() {
+			setup = new ObjectMapper().readValue(new File(setup_file), new TypeReference<Map<String, String>>() {
 			});
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
@@ -47,10 +46,10 @@ public class SftSetup {
 
 	public static Map<String, String> getSftSetup() {
 		read_sftsetup();
-		final Map<String, String> sftsetup = new HashMap<String, String>(setup);
-		return sftsetup;
+		return new HashMap<String, String>(setup);
 	}
 
+	//Testing
 	public static void main(final String[] args) {
 		System.out.println(SftSetup.generate_token());
 		System.out.println(System.getProperty("AccessToken"));
