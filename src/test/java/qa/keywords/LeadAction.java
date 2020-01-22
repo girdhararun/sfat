@@ -3,6 +3,7 @@ package qa.keywords;
 import java.util.List;
 import org.json.JSONObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import qa.resources.locators.Locators_Common;
 import qa.resources.locators.Locators_Login;
@@ -12,15 +13,12 @@ import sft.auth.SftSetup;
 
 public class LeadAction extends BaseAction
 {
-	private GetFields leadFields = new GetFields("Lead",driver);
-	public void login(String username, String password)
-	{
-		launchUrl(SftSetup.getSftSetup().get("domain_url"));
-		webelement(Locators_Login.input_username).sendKeys(username);
-		webelement(Locators_Login.input_password).sendKeys(password);
-		click(Locators_Login.btn_login);
-		hardwait(15);
+	
+	public LeadAction(WebDriver driver) {
+		super(driver);
 	}
+	private GetFields leadFields = new GetFields("Lead",driver);
+
 	public String app_launch(String app)
 	{
 		click(Locators_Common.btn_appLauncher);
