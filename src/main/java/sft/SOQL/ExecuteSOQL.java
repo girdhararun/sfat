@@ -4,7 +4,6 @@ import com.sforce.soap.enterprise.EnterpriseConnection;
 import com.sforce.soap.enterprise.Error;
 import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.SaveResult;
-import com.sforce.soap.enterprise.sobject.Lead;
 import com.sforce.soap.enterprise.sobject.SObject;
 import com.sforce.ws.ConnectionException;
 
@@ -25,14 +24,16 @@ public class ExecuteSOQL extends GetDatabaseConnection {
         return qr;
     }
 
-    public boolean UpdateObject(Lead lead) {
+    public boolean UpdateObject(SObject[] updates) {
+//        Lead newlead = (Lead) dataObject;
         boolean flag = true;
+//        Lead[] updates = new Lead[2];
+        connection = eDBConnection.login();
+//        System.out.println(newlead.getFirstName() + " : Being Updated");
         try {
-            Lead[] updates = new Lead[2];
-            connection = eDBConnection.login();
-            System.out.println(lead.getFirstName() + " : Being Updated");
-            SaveResult[] results = connection.update(new SObject[]{lead});
-            for (SaveResult saveResult : results) {
+//            SaveResult[] results = connection.update(new SObject[]{newlead});
+            SaveResult[] saveResults = connection.update(updates);
+            for (SaveResult saveResult : saveResults) {
                 if (saveResult.isSuccess()) {
                     System.out.println("Successfully updated Account ID: " + saveResult.getId());
                 } else {
