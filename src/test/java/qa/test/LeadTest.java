@@ -8,17 +8,20 @@ import org.testng.annotations.Test;
 import pojos.leaddata.LeadData;
 import qa.keywords.LeadAction;
 import qa.utils.TestDataSetup;
+import sft.auth.SftSetup;
 
 public class LeadTest
 {	
-	private LeadAction lead = new LeadAction();
-	TestDataSetup leadtestdata = new TestDataSetup("LeadData.json");
-	LeadData leaddata;
+	private LeadAction lead;
+	private TestDataSetup leadtestdata;
+	private LeadData leaddata;
 	@BeforeClass
 	public void tierUp()
 	{
-		lead.login("akash.verma@qainfotech.com", "akashvermaqa68");
 		leaddata = TestDataSetup.getData("LeadData.json",LeadData.class);
+		leadtestdata = new TestDataSetup("LeadData.json");
+		lead = new LeadAction();
+		lead.login(SftSetup.getSftSetup().get("username"), SftSetup.getSftSetup().get("login_password"));
 	}
 	
 	@Test(priority=1)
@@ -27,30 +30,32 @@ public class LeadTest
 		Assert.assertEquals(lead.getPageTitle(), "Home | Salesforce",
 				"Error in login");
 	}
-	
 	@Test(priority=2)
 	public void launch_sales_app()
 	{
-		lead.app_launch("Sales");
-	}
-	
+		Assert.assertEquals(lead.app_launch("Sales"), "Sales");
+	}	
 	@Test(priority=3)
 	public void open_new_lead_form()
 	{
-		lead.open_new_lead_form();
+		Assert.assertEquals(lead.open_tab("Leads"), "Leads");
+		Assert.assertEquals(lead.open_new_form(), "New Lead");
 	}
-	
 	@Test(priority=4)
-	public void fill_lead_form()
+	public void fill_new_form()
 	{
-		 lead.fill_form_and_save(leadtestdata.getFields());
+		 Assert.assertEquals(lead.fill_form_and_save(leadtestdata.getFields()),
+				leaddata.getLeadInformation().getSalutation().getValue() + " " +
+				leaddata.getLeadInformation().getFirstName().getValue() + " " + 
+				leaddata.getLeadInformation().getLastName().getValue());
 	}
 	
 	@Test(priority=5)
 	public void verify_form_details() throws ParseException
 	{
-	
-		lead.open_lead_details();
+		lead.open_form_details();
+		
+		//Using testdata from json directly
 		Assert.assertEquals(lead.getFormDetail("Name"), 
 			leadtestdata.getFieldValue("Lead Information","Salutation") + " " +
 			leadtestdata.getFieldValue("Lead Information","First Name") + " " + 
@@ -78,9 +83,7 @@ public class LeadTest
 		Assert.assertEquals(lead.getFormDetail("Primary"), leadtestdata.getFieldValue("Additional Information","Primary"));
 		
 		
-		
-		
-		
+		//Using testdata pojo
 		Assert.assertEquals(lead.getFormDetail("Name"), 
 			leaddata.getLeadInformation().getSalutation().getValue() + " " +
 			leaddata.getLeadInformation().getFirstName().getValue() + " " + 
@@ -90,12 +93,8 @@ public class LeadTest
 		Assert.assertEquals(lead.getFormDetail("Fax"), leaddata.getLeadInformation().getFax().getValue());
 		Assert.assertEquals(lead.getFormDetail("Title"), leaddata.getLeadInformation().getTitle().getValue());
 		Assert.assertEquals(lead.getFormDetail("Email"),  leaddata.getLeadInformation().getEmail().getValue());
+		
 		//Update file LeadData.json
 		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
-		System.out.println(leaddata.getAddressInformation().getCity().getValue());
-		
-		
 	}
-	
-	
 }

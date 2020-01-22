@@ -44,45 +44,6 @@ public class BaseAction
 		}
 	}
 
-	//-------------------------------------------------------------Click functions start------------------------------------------------------------------------//
-
-	protected void click(WebElement element)
-	{
-		wait.until(ExpectedConditions.visibilityOf(element));
-		wait.until(ExpectedConditions.elementToBeClickable(element));
-		element.click();
-		waitForPageToLoadCompletely();
-	}
-
-	protected void click(By locator)
-	{
-		WebElement element = driver.findElement(locator);
-		wait.until(ExpectedConditions.visibilityOf(element));
-		wait.until(ExpectedConditions.elementToBeClickable(element));
-		element.click();
-		waitForPageToLoadCompletely();
-		hardwait(1);
-	}
-
-	protected void clickUsingJavaScript(WebElement element)
-	{
-		executor.executeScript("arguments[0].click()", element);
-		waitForPageToLoadCompletely();
-		hardwait(1);
-	}
-
-	protected void click_js(String locator)
-	{
-		executor = (JavascriptExecutor) driver;
-		String script = "document.querySelector(\"html\").querySelector(\""+locator+"\").click()";
-		executor.executeScript(script);
-		waitForPageToLoadCompletely();
-		hardwait(1);
-	}
-
-	//-------------------------------------------------------------Click functions end------------------------------------------------------------------------//
-
-
 	protected void send_keys(WebElement element, String k)
 	{
 		if(element != null)
@@ -99,6 +60,58 @@ public class BaseAction
 	}
 
 
+	//-------------------------------------------------------------webelments and locators functions start------------------------------------------------------------------------//
+	protected WebElement webelement(By locator)
+	{
+		return driver.findElement(By.cssSelector("html")).findElement(locator);
+	}
+	protected List<WebElement> webelements(By locator)
+	{
+		return driver.findElement(By.cssSelector("html")).findElements(locator);
+	}
+	protected String getLocator(String locator, String... replacements)
+	{
+		for(String replacement : replacements)
+			locator = locator.replaceFirst("\\$\\{.+?\\}", replacement);
+		return locator;
+	}
+	protected By getXpathLocator(String locator, String... replacements)
+	{
+		return By.xpath(getLocator(locator,replacements));
+	}
+	protected By getCSSLocator(String locator, String... replacements)
+	{
+		return By.cssSelector(getLocator(locator,replacements));
+	}
+	
+	//-------------------------------------------------------------webelments and locators functions end------------------------------------------------------------------------//
+
+	//-------------------------------------------------------------Click functions start------------------------------------------------------------------------//
+
+	protected void click(WebElement element)
+	{
+		wait.until(ExpectedConditions.visibilityOf(element));
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+		element.click();
+		waitForPageToLoadCompletely();
+	}
+	protected void click(By locator)
+	{
+		WebElement element = webelement(locator);
+		wait.until(ExpectedConditions.visibilityOf(element));
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+		element.click();
+		waitForPageToLoadCompletely();
+		hardwait(1);
+	}
+	protected void clickUsingJavaScript(WebElement element)
+	{
+		executor.executeScript("arguments[0].click()", element);
+		waitForPageToLoadCompletely();
+		hardwait(1);
+	}
+	//-------------------------------------------------------------Click functions end------------------------------------------------------------------------//
+
 	protected void fillCompleteForm(List<JSONObject> fields, GetFields formField)
 	{
 		for(JSONObject field : fields)
@@ -107,4 +120,5 @@ public class BaseAction
 			formField.getObject(field.getString("label")).set(field.getString("value"));
 		}
 	}
+
 }
