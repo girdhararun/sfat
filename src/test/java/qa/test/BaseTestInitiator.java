@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import pojos.leaddata.LeadData;
 import qa.keywords.LeadAction;
+import qa.resources.Config;
 import qa.resources.locators.Locators_Login;
 import qa.utils.BaseAction;
 import qa.utils.TestDataSetup;
@@ -38,7 +39,7 @@ public class BaseTestInitiator extends BaseAction
 
 	public void login(String username, String password)
 	{
-		launchUrl(SftSetup.getSftSetup().get("domain_url"));
+		launchUrl(Config.domain);
 		webelement(Locators_Login.input_username).sendKeys(username);
 		webelement(Locators_Login.input_password).sendKeys(password);
 		click(Locators_Login.btn_login);

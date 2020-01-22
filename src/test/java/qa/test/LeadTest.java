@@ -8,6 +8,7 @@ import org.testng.internal.BaseTestMethod;
 
 import pojos.leaddata.LeadData;
 import qa.keywords.LeadAction;
+import qa.resources.Config;
 import qa.utils.TestDataSetup;
 import sft.auth.SftSetup;
 
@@ -16,7 +17,7 @@ public class LeadTest extends BaseTestInitiator
 	@BeforeClass
 	public void tierUp()
 	{
-		login(SftSetup.getSftSetup().get("username"), SftSetup.getSftSetup().get("login_password"));
+		login(Config.username, Config.password);
 	}
 	
 	@Test(priority=1)
