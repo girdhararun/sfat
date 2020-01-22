@@ -1,8 +1,10 @@
 package sft.SOQL;
 
 import com.sforce.soap.enterprise.QueryResult;
-import com.sforce.soap.enterprise.sobject.Contact;
+import com.sforce.soap.enterprise.sobject.Lead;
 import com.sforce.soap.enterprise.sobject.SObject;
+
+import java.util.Date;
 
 public class ExecuteLeadSample {
     public static void main(String[] args) {
@@ -10,7 +12,7 @@ public class ExecuteLeadSample {
         ExecuteSOQL db = new ExecuteSOQL();
         qr = db.ExecuteQuery("SELECT Id, FirstName, Status FROM Lead WHERE FirstName like 'TestNameUpdated%' ORDER BY CreatedDate ASC NULLS FIRST");
         boolean done = false;
-
+        Lead[] lead = new Lead[2];
 
         if (qr.getSize() > 0) {
             System.out.println("Logged-in user can see a total of "
@@ -18,36 +20,36 @@ public class ExecuteLeadSample {
             while (!done) {
                 SObject[] records = qr.getRecords();
                 for (int i = 0; i < records.length; ++i) {
-                    Contact con = (Contact) records[i];
-                    String fName = con.getFirstName();
-                    String lName = con.getLastName();
+                    lead[i] = (Lead) records[i];
+                    String fName = lead[i].getFirstName();
+                    String lName = lead[i].getLastName();
                     if (fName == null) {
-                        System.out.println("Contact " + (i + 1) + ": " + lName);
+                        System.out.println("Lead " + (i + 1) + ": " + lName);
                     } else {
-                        System.out.println("Contact " + (i + 1) + ": " + fName
+                        System.out.println("Lead " + (i + 1) + ": " + fName
                             + " " + lName);
                     }
                 }
-            }
-            if (qr.isDone()) {
-                done = true;
-            } else {
+
+                if (qr.isDone()) {
+                    done = true;
+                } else {
 //                qr = connection.queryMore(qResult.getQueryLocator());
+                }
+            } }else{
+                System.out.println("No records found.");
             }
-        } else {
-            System.out.println("No records found.");
-        }
-        System.out.println("\nQuery succesfully executed.");
+            System.out.println("\nQuery succesfully executed.");
 
 
 //        Lead[] lead = (Lead[]) qr.getRecords();
 //        System.out.println("FirstName : "+lead[0].getFirstName());
 //        System.out.println("Status : "+lead[0].getStatus());
-//        Date date = new Date();
+        Date date = new Date();
 //
-//        lead[0].setFirstName("TestNameUpdated"+date.getTime());
+        lead[0].setFirstName("TestNameUpdated"+date.getTime());
 //
-//        db.UpdateObject(lead);
+        db.UpdateObject(lead);
     }
 
 //    public void update(Sobject){
