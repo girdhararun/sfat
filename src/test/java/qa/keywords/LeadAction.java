@@ -5,6 +5,8 @@ import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import pojos.leaddata.LeadData;
 import qa.resources.locators.Locators_Common;
 import qa.resources.locators.Locators_Login;
 import qa.utils.BaseAction;
@@ -13,11 +15,12 @@ import sft.auth.SftSetup;
 
 public class LeadAction extends BaseAction
 {
-	
-	public LeadAction(WebDriver driver) {
+	private LeadData leaddata=null;
+	public LeadAction(WebDriver driver,LeadData leaddata) {
 		super(driver);
+		this.leaddata = leaddata;
 	}
-	private GetFields leadFields = new GetFields("Lead",driver);
+	public GetFields leadFields = new GetFields("Lead",driver);
 
 	public String app_launch(String app)
 	{
@@ -57,5 +60,20 @@ public class LeadAction extends BaseAction
 	public void open_form_details()
 	{
 		click(Locators_Common.formDetails);
+	}
+	
+	public void click_form_details_action_toggle_and_click(String action)
+	{
+		click(Locators_Common.formDetailsActionToggle);
+		click(Locators_Common.formDetailsActionToggleActions,action);
+	}
+	
+	public void update_form_details()
+	{
+		leadFields.getObject("Fax").set("654321");
+		leaddata.getLeadInformation().getFax().setValue("654321");
+		leadFields.getObject("Lead Status").set("Closed - Converted");
+		leaddata.getLeadInformation().getLeadStatus().setValue("Closed - Converted");
+		clickUsingJavaScript(webelement(Locators_Common.saveForm));
 	}
 }
