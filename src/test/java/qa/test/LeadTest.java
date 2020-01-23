@@ -4,23 +4,20 @@ import java.text.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.internal.BaseTestMethod;
+
 import pojos.leaddata.LeadData;
 import qa.keywords.LeadAction;
+import qa.resources.Config;
 import qa.utils.TestDataSetup;
 import sft.auth.SftSetup;
 
-public class LeadTest
-{	
-	private LeadAction lead;
-	private TestDataSetup leadtestdata;
-	private LeadData leaddata;
+public class LeadTest extends BaseTestInitiator
+{
 	@BeforeClass
 	public void tierUp()
 	{
-		leaddata = TestDataSetup.getData("LeadData.json",LeadData.class);
-		leadtestdata = new TestDataSetup("LeadData.json");
-		lead = new LeadAction();
-		lead.login(SftSetup.getSftSetup().get("username"), SftSetup.getSftSetup().get("login_password"));
+		login(Config.username, Config.password);
 	}
 	
 	@Test(priority=1)

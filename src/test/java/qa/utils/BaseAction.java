@@ -18,14 +18,15 @@ public class BaseAction
 	protected WebDriverWait wait = null;
 	protected static int explicitWait = 30000;
 	protected JavascriptExecutor executor;
-	public BaseAction()
+	
+	public BaseAction(WebDriver driver)
 	{
-		driver = new  WebDriverGenerator().getChromeDriver();
+		this.driver = driver;
 		wait = new WebDriverWait(driver,explicitWait);
 		executor = (JavascriptExecutor) driver;
 	}
 
-	protected void launchUrl(String url)
+	public void launchUrl(String url)
 	{
 		driver.navigate().to(url);
 		waitForPageToLoadCompletely();
@@ -36,7 +37,7 @@ public class BaseAction
 		return driver.getTitle();
 	}
 
-	protected void hardwait(int sec)
+	public void hardwait(int sec)
 	{
 		try {
 			Thread.sleep(sec * 1000);
@@ -45,7 +46,7 @@ public class BaseAction
 		}
 	}
 
-	protected void send_keys(WebElement element, String k)
+	public void send_keys(WebElement element, String k)
 	{
 		if(element != null)
 		{
@@ -53,7 +54,7 @@ public class BaseAction
 		}
 	}
 
-	protected void waitForPageToLoadCompletely()
+	public void waitForPageToLoadCompletely()
 	{
 		while(!executor.executeScript("return document.readyState").equals("complete"))
 			hardwait(1);
@@ -62,16 +63,16 @@ public class BaseAction
 
 
 	//-------------------------------------------------------------webelments and locators functions start------------------------------------------------------------------------//
-	protected WebElement webelement(Locator locator, String... replacements)	//Done
+	public WebElement webelement(Locator locator, String... replacements)	//Done
 	{
 		return driver.findElement(By.cssSelector("html")).findElement(getLocator(locator,replacements));
 	}
 	
-	protected List<WebElement> webelements(Locator locator,String... replacements)	//Done
+	public List<WebElement> webelements(Locator locator,String... replacements)	//Done
 	{	
 		return driver.findElement(By.cssSelector("html")).findElements(getLocator(locator,replacements));
 	}
-	protected By getLocator(Locator locator, String... replacements)	//Done
+	public By getLocator(Locator locator, String... replacements)	//Done
 	{
 		By loc=null;
 		for(String replacement : replacements)
@@ -93,14 +94,14 @@ public class BaseAction
 
 	//-------------------------------------------------------------Click functions start------------------------------------------------------------------------//
 
-	protected void click(WebElement element)
+	public void click(WebElement element)
 	{
 		wait.until(ExpectedConditions.visibilityOf(element));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
 		waitForPageToLoadCompletely();
 	}
-	protected void click(Locator locator, String... replacements)
+	public void click(Locator locator, String... replacements)
 	{
 		WebElement element = webelement(locator,replacements);
 		wait.until(ExpectedConditions.visibilityOf(element));
@@ -109,7 +110,7 @@ public class BaseAction
 		waitForPageToLoadCompletely();
 		hardwait(1);
 	}
-	protected void clickUsingJavaScript(WebElement element)
+	public void clickUsingJavaScript(WebElement element)
 	{
 		executor.executeScript("arguments[0].click()", element);
 		waitForPageToLoadCompletely();
@@ -117,7 +118,7 @@ public class BaseAction
 	}
 	//-------------------------------------------------------------Click functions end------------------------------------------------------------------------//
 
-	protected void fillCompleteForm(List<JSONObject> fields, GetFields formField)
+	public void fillCompleteForm(List<JSONObject> fields, GetFields formField)
 	{
 		for(JSONObject field : fields)
 		{
