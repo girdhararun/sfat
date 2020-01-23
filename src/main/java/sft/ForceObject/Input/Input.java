@@ -47,6 +47,7 @@ public class Input extends SFBase implements ForceObject
 
 	public void set(String value) 
 	{
+		getWebElement().clear();
 		getWebElement().sendKeys(value);
 	}
 

@@ -13,7 +13,7 @@ import sft.auth.SftSetup;
 
 public class BaseTestInitiator extends BaseAction
 {
-	private static WebDriver driver = new  WebDriverGenerator().getChromeDriver();;
+	private static WebDriver driver = new  WebDriverGenerator().getChromeDriver();
 
 	//ActionClass
 	LeadAction lead;
@@ -31,10 +31,9 @@ public class BaseTestInitiator extends BaseAction
 
 	private void init()
 	{
-		
-		lead = new LeadAction(driver);
 		leaddata = TestDataSetup.getData("LeadData.json",LeadData.class);
 		leadtestdata = new TestDataSetup("LeadData.json");
+		lead = new LeadAction(driver,leaddata);
 	}
 
 	public void login(String username, String password)

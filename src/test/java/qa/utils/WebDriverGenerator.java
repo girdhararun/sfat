@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import qa.resources.Config;
+
 public class WebDriverGenerator
 {
 	private WebDriver driver = null;
@@ -21,7 +23,7 @@ public class WebDriverGenerator
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--disable-notifications");
 		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Config.implicitWait, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		return driver;
 	}
