@@ -71,7 +71,7 @@ public class NewLeadTest
 	{	
 		leadFields.getObject("Phone").set("7065586031");
 		leadFields.getObject("Description").set("My Description");
-		leadFields.getObject("Description").clear();
+//		leadFields.getObject("Description").clear();
 		
 		leadFields.getObject("Rating").set("Warm");
 		leadFields.getObject("Rating").set("Wa");

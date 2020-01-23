@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "Additional Information",
     "Description Information"
 })
-public class LeadData {
+public class LeadData{
 
     @JsonProperty("Address Information")
     private AddressInformation addressInformation;

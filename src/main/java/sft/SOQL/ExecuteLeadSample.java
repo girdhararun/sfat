@@ -15,8 +15,6 @@ public class ExecuteLeadSample {
         System.out.println("FirstName : "+lead.getFirstName());
         System.out.println("Status : "+lead.getStatus());
 
-
-
         Date date = new Date();
 
         lead.setFirstName("TestNameUpdated"+date.getTime());

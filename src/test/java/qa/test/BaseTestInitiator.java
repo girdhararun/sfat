@@ -1,5 +1,7 @@
 package qa.test;
 
+import java.util.Date;
+
 import org.openqa.selenium.WebDriver;
 
 import pojos.leaddata.LeadData;
@@ -31,8 +33,11 @@ public class BaseTestInitiator extends BaseAction
 
 	private void init()
 	{
-		leaddata = TestDataSetup.getData("LeadData.json",LeadData.class);
+		long time= new Date().getTime();
 		leadtestdata = new TestDataSetup("LeadData.json");
+		leadtestdata.updateFieldValue("Lead Information", "Email", "t.tester"+time+"@yahoo.in");
+		leadtestdata.updateFieldValue("Lead Information","First Name", "Akash"+time);
+		leaddata = TestDataSetup.getData("LeadData.json",LeadData.class);
 		lead = new LeadAction(driver,leaddata);
 	}
 

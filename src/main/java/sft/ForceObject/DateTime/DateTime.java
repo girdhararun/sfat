@@ -41,7 +41,6 @@ public class DateTime extends SFBase implements ForceObject
 		return textNode.getText();
 	}
 
-	@Override
 	public void clear() {
 		System.out.println("[Alert] : Need to implement in DateTime");
 		

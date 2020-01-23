@@ -6,6 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.internal.BaseTestMethod;
 
+import com.sforce.soap.enterprise.sobject.Lead;
+
 import pojos.leaddata.LeadData;
 import qa.keywords.LeadAction;
 import qa.resources.Config;
@@ -14,6 +16,7 @@ import sft.auth.SftSetup;
 
 public class LeadTest extends BaseTestInitiator
 {
+	
 	@BeforeClass
 	public void tierUp()
 	{
@@ -40,7 +43,7 @@ public class LeadTest extends BaseTestInitiator
 	@Test(priority=4,dependsOnMethods={"open_new_lead_form"})
 	public void fill_new_form()
 	{
-		 Assert.assertEquals(lead.fill_form_and_save(leadtestdata.getFields()),
+		 Assert.assertEquals(lead.fill_form_and_save(leadtestdata),
 				leaddata.getLeadInformation().getSalutation().getValue() + " " +
 				leaddata.getLeadInformation().getFirstName().getValue() + " " + 
 				leaddata.getLeadInformation().getLastName().getValue());
@@ -102,4 +105,33 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("Fax"), leaddata.getLeadInformation().getFax().getValue());
 		Assert.assertEquals(lead.getFormDetail("Lead Status"), leaddata.getLeadInformation().getLeadStatus().getValue());
 	}
+
+	@Test(priority=7)
+	public void verify_details_from_db()
+	{
+		Lead dblead = lead.verify_details_from_db();
+		Assert.assertEquals(dblead.getFirstName(), leaddata.getLeadInformation().getFirstName().getValue());
+		Assert.assertEquals(dblead.getLastName(), leaddata.getLeadInformation().getLastName().getValue());
+		Assert.assertEquals(dblead.getStatus(), leaddata.getLeadInformation().getLeadStatus().getValue());
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

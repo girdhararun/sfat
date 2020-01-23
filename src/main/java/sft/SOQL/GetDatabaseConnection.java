@@ -17,7 +17,9 @@ public class GetDatabaseConnection {
     static final String PASSWORD = setupDetails.get("password");
     // Constructor
     public GetDatabaseConnection() {
-        this.authEndPoint = setupDetails.get("domain_url")+"/"+setupDetails.get("soap_c");
+//        this.authEndPoint = setupDetails.get("domain_url")+"/"+setupDetails.get("soap_c");
+        this.authEndPoint ="https://login.salesforce.com"+"/"+setupDetails.get("soap_c");
+        		
     }
 
     public static void main(String[] args) {
