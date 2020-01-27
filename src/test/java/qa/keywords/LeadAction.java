@@ -1,23 +1,17 @@
 package qa.keywords;
 
-import java.util.Date;
-import java.util.List;
-import org.json.JSONObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Lead;
-
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pojos.leaddata.LeadData;
 import qa.resources.locators.Locators_Common;
-import qa.resources.locators.Locators_Login;
 import qa.utils.BaseAction;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
 import sft.SOQL.ExecuteSOQL;
-import sft.auth.SftSetup;
+
+import java.util.List;
 
 public class LeadAction extends BaseAction
 {
@@ -83,6 +77,7 @@ public class LeadAction extends BaseAction
 		leaddata.getLeadInformation().getLeadStatus().setValue("Closed - Converted");
 		
 		clickUsingJavaScript(webelement(Locators_Common.saveForm));
+		hardwait(2);
 	}
 	
 	public Lead verify_details_from_db()

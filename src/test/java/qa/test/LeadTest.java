@@ -1,18 +1,12 @@
 package qa.test;
 
-import java.text.ParseException;
+import com.sforce.soap.enterprise.sobject.Lead;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.testng.internal.BaseTestMethod;
-
-import com.sforce.soap.enterprise.sobject.Lead;
-
-import pojos.leaddata.LeadData;
-import qa.keywords.LeadAction;
 import qa.resources.Config;
-import qa.utils.TestDataSetup;
-import sft.auth.SftSetup;
+
+import java.text.ParseException;
 
 public class LeadTest extends BaseTestInitiator
 {
@@ -33,7 +27,7 @@ public class LeadTest extends BaseTestInitiator
 	public void launch_sales_app()
 	{
 		Assert.assertEquals(lead.app_launch("Sales"), "Sales");
-	}	
+	}
 	@Test(priority=3, dependsOnMethods={"launch_sales_app"})
 	public void open_new_lead_form()
 	{
@@ -62,7 +56,7 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("Mobile"), leadtestdata.getFieldValue("Lead Information","Mobile"));
 		Assert.assertEquals(lead.getFormDetail("Company"), leadtestdata.getFieldValue("Lead Information","Company"));
 		Assert.assertEquals(lead.getFormDetail("Fax"), leadtestdata.getFieldValue("Lead Information","Fax"));
-		Assert.assertEquals(lead.getFormDetail("Title"), leadtestdata.getFieldValue("Lead Information","Title"));
+//		Assert.assertEquals(lead.getFormDetail("Title"), leadtestdata.getFieldValue("Lead Information","Title"));
 		Assert.assertEquals(lead.getFormDetail("Email"), leadtestdata.getFieldValue("Lead Information","Email"));
 		Assert.assertEquals(lead.getFormDetail("Lead Source"), leadtestdata.getFieldValue("Lead Information","Lead Source"));
 		Assert.assertEquals(lead.getFormDetail("Website"), leadtestdata.getFieldValue("Lead Information","Website"));
@@ -89,7 +83,7 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("Mobile"), leaddata.getLeadInformation().getMobile().getValue());
 		Assert.assertEquals(lead.getFormDetail("Company"), leaddata.getLeadInformation().getCompany().getValue());
 		Assert.assertEquals(lead.getFormDetail("Fax"), leaddata.getLeadInformation().getFax().getValue());
-		Assert.assertEquals(lead.getFormDetail("Title"), leaddata.getLeadInformation().getTitle().getValue());
+//		Assert.assertEquals(lead.getFormDetail("Title"), leaddata.getLeadInformation().getTitle().getValue());
 		Assert.assertEquals(lead.getFormDetail("Email"),  leaddata.getLeadInformation().getEmail().getValue());
 		
 		//Update file LeadData.json
