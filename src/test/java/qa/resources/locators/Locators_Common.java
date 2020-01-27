@@ -1,5 +1,7 @@
 package qa.resources.locators;
 
+import sft.utils.Locator;
+
 public class Locators_Common extends Locator
 {
 	public static Locator btn_appLauncher = new Locator(CSS,"nav button[class *= 'AppLauncher']");

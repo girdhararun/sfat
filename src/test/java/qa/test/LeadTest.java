@@ -26,7 +26,7 @@ public class LeadTest extends BaseTestInitiator
 	@Test(priority=1)
 	public void verify_home_page()
 	{
-		Assert.assertEquals(lead.getPageTitle(), "Home | Salesforce",
+		Assert.assertEquals(getPageTitle(), "Home | Salesforce",
 				"Error in login");
 	}
 	@Test(priority=2, dependsOnMethods= {"verify_home_page"})

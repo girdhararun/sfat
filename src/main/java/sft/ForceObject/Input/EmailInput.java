@@ -1,10 +1,8 @@
 package sft.ForceObject.Input;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import sft.ForceObject.SFField;
+import sft.locators.Locators_Get;
 
 public class EmailInput extends Input {
 
@@ -14,9 +12,7 @@ public class EmailInput extends Input {
 
 	@Override
 	public String get() {
-		WebElement textNode = null;
-		textNode = driver.findElement(By.xpath(span + "//a"));
-		return textNode.getText();
+		return webelementWithoutVisibility(Locators_Get.getEmail_ReferenceDetailUI,fieldName).getText();
 	}
 	
 	

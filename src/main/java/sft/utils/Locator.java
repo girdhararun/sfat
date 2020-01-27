@@ -1,4 +1,4 @@
-package qa.resources.locators;
+package sft.utils;
 
 public class Locator 
 {
@@ -8,6 +8,11 @@ public class Locator
 	public String type;
 	public String value;
 	public Locator() {}
+	public Locator(Locator loc)
+	{
+		type = loc.type;
+		value = loc.value;
+	}
 	public Locator(String type, String locator)
 	{
 		this.type = type.toLowerCase();

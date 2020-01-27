@@ -1,29 +1,24 @@
-package qa.utils;
+package sft.utils;
 
-import java.util.Date;
 import java.util.List;
 import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.sforce.ws.types.Time;
-
-import qa.resources.Config;
-import qa.resources.locators.Locator;
 import sft.GetFields;
 
-public class BaseAction
+public class BaseActions
 {
 	protected WebDriver driver = null;
 	protected WebDriverWait wait = null;
 	protected static int explicitWait = Config.explicittWait;
 	protected JavascriptExecutor executor;
 	
-	public BaseAction(WebDriver driver)
+	public BaseActions(WebDriver driver)
 	{
 		this.driver = driver;
 		wait = new WebDriverWait(driver,explicitWait*1000);
@@ -45,6 +40,7 @@ public class BaseAction
 	{
 		try {
 			Thread.sleep(sec * 1000);
+			System.out.println("Wating.....");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -63,34 +59,67 @@ public class BaseAction
 		while(!executor.executeScript("return document.readyState").equals("complete"))
 			hardwait(1);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("*")));
+		hardwait(1);
 	}
-
+	
 
 	//-------------------------------------------------------------webelments and locators functions start------------------------------------------------------------------------//
-	public WebElement webelement(Locator locator, String... replacements)
+		public WebElement webelement(Locator locator, String... replacements)
+	{
+		return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("html")).findElement(getLocator(locator,replacements))));
+	}
+	public WebElement webelementWithoutVisibility(Locator locator, String... replacements)
 	{
 		return driver.findElement(By.cssSelector("html")).findElement(getLocator(locator,replacements));
 	}
-	
+	public WebElement webelement(By locator)
+	{
+		return wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("html")).findElement(locator)));
+	}
+	public WebElement webelementWithoutVisibility(By locator)
+	{
+		return (driver.findElement(By.cssSelector("html")).findElement(locator));
+	}
+	public WebElement webelement(WebElement element,By locator)
+	{
+		return wait.until(ExpectedConditions.visibilityOf(element.findElement(locator)));
+	}
+	public WebElement webelementWithoutVisibility(WebElement element,By locator)
+	{
+		return (element.findElement(locator));
+	}
 	public List<WebElement> webelements(Locator locator,String... replacements)
+	{	
+		return wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElement(By.cssSelector("html")).findElements(getLocator(locator,replacements))));
+	}
+	public List<WebElement> webelementsWithoutVisibility(Locator locator,String... replacements)
 	{	
 		return driver.findElement(By.cssSelector("html")).findElements(getLocator(locator,replacements));
 	}
+	public List<WebElement> webelements(By locator)
+	{
+		return wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElement(By.cssSelector("html")).findElements(locator)));
+	}
+	public List<WebElement> webelementsWithoutVisibility(By locator)
+	{
+		return (driver.findElement(By.cssSelector("html")).findElements(locator));
+	}
 	public By getLocator(Locator locator, String... replacements)
 	{
+		Locator temp = new Locator(locator);
 		By loc=null;
 		for(String replacement : replacements)
-			locator.value = locator.value.replaceFirst("\\$\\{.+?\\}", replacement);
-		switch(locator.type)
+			temp.value = temp.value.replaceFirst("\\$\\{.+?\\}", replacement);
+		switch(temp.type)
 		{
 		case "css":
-			loc = By.cssSelector(locator.value);	break;
+			loc = By.cssSelector(temp.value);	break;
 		case "xpath":
-			loc = By.xpath(locator.value);			break;
+			loc = By.xpath(temp.value);			break;
 		case "id":
-			loc = By.id(locator.value);				break;
+			loc = By.id(temp.value);			break;
 		case "linktext":
-			loc = By.linkText(locator.value);		break;
+			loc = By.linkText(temp.value);		break;
 		}
 		return loc;
 	}
@@ -112,16 +141,33 @@ public class BaseAction
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 		element.click();
 		waitForPageToLoadCompletely();
-		hardwait(1);
+		
 	}
 	public void clickUsingJavaScript(WebElement element)
 	{
 		executor.executeScript("arguments[0].click()", element);
 		waitForPageToLoadCompletely();
-		hardwait(1);
+		
 	}
 	//-------------------------------------------------------------Click functions end------------------------------------------------------------------------//
 
+	public void wiatForVisibilityOfElement(Locator locator)
+	{
+		try {
+			wait.until(ExpectedConditions.visibilityOf(webelement(locator)));
+		}
+		catch(StaleElementReferenceException e)
+		{
+			for(int i=0; i<5;i++)
+			{
+				if(webelement(locator).isDisplayed())
+					return;
+				else
+					hardwait(3);
+			}
+			throw new StaleElementReferenceException("Stale element");
+		}
+	}
 	public void fillCompleteForm(List<JSONObject> fields, GetFields formField)
 	{
 		for(JSONObject field : fields)

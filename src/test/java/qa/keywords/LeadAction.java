@@ -1,25 +1,19 @@
 package qa.keywords;
 
-import java.util.Date;
 import java.util.List;
-import org.json.JSONObject;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Lead;
-
 import pojos.leaddata.LeadData;
 import qa.resources.locators.Locators_Common;
-import qa.resources.locators.Locators_Login;
-import qa.utils.BaseAction;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
 import sft.SOQL.ExecuteSOQL;
-import sft.auth.SftSetup;
+import sft.utils.BaseActions;
 
-public class LeadAction extends BaseAction
+public class LeadAction extends BaseActions
 {
 	private LeadData leaddata=null;
 	public LeadAction(WebDriver driver,LeadData leaddata) {
@@ -33,7 +27,7 @@ public class LeadAction extends BaseAction
 		click(Locators_Common.btn_appLauncher);
 		click(Locators_Common.btn_Sales, app);
 		waitForPageToLoadCompletely();
-		hardwait(5);
+		wiatForVisibilityOfElement(Locators_Common.appName);
 		return webelement(Locators_Common.appName).getText();
 	}
 	public String open_tab(String tab)
@@ -44,7 +38,8 @@ public class LeadAction extends BaseAction
 	public String open_new_form()
 	{
 		click(Locators_Common.newForm);
-		List<WebElement> formTitles = webelements(Locators_Common.formTitle);
+		hardwait(5);
+		List<WebElement> formTitles = webelementsWithoutVisibility(Locators_Common.formTitle);	//without
 		
 		for(WebElement e : formTitles)
 		{
@@ -78,7 +73,7 @@ public class LeadAction extends BaseAction
 	{
 		leadFields.getObject("Fax").set("654321");
 		leaddata.getLeadInformation().getFax().setValue("654321");
-		
+
 		leadFields.getObject("Lead Status").set("Closed - Converted");
 		leaddata.getLeadInformation().getLeadStatus().setValue("Closed - Converted");
 		

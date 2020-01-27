@@ -1,5 +1,7 @@
 package qa.resources.locators;
 
+import sft.utils.Locator;
+
 public class Locators_Login extends Locator
 {
 	public static Locator input_username = new Locator(CSS,"input[id='username']");

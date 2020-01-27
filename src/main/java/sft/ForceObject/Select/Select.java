@@ -10,9 +10,10 @@ import sft.DataFields;
 import sft.ForceObject.SFField;
 import sft.ForceObject.ForceObject;
 import sft.SFObject.describeLayoutPOJO.PicklistValue;
-import sft.utils.SFBase;
+import sft.locators.Locators_Get;
+import sft.utils.BaseActions;
 
-public class Select extends SFBase implements ForceObject
+public class Select extends BaseActions implements ForceObject
 {
 	private String fieldName,domDataType;
 	private WebDriver driver;
@@ -29,22 +30,22 @@ public class Select extends SFBase implements ForceObject
 
 	private void select(String value) {
 		boolean found = false;
-		List<WebElement> divs = driver.findElements(By.cssSelector("div[class *='"+ domDataType +"']"));
+		List<WebElement> divs = webelementsWithoutVisibility(By.cssSelector("div[class *='"+ domDataType +"']"));
 		for(WebElement div : divs)
 		{
-			String spanText = div.findElement(By.cssSelector("span")).getText().replace('*',' ').trim();
+			String spanText = webelementWithoutVisibility(div,By.cssSelector("span")).getText().replace('*',' ').trim();
 			if(spanText.equalsIgnoreCase(fieldName))
 			{
-				div.findElement(By.cssSelector("a")).click();hardwait(1);
+				click(webelementWithoutVisibility(div,By.cssSelector("a")));
 				break;
 			}
 		}
 
-		List<WebElement> options = driver.findElements(By.cssSelector("div[class*='select-options'][class*='visible'] ul li a"));
+		List<WebElement> options = webelementsWithoutVisibility(By.cssSelector("div[class*='select-options'][class*='visible'] ul li a"));
 		int size = options.size();
 		for(int i=0; i<size; i++)
 		{
-			options = driver.findElements(By.cssSelector("div[class*='select-options'][class*='visible'] ul li a"));
+			options = webelementsWithoutVisibility(By.cssSelector("div[class*='select-options'][class*='visible'] ul li a"));
 			WebElement option = options.get(i);
 			if(option.getText().equalsIgnoreCase(value))
 			{
@@ -74,9 +75,6 @@ public class Select extends SFBase implements ForceObject
 
 	@Override
 	public String get() {	
-		WebElement textNode = null; 
-		String span = "//div[contains(@class, 'forcePageBlockSectionView')]//div[contains(@class, 'forcePageBlockSectionRow')]//div[contains(@class, 'forcePageBlockItem')]//div[contains(@class,'label')]/span[text()='"+fieldName+"']/../../div[last()]/span";
-		textNode = driver.findElement(By.xpath(span));	
-		return textNode.getText();
+		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
 }

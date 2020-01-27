@@ -9,10 +9,12 @@ import org.openqa.selenium.WebElement;
 import sft.DataFields;
 import sft.ForceObject.ForceObject;
 import sft.ForceObject.SFField;
-import sft.utils.SFBase;
+import sft.locators.Locators_Get;
+import sft.utils.BaseActions;
 
 
-public class Input extends SFBase implements ForceObject
+
+public class Input extends BaseActions implements ForceObject
 {
 	protected String fieldName,domDataType;
 	private SFField details;
@@ -25,21 +27,19 @@ public class Input extends SFBase implements ForceObject
 		details = field;
 		fieldName = field.getLabel();
 		domDataType = dataTypes.get(field.getDetails().getType());
-		span = "//div[contains(@class, 'forcePageBlockSectionView')]//div[contains(@class, 'forcePageBlockSectionRow')]//div[contains(@class, 'forcePageBlockItem')]//div[contains(@class,'label')]/span[text()='"+fieldName+"']/../../div[last()]/span";
 	}
 
 	protected WebElement getWebElement() {
-
-		List<WebElement> divs = driver.findElements(By.cssSelector("div[class *='"+ domDataType +"']"));
+		List<WebElement> divs = webelementsWithoutVisibility(By.cssSelector("div[class *='"+ domDataType +"']"));
 		int size = divs.size();
 		for(int i=0; i<size; i++)
 		{
-			divs = driver.findElements(By.cssSelector("div[class *='"+ domDataType +"']"));
+			divs = webelementsWithoutVisibility(By.cssSelector("div[class *='"+ domDataType +"']"));
 			WebElement div = divs.get(i);
-			String spanText = div.findElement(By.cssSelector("span")).getText().replace('*',' ').trim();
+			String spanText = webelementWithoutVisibility(div,By.cssSelector("span")).getText().replace('*',' ').trim();
 			if(spanText.equalsIgnoreCase(fieldName))
 			{
-				return div.findElement(By.cssSelector("input"));
+				return webelementWithoutVisibility(div,By.cssSelector("input"));
 			}
 		}
 		return null;
@@ -57,8 +57,6 @@ public class Input extends SFBase implements ForceObject
 	}
 	
 	public String get() {	
-		WebElement textNode = null; 
-		textNode = driver.findElement(By.xpath(span));
-		return textNode.getText();
+		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
 }

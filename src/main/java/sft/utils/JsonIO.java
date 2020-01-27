@@ -1,4 +1,4 @@
-package qa.utils;
+package sft.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
