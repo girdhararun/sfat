@@ -3,7 +3,6 @@ package qa.keywords;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Lead;
 import pojos.leaddata.LeadData;
@@ -78,6 +77,7 @@ public class LeadAction extends BaseActions
 		leaddata.getLeadInformation().getLeadStatus().setValue("Closed - Converted");
 		
 		clickUsingJavaScript(webelement(Locators_Common.saveForm));
+		hardwait(2);
 	}
 	
 	public Lead verify_details_from_db()
