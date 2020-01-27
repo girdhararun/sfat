@@ -1,0 +1,519 @@
+[33mcommit 3617c8841a460cf13b072b4a37c709e7f45dce55[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: d5a36f6 3a4299f
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Mon Jan 27 18:38:38 2020 +0530
+
+    Resolve conflits
+
+[33mcommit d5a36f68619a684e97ea4a5633906b4d3b2b5c1e[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Mon Jan 27 18:26:19 2020 +0530
+
+    New functions added to BaseActions, relocate few files
+
+[33mcommit 3a4299fb4f8e962be542e548a25b0b3b894ec8d2[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Mon Jan 27 11:55:29 2020 +0530
+
+    minor demo execution updates
+
+[33mcommit 174936b6b500077bf56dc67842f89cf5ce0407e9[m
+Merge: d97de89 214e381
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Thu Jan 23 18:53:38 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit d97de89ba1a55b9b67f38f965c40cf7d4b8b75a1[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Thu Jan 23 18:53:26 2020 +0530
+
+    Unique User name and Email added for every new lead
+
+[33mcommit 214e381515f28afbfb690b35995bdba573c2800e[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Thu Jan 23 13:36:15 2020 +0530
+
+    minor update extends
+
+[33mcommit 19ff2ac3a3116706fcb07cab5bedcf1ab737634a[m
+Merge: 4acf0cd 4d59489
+Author: arun <arungirdar@qainfotech.com>
+Date:   Thu Jan 23 12:48:07 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit 4acf0cdae1e3e5d1ea15de27236ef8d5239d3123[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Thu Jan 23 12:47:56 2020 +0530
+
+    lead get and set
+
+[33mcommit 4d59489ef42c0bd613a268239e03ebb6aed67536[m
+Merge: 51a1a6e 1b1c1d4
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Thu Jan 23 12:04:55 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit 51a1a6e33162abd34f99bedc63474e75bc8e22b3[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Thu Jan 23 12:04:45 2020 +0530
+
+    Update lead details test case added
+
+[33mcommit 1b1c1d44896c159edc2dc746647fcd289bea7f8f[m
+Merge: 1baa62e b797550
+Author: arun <arungirdar@qainfotech.com>
+Date:   Thu Jan 23 11:34:32 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit 1baa62ec194761b64a4a9b994d3daf56b1d91bb9[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Thu Jan 23 11:34:05 2020 +0530
+
+    query more records
+
+[33mcommit b797550ccc7544f577f910230d758ce5920df1aa[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 22 18:36:04 2020 +0530
+
+    Reading domain,username,password and other config from Config class
+
+[33mcommit 2939ba579a6eb403c7d73ccc111c242579a8c8a9[m
+Merge: e053625 3a2558a
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 22 18:26:26 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit e053625b3ba4adf27fc90207f96cec480ee32352[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 22 18:26:13 2020 +0530
+
+    TestInitiator added + Support for linux
+
+[33mcommit 3a2558a317497da2f7c8a5e67a218b39315e80e7[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Wed Jan 22 17:57:42 2020 +0530
+
+    lead update - error concrete type
+
+[33mcommit e16d4bcfe61129aeaec0d1d40df016bc7f4f58e5[m
+Merge: 90b4eb3 b167d20
+Author: arun <arungirdar@qainfotech.com>
+Date:   Wed Jan 22 17:40:43 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit 90b4eb3390cc269e1037eb2e62a0becbd8db44ca[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Wed Jan 22 17:40:31 2020 +0530
+
+    database update from sobject array
+
+[33mcommit b167d2092f5f875b8b2a98e0bcb86861f9156be0[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 22 16:21:30 2020 +0530
+
+    Locaotr approach changed to DAO
+
+[33mcommit 51fbde1e098bf7d3913d9de16f0f24f4cecae4fe[m
+Merge: 827141b b05645f
+Author: arun <arungirdar@qainfotech.com>
+Date:   Wed Jan 22 14:23:16 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit 827141b54ed41863981841cbd85935997f25224c[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Wed Jan 22 14:22:54 2020 +0530
+
+    maven execution setup
+
+[33mcommit b05645f4c11fe8e8f37b1c89c16939684395effe[m
+Merge: d9d6304 da4080b
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 22 14:22:48 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit d9d63048190d818e1adb0bdfddbfea554fe1a95f[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 22 14:22:35 2020 +0530
+
+    Lead Test case
+
+[33mcommit da4080b0ec83537f208b0f7826642b957dd9b0d4[m
+Merge: 51132a8 861748e
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 21 18:07:04 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit 51132a8c5188981327843d61b37f0d6f642586dd[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 21 18:06:52 2020 +0530
+
+    set database
+
+[33mcommit 861748ed691603fba7dcf43905bca653ab864dd7[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 21 16:14:57 2020 +0530
+
+    Added test case with lead data object
+
+[33mcommit 244380c12a56e5c6fcb88a9b9cd964c681132e2d[m
+Merge: 4e1d15d 2c4becf
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 21 13:53:10 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit 4e1d15dfab95ce8bf8e52b923ccbbe8107128de8[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 21 13:52:49 2020 +0530
+
+    chamge location of chrome data, added pojo for lead data, get data as object from json
+
+[33mcommit 2c4becf10c33844ed0708968366aa1fb30dd6ac2[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 21 10:28:20 2020 +0530
+
+    minor name update
+
+[33mcommit 2bca56193298e6486ef20ab25327981220062ce2[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Mon Jan 20 14:47:58 2020 +0530
+
+    Reading testdata and its updation to file
+
+[33mcommit 2c2cefeaa1adb8a364b82623683bb900f842d2a0[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Mon Jan 20 11:48:44 2020 +0530
+
+    Testdata read via tokanizing fields (bad approach- update later)
+
+[33mcommit 525cbc92d8de1adab6c6868ddbaeaae25d63863e[m
+Merge: a40924c 01a4f7c
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Fri Jan 17 18:32:43 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit a40924c96ef089e6827c479562db8f2d34e58f27[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Fri Jan 17 18:32:30 2020 +0530
+
+    Created test data reader, improve performance of json reader, updated test case for details reading
+
+[33mcommit 01a4f7cda61bf9bea32a6eb60b0f783f361e6d8c[m
+Merge: d9acf02 722ff72
+Author: arun <arungirdar@qainfotech.com>
+Date:   Fri Jan 17 16:26:36 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit d9acf0203852780c7cd0ce334db112103ce4f262[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Fri Jan 17 16:26:12 2020 +0530
+
+    connection logout
+
+[33mcommit 722ff725f47803e856922a2f33c1fdb693a66ae5[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Fri Jan 17 15:57:08 2020 +0530
+
+    Details verification testcase added
+
+[33mcommit 6ec252f880aad26eef05c54a1ce5adcb16bb7289[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Fri Jan 17 12:40:08 2020 +0530
+
+    Reading details using set() implemented
+
+[33mcommit 485782d3312bb1618ba730b29db625c5ac6bed85[m
+Merge: e8f96cb 2e6d028
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Fri Jan 17 11:02:12 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit e8f96cb250f818d75a9502132573649798d86786[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Fri Jan 17 11:02:01 2020 +0530
+
+    set() for Fields added for Input,Select,TextArea
+
+[33mcommit 2e6d028bf6461e705a860134c555456553b16001[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Wed Jan 15 18:28:18 2020 +0530
+
+    database Sample execution for Lead and contact
+
+[33mcommit ff65f8104874b7f03d7ba64a48a1a0ffea8d5f6e[m
+Merge: 007cfe2 f28be6c
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 14 19:22:31 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit 007cfe2c5041a1d158bd0f7fc8590d5da99d1002[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 14 19:21:58 2020 +0530
+
+    Seprate Keywords from testcases, Fill lead form using data from json file
+
+[33mcommit f28be6c331f3c2a5fd033bc2002d6b2ff06182e9[m
+Merge: 55040ab e937df0
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 14 17:32:09 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit 55040ab0935f35b44aecfea769b84bf82e179496[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 14 17:32:02 2020 +0530
+
+    Database connection SOAP
+
+[33mcommit e937df0a717032a5d89590b3656cd393da746704[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 14 12:33:11 2020 +0530
+
+    click() updated
+
+[33mcommit 6ffefd95216df30492ba9d45c7e05b512360f2de[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 14 12:03:56 2020 +0530
+
+    Date Field modified
+
+[33mcommit 60314d1cee39e374246b9a5e0d0beb8f4dd66bcd[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Mon Jan 13 12:21:37 2020 +0530
+
+    CheckBox done
+
+[33mcommit de7f1b2dcd15f7547d63361b8386f809720abf41[m
+Merge: 6d0e53a b7bfcf5
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Fri Jan 10 17:55:18 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit 6d0e53aff67d4e901ba2c12ce35d859ea97feda2[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Fri Jan 10 17:55:07 2020 +0530
+
+    Checkbox added, SFUtil added
+
+[33mcommit b7bfcf57d221db55f2d9406f42f606ffc3002546[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Fri Jan 10 16:23:24 2020 +0530
+
+    test output ignore
+
+[33mcommit 7fab3a021d7063be7e5694aa701bb28c859f1140[m
+Merge: 4e7a360 b7b6a11
+Author: arun <arungirdar@qainfotech.com>
+Date:   Fri Jan 10 16:20:25 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit 4e7a360b1febaa7cfa4456cc95ae42027e320912[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Fri Jan 10 16:19:59 2020 +0530
+
+    SOQL DB connection
+
+[33mcommit b7b6a11f12b8121d38f135d70a6649e15d1be59c[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Fri Jan 10 11:38:13 2020 +0530
+
+    Reference input added
+
+[33mcommit 1aea62ad22305f91458ee0739b932031a0aa6312[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Thu Jan 9 18:55:32 2020 +0530
+
+    Added DataTypes( Different Inputs, TextArea, Select) and Locator Genetarion respectively
+
+[33mcommit 087ef5826c326d0c40a63e0a2a26a1e5f1e10a2f[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 8 18:27:10 2020 +0530
+
+    Clean response data to an object
+
+[33mcommit 705fdd138eec832fa07763a663a6de3001a268be[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 8 12:55:36 2020 +0530
+
+    class name change Test - > SFVFDescription
+
+[33mcommit 8b9b6e683ae87f492e38e0493018aacdf6c6e672[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 8 12:49:24 2020 +0530
+
+    POJO of describeLayout + GetSFobject
+
+[33mcommit 98e188d4e92d6affb2be794fdf9b127e2bed411c[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 8 11:00:40 2020 +0530
+
+    junit 4.12 added
+
+[33mcommit b2d8965ba2489ad90631d241e131395f148f9bb5[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Wed Jan 8 10:57:09 2020 +0530
+
+    GetRequest structuring
+
+[33mcommit 0a2b3cf1ec43a83a78af52c0d70b9d0cba1507e6[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 19:15:09 2020 +0530
+
+    Status code fix
+
+[33mcommit 1c2db825b8efeceee880198b568ff23f005b497d[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 19:14:17 2020 +0530
+
+    TestNg added
+
+[33mcommit 7bf2e36b7824e0516cd0f075d642c97530e165a8[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 18:22:30 2020 +0530
+
+    GetRequest calls implemented
+
+[33mcommit c03df3f1bd60381df435e147a27c9482b0e46009[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 7 17:04:58 2020 +0530
+
+    updated typereference for json map
+
+[33mcommit 4c8472e2c47a5c43165a42f6efe0accbacbc046f[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 7 16:45:16 2020 +0530
+
+    getRequest
+
+[33mcommit 44d9a460e6afd8c4875390aeb8cfe97fcc1c5877[m
+Merge: f85cde8 17faa12
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 15:10:59 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit f85cde87f3643d5cc7de12a508738f2556730f17[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 15:10:38 2020 +0530
+
+    SftSetup changes
+
+[33mcommit 17faa12b7c2d298a7799b19aa4a9aa72c07c19a7[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 7 14:58:38 2020 +0530
+
+    package update
+
+[33mcommit 2c9e10c16bcb5db32d32c3fa41e26b4011483b59[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 7 14:56:25 2020 +0530
+
+    setup ignore
+
+[33mcommit a550d094d28451ec754f0b61439060ba6919bea6[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 7 14:52:05 2020 +0530
+
+    sftsetup and Enterprise connection chk
+
+[33mcommit c0f25307d9d6ee28f858e891412ac822551f876b[m
+Merge: f4407bb 63211e7
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 7 14:35:04 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit f4407bb9365b75b752cbfb98eb8e2d06f694bfe6[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 7 14:34:46 2020 +0530
+
+    minor changes
+
+[33mcommit 63211e7124bb3f585ea9756dccb191cbbc9401c0[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 14:33:57 2020 +0530
+
+    SftSetup changes
+
+[33mcommit 8c2c2b2f9d09172f82f366b95247aa31cbdb92dd[m
+Merge: 9a50b1b 240ba4a
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 7 14:19:00 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sft
+
+[33mcommit 9a50b1b8c2214e3bc59c6fdc30c26bf07a3053b2[m
+Author: arun <arungirdar@qainfotech.com>
+Date:   Tue Jan 7 14:18:42 2020 +0530
+
+    Enterprise connection check
+
+[33mcommit 240ba4ac4c0a87db622e1f5d6b87931064c2290b[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 14:17:57 2020 +0530
+
+    Get Token using SftSetup.json file
+
+[33mcommit 29df56e894c4da9252d934fe3fa46dc55a804730[m
+Author: arun <arungirdhar@qainfotech.com>
+Date:   Tue Jan 7 12:28:02 2020 +0530
+
+    wsdl resources
+
+[33mcommit c47ed8f4eefec2c690b11212a952ad0677011afd[m
+Merge: 7752b45 5842502
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 12:22:27 2020 +0530
+
+    Merge branch 'master' of https://github.com/girdhararun/sfat
+
+[33mcommit 7752b45737bebcb5b7e266272a2389dceda98738[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 12:22:19 2020 +0530
+
+    Checkup 1
+
+[33mcommit 5842502930e5fbfcb250ea8f8ffb0f804abfa491[m
+Author: arun <arungirdhar@qainfotech.com>
+Date:   Tue Jan 7 12:20:23 2020 +0530
+
+    updated package
+
+[33mcommit f2aba6453f31beedb753fa61dd08c5e6e196d926[m
+Author: arun <arungirdhar@qainfotech.com>
+Date:   Tue Jan 7 12:14:38 2020 +0530
+
+    updated folder structure
+
+[33mcommit 1008e21d8a91b80d6ec308c141380b85e66a9d1b[m
+Author: arun <arungirdhar@qainfotech.com>
+Date:   Tue Jan 7 12:08:41 2020 +0530
+
+    added structure
+
+[33mcommit 5f44de5bc1986876262afaa3b2386acf7b7c3aff[m
+Author: AKASH VERMA <akash.verma@qainfotech.com>
+Date:   Tue Jan 7 11:44:49 2020 +0530
+
+    pom and update ignore for settings
+
+[33mcommit f1ae48a30cbaa11d944c5f04f16a09dd8be65a1f[m
+Author: girdhararun <45958824+girdhararun@users.noreply.github.com>
+Date:   Tue Jan 7 11:24:15 2020 +0530
+
+    Initial commit
