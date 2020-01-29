@@ -14,9 +14,9 @@ public class LeadTest extends BaseTestInitiator
 	@BeforeClass
 	public void tierUp()
 	{
-		login(Config.username, Config.password);
+		//login(Config.username, Config.password);
 	}
-	
+	/*
 	@Test(priority=1)
 	public void verify_home_page()
 	{
@@ -42,10 +42,16 @@ public class LeadTest extends BaseTestInitiator
 				leaddata.getLeadInformation().getFirstName().getValue() + " " + 
 				leaddata.getLeadInformation().getLastName().getValue());
 	}
-	
-	@Test(priority=5,dependsOnMethods= {"fill_new_form"})
+*/
+	@Test(priority=5)
 	public void verify_form_details() throws ParseException
 	{
+		
+		
+		System.out.println(leadtestdata.getFieldset("Lead Information"));
+		System.out.println(leadtestdata.getField("['Lead Information']['Phone']['value']"));
+		
+		/*
 		lead.open_form_details();
 		
 		//Using testdata from json directly
@@ -88,10 +94,10 @@ public class LeadTest extends BaseTestInitiator
 		
 		//Update file LeadData.json
 		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
-		
+		*/
 	}
 	
-	@Test(priority=6,dependsOnMethods= {"verify_form_details"})
+	//@Test(priority=6,dependsOnMethods= {"verify_form_details"})
 	public void update_form_details()
 	{
 		lead.click_form_details_action_toggle_and_click("Edit");
@@ -100,7 +106,7 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("Lead Status"), leaddata.getLeadInformation().getLeadStatus().getValue());
 	}
 
-	@Test(priority=7)
+	//@Test(priority=7)
 	public void verify_details_from_db()
 	{
 		Lead dblead = lead.verify_details_from_db();

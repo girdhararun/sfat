@@ -11,10 +11,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
 
-public class JsonIO 
+public class JsonIO
 {
 	private String ojson="";
 	private File file;
+	
+//	public
+	
 	public JsonIO(String file_name)
 	{
 		String filepath = System.getProperty("user.dir")+File.separator+"src"+File.separator+"test"+File.separator+"java"+File.separator+"qa"+File.separator+"resources"+File.separator+file_name;
@@ -26,7 +29,7 @@ public class JsonIO
 	public static void main(String []args)
 	{
 		JsonIO reader = new JsonIO("LeadData.json");
-		System.out.println(reader.find("['Lead']['Lead Information']['Phone']"));
+		System.out.println(reader.find("['Lead Information']"));
 	}
 
 	public Object find(String path)
@@ -73,6 +76,5 @@ public class JsonIO
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }

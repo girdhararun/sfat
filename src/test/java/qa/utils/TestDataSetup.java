@@ -2,19 +2,17 @@ package qa.utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
+import java.util.Map;
 import org.json.JSONObject;
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import pojos.leaddata.LeadData;
 import sft.utils.JsonIO;
 
-public class TestDataSetup
+public class TestDataSetup implements ITestData
 {
 	private List<JSONObject> fieldsets = new ArrayList<JSONObject>();
 	private List<JSONObject> fields = new ArrayList<JSONObject>();
@@ -25,6 +23,27 @@ public class TestDataSetup
 		 rw = new JsonIO(filename);
 		 data = rw.read_asJSONObject();
 		 process();
+	}
+	
+	public Map<String,String> getFieldset(String fieldset)	//Done
+	{
+		Map<String,String> map = new HashMap<String,String>();
+		JSONObject obj = (data.getJSONObject(fieldset));
+		Iterator<String> itr;
+		itr = obj.keys();
+		while(itr.hasNext())
+		{
+			map.put(obj.getJSONObject(itr.next()).getString("label"), obj.getJSONObject(itr.next()).getString("value"));
+		}
+		return map;
+	}
+	
+	public String getField(String path)
+	{
+		String str = rw.find(path).toString();
+		if(!str.contains("{"))
+			return str;
+		return null;
 	}
 	
 	public  List<JSONObject> getFields()
@@ -83,6 +102,5 @@ public class TestDataSetup
 		}
 		return null;
 	}
-	
 }
 
