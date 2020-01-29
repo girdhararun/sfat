@@ -1,43 +1,22 @@
 package sft;
 
+import org.openqa.selenium.WebDriver;
+import sft.ForceObject.Checkbox.CheckBox;
+import sft.ForceObject.DateTime.DateTime;
+import sft.ForceObject.DefaultCase.DefaultCase;
+import sft.ForceObject.ForceObject;
+import sft.ForceObject.Input.*;
+import sft.ForceObject.SFField;
+import sft.ForceObject.Select.Select;
+import sft.ForceObject.TextArea.TextArea;
+import sft.SFObject.GetSFObject;
+import sft.SFObject.describeLayoutPOJO.*;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.openqa.selenium.WebDriver;
-import sft.ForceObject.ForceObject;
-import sft.ForceObject.SFField;
-import sft.ForceObject.Checkbox.CheckBox;
-import sft.ForceObject.DateTime.DateTime;
-import sft.ForceObject.DefaultCase.DefaultCase;
-import sft.ForceObject.Input.CurrencyInput;
-import sft.ForceObject.Input.DateInput;
-import sft.ForceObject.Input.DoubleInput;
-import sft.ForceObject.Input.EmailInput;
-import sft.ForceObject.Input.Input;
-import sft.ForceObject.Input.IntInput;
-import sft.ForceObject.Input.PhoneInput;
-import sft.ForceObject.Input.ReferenceInput;
-import sft.ForceObject.Input.StringInput;
-import sft.ForceObject.Input.UrlInput;
-import sft.ForceObject.Select.Select;
-import sft.ForceObject.TextArea.TextArea;
-import sft.SFObject.GetSFObject;
-import sft.SFObject.describeLayoutPOJO.Component;
-import sft.SFObject.describeLayoutPOJO.Component__1;
-import sft.SFObject.describeLayoutPOJO.DetailLayoutSection;
-import sft.SFObject.describeLayoutPOJO.Details;
-import sft.SFObject.describeLayoutPOJO.EditLayoutSection;
-import sft.SFObject.describeLayoutPOJO.Layout;
-import sft.SFObject.describeLayoutPOJO.LayoutComponent;
-import sft.SFObject.describeLayoutPOJO.LayoutComponent__1;
-import sft.SFObject.describeLayoutPOJO.LayoutItem;
-import sft.SFObject.describeLayoutPOJO.LayoutItem__1;
-import sft.SFObject.describeLayoutPOJO.LayoutRow;
-import sft.SFObject.describeLayoutPOJO.LayoutRow__1;
-import sft.SFObject.describeLayoutPOJO.SFVFDescription;
 
 public final class GetFields {
 
