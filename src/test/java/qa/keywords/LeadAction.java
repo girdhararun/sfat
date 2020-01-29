@@ -1,16 +1,17 @@
 package qa.keywords;
 
-import java.util.List;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Lead;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pojos.leaddata.LeadData;
 import qa.resources.locators.Locators_Common;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
 import sft.SOQL.ExecuteSOQL;
 import sft.utils.BaseActions;
+
+import java.util.List;
 
 public class LeadAction extends BaseActions
 {
@@ -26,7 +27,7 @@ public class LeadAction extends BaseActions
 		click(Locators_Common.btn_appLauncher);
 		click(Locators_Common.btn_Sales, app);
 		waitForPageToLoadCompletely();
-		wiatForVisibilityOfElement(Locators_Common.appName);
+		waitForVisibilityOfElement(Locators_Common.appName);
 		return webelement(Locators_Common.appName).getText();
 	}
 	public String open_tab(String tab)

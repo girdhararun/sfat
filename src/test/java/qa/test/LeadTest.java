@@ -10,13 +10,13 @@ import java.text.ParseException;
 
 public class LeadTest extends BaseTestInitiator
 {
-	
+
 	@BeforeClass
 	public void tierUp()
 	{
-		//login(Config.username, Config.password);
+		login(Config.username, Config.password);
 	}
-	/*
+
 	@Test(priority=1)
 	public void verify_home_page()
 	{
@@ -39,11 +39,10 @@ public class LeadTest extends BaseTestInitiator
 	{
 		 Assert.assertEquals(lead.fill_form_and_save(leadtestdata),
 				leaddata.getLeadInformation().getSalutation().getValue() + " " +
-				leaddata.getLeadInformation().getFirstName().getValue() + " " + 
+				leaddata.getLeadInformation().getFirstName().getValue() + " " +
 				leaddata.getLeadInformation().getLastName().getValue());
 	}
-*/
-	@Test(priority=5)
+	@Test(priority=5,dependsOnMethods= {"fill_new_form"})
 	public void verify_form_details() throws ParseException
 	{
 		
@@ -51,13 +50,12 @@ public class LeadTest extends BaseTestInitiator
 		System.out.println(leadtestdata.getFieldset("Lead Information"));
 		System.out.println(leadtestdata.getField("['Lead Information']['Phone']['value']"));
 		
-		/*
 		lead.open_form_details();
-		
+
 		//Using testdata from json directly
-		Assert.assertEquals(lead.getFormDetail("Name"), 
+		Assert.assertEquals(lead.getFormDetail("Name"),
 			leadtestdata.getFieldValue("Lead Information","Salutation") + " " +
-			leadtestdata.getFieldValue("Lead Information","First Name") + " " + 
+			leadtestdata.getFieldValue("Lead Information","First Name") + " " +
 			leadtestdata.getFieldValue("Lead Information","Last Name"));
 		Assert.assertEquals(lead.getFormDetail("Mobile"), leadtestdata.getFieldValue("Lead Information","Mobile"));
 		Assert.assertEquals(lead.getFormDetail("Company"), leadtestdata.getFieldValue("Lead Information","Company"));
@@ -80,29 +78,28 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("Current Generator(s)"), leadtestdata.getFieldValue("Additional Information","Current Generator(s)"));
 		Assert.assertEquals(lead.getFormDetail("SIC Code"), leadtestdata.getFieldValue("Additional Information","SIC Code"));
 		Assert.assertEquals(lead.getFormDetail("Primary"), leadtestdata.getFieldValue("Additional Information","Primary"));
-		
+
 		//Using testdata pojo
-		Assert.assertEquals(lead.getFormDetail("Name"), 
+		Assert.assertEquals(lead.getFormDetail("Name"),
 			leaddata.getLeadInformation().getSalutation().getValue() + " " +
-			leaddata.getLeadInformation().getFirstName().getValue() + " " + 
+			leaddata.getLeadInformation().getFirstName().getValue() + " " +
 			leaddata.getLeadInformation().getLastName().getValue());
 		Assert.assertEquals(lead.getFormDetail("Mobile"), leaddata.getLeadInformation().getMobile().getValue());
 		Assert.assertEquals(lead.getFormDetail("Company"), leaddata.getLeadInformation().getCompany().getValue());
 		Assert.assertEquals(lead.getFormDetail("Fax"), leaddata.getLeadInformation().getFax().getValue());
 //		Assert.assertEquals(lead.getFormDetail("Title"), leaddata.getLeadInformation().getTitle().getValue());
 		Assert.assertEquals(lead.getFormDetail("Email"),  leaddata.getLeadInformation().getEmail().getValue());
-		
+
 		//Update file LeadData.json
 		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
-		*/
 	}
 	
-	//@Test(priority=6,dependsOnMethods= {"verify_form_details"})
+	@Test(priority=6,dependsOnMethods= {"verify_form_details"})
 	public void update_form_details()
 	{
 		lead.click_form_details_action_toggle_and_click("Edit");
 		lead.update_form_details();
-		Assert.assertEquals(lead.getFormDetail("Fax"), leaddata.getLeadInformation().getFax().getValue());
+		Assert.assertEquals(lead.getFormDetail(leaddata.getLeadInformation().getFax().getLabel()), leaddata.getLeadInformation().getFax().getValue());
 		Assert.assertEquals(lead.getFormDetail("Lead Status"), leaddata.getLeadInformation().getLeadStatus().getValue());
 	}
 
@@ -114,7 +111,7 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(dblead.getLastName(), leaddata.getLeadInformation().getLastName().getValue());
 		Assert.assertEquals(dblead.getStatus(), leaddata.getLeadInformation().getLeadStatus().getValue());
 	}
-	
+
 }
 
 

@@ -1,9 +1,7 @@
 package sft.SOQL;
 
-import com.sforce.soap.enterprise.EnterpriseConnection;
 import com.sforce.soap.enterprise.Error;
-import com.sforce.soap.enterprise.QueryResult;
-import com.sforce.soap.enterprise.SaveResult;
+import com.sforce.soap.enterprise.*;
 import com.sforce.soap.enterprise.sobject.Lead;
 import com.sforce.soap.enterprise.sobject.SObject;
 import com.sforce.ws.ConnectionException;
@@ -38,7 +36,7 @@ public class ExecuteSOQL {
         boolean flag = true;
         try {
             connection = eDBConnection.login();
-            System.out.println(lead.getFirstName() + " : Being Updated");
+            System.out.println(lead.getId() + " : Being Updated");
             SaveResult[] results = connection.update(new SObject[]{lead});
             for (SaveResult saveResult : results) {
                 if (saveResult.isSuccess()) {
@@ -63,4 +61,39 @@ public class ExecuteSOQL {
         }
         return flag;
     }
+
+    public boolean convertLead(Lead[] leads) {
+        String[] result = new String[4];
+        LeadConvert[] leadsToConvert = new LeadConvert[leads.length];
+        try {
+            for (int i = 0; i < leads.length; ++i) {
+                System.out
+                    .println(" Lead: " + leads[i].getId());
+                leadsToConvert[i] = new LeadConvert();
+                leadsToConvert[i].setConvertedStatus("Closed - Converted");
+                leadsToConvert[i].setLeadId(leads[i].getId());
+                result[0] = leads[i].getId();
+            }
+            LeadConvertResult[] lcResults = connection.convertLead(leadsToConvert);
+            for (int j = 0; j < lcResults.length; ++j) {
+                if (lcResults[j].isSuccess()) {
+                    System.out.println("Lead converted successfully!");
+                    System.out.println("Account ID: " + lcResults[j].getAccountId());
+                    System.out.println("Contact ID: " + lcResults[j].getContactId());
+                    System.out.println("Opportunity ID: "
+                        + lcResults[j].getOpportunityId());
+                } else {
+                    System.out.println("\nError converting new Lead: "
+                        + lcResults[j].getErrors()[0].getMessage());
+                }
+            }
+
+        } catch (ConnectionException ce) {
+            ce.printStackTrace();
+        }
+
+    boolean flag = false;
+        return flag;
+
+}
 }
