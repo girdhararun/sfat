@@ -9,9 +9,11 @@ import org.openqa.selenium.WebElement;
 import sft.DataFields;
 import sft.ForceObject.ForceObject;
 import sft.ForceObject.SFField;
+import sft.locators.Locators_Get;
+import sft.utils.BaseActions;
 import sft.utils.SFBase;
 
-public class DateTime extends SFBase implements ForceObject
+public class DateTime extends BaseActions implements ForceObject
 {
 
 	protected String fieldName,domDataType;
@@ -25,7 +27,6 @@ public class DateTime extends SFBase implements ForceObject
 		details = field;
 		fieldName = field.getLabel();
 		domDataType = dataTypes.get(field.getDetails().getType());
-		span = "//div[contains(@class, 'forcePageBlockSectionView')]//div[contains(@class, 'forcePageBlockSectionRow')]//div[contains(@class, 'forcePageBlockItem')]//div[contains(@class,'label')]/span[text()='"+fieldName+"']/../../div[last()]/span";
 	}
 
 	@Override
@@ -36,14 +37,11 @@ public class DateTime extends SFBase implements ForceObject
 
 	@Override
 	public String get() {
-		WebElement textNode = null; 
-		textNode = driver.findElement(By.xpath(span));
-		return textNode.getText();
+		return webelement(Locators_Get.getEmail_ReferenceDetailUI,fieldName).getText();
 	}
 
 	public void clear() {
 		System.out.println("[Alert] : Need to implement in DateTime");
-		
 	}
 
 }

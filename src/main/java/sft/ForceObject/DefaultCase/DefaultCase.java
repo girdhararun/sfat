@@ -3,12 +3,12 @@ package sft.ForceObject.DefaultCase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import sft.ForceObject.ForceObject;
 import sft.ForceObject.SFField;
-import sft.utils.SFBase;
+import sft.locators.Locators_Get;
+import sft.utils.BaseActions;
 
-public class DefaultCase extends SFBase implements ForceObject
+public class DefaultCase extends BaseActions implements ForceObject
 {
 	protected String span;
 	protected String fieldName;
@@ -28,9 +28,7 @@ public class DefaultCase extends SFBase implements ForceObject
 
 	@Override
 	public String get() {
-		WebElement textNode = null; 
-		textNode = driver.findElement(By.xpath(span));
-		return textNode.getText();
+		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
 
 	

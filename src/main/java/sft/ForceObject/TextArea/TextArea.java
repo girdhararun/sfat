@@ -8,10 +8,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import sft.DataFields;
 import sft.ForceObject.SFField;
+import sft.locators.Locators_Get;
 import sft.ForceObject.ForceObject;
+import sft.utils.BaseActions;
 import sft.utils.SFBase;
 
-public class TextArea extends SFBase implements ForceObject
+public class TextArea extends BaseActions implements ForceObject
 {
 
 	private String fieldName,domDataType;
@@ -29,15 +31,15 @@ public class TextArea extends SFBase implements ForceObject
 	}
 
 	private WebElement getWebElement() {
-		List<WebElement> divs = driver.findElements(By.cssSelector("div[class *='"+ domDataType +"']"));
+		List<WebElement> divs = webelementsWithoutVisibility(By.cssSelector("div[class *='"+ domDataType +"']"));
 		int size = divs.size();
 		for(int i=0; i < size; i++)
 		{
-			divs = driver.findElements(By.cssSelector("div[class *='"+ domDataType +"']"));
+			divs = webelementsWithoutVisibility(By.cssSelector("div[class *='"+ domDataType +"']"));
 			WebElement div = divs.get(i);
-			String spanText = div.findElement(By.cssSelector("span")).getText();
+			String spanText = webelementWithoutVisibility(div,By.cssSelector("span")).getText();
 			if(spanText.equalsIgnoreCase(fieldName))
-				return div.findElement(By.cssSelector("textarea"));
+				return webelementWithoutVisibility(div,By.cssSelector("textarea"));
 		}
 		return null;
 	}
@@ -55,10 +57,7 @@ public class TextArea extends SFBase implements ForceObject
 
 	@Override
 	public String get() {
-		WebElement textNode = null; 
-		String span = "//div[contains(@class, 'forcePageBlockSectionView')]//div[contains(@class, 'forcePageBlockSectionRow')]//div[contains(@class, 'forcePageBlockItem')]//div[contains(@class,'label')]/span[text()='"+fieldName+"']/../../div[last()]/span";
-		textNode = driver.findElement(By.xpath(span));
-		return textNode.getText();
+		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
 
 }

@@ -17,12 +17,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import com.sforce.ws.ConnectionException;
-
 import sft.GetFields;
 import sft.auth.SftSetup;
-import sft.utils.SFBase;
 
 public class NewLeadTest
 {
