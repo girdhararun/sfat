@@ -37,10 +37,9 @@ public class LeadTest extends BaseTestInitiator
 	@Test(priority=4,dependsOnMethods={"open_new_lead_form"})
 	public void fill_new_form()
 	{
-		 Assert.assertEquals(lead.fill_form_and_save(leadtestdata),
-				leaddata.getLeadInformation().getSalutation().getValue() + " " +
-				leaddata.getLeadInformation().getFirstName().getValue() + " " +
-				leaddata.getLeadInformation().getLastName().getValue());
+		 Assert.assertEquals(lead.fill_form_and_save(leadtestdata),leadtestdata.getFieldValue("Lead Information","Salutation") + " " +
+					leadtestdata.getFieldValue("Lead Information","First Name") + " " +
+					leadtestdata.getFieldValue("Lead Information","Last Name"));
 	}
 	@Test(priority=5,dependsOnMethods= {"fill_new_form"})
 	public void verify_form_details() throws ParseException
@@ -79,17 +78,6 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("SIC Code"), leadtestdata.getFieldValue("Additional Information","SIC Code"));
 		Assert.assertEquals(lead.getFormDetail("Primary"), leadtestdata.getFieldValue("Additional Information","Primary"));
 
-		//Using testdata pojo
-		Assert.assertEquals(lead.getFormDetail("Name"),
-			leaddata.getLeadInformation().getSalutation().getValue() + " " +
-			leaddata.getLeadInformation().getFirstName().getValue() + " " +
-			leaddata.getLeadInformation().getLastName().getValue());
-		Assert.assertEquals(lead.getFormDetail("Mobile"), leaddata.getLeadInformation().getMobile().getValue());
-		Assert.assertEquals(lead.getFormDetail("Company"), leaddata.getLeadInformation().getCompany().getValue());
-		Assert.assertEquals(lead.getFormDetail("Fax"), leaddata.getLeadInformation().getFax().getValue());
-//		Assert.assertEquals(lead.getFormDetail("Title"), leaddata.getLeadInformation().getTitle().getValue());
-		Assert.assertEquals(lead.getFormDetail("Email"),  leaddata.getLeadInformation().getEmail().getValue());
-
 		//Update file LeadData.json
 		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
 	}
@@ -99,17 +87,17 @@ public class LeadTest extends BaseTestInitiator
 	{
 		lead.click_form_details_action_toggle_and_click("Edit");
 		lead.update_form_details();
-		Assert.assertEquals(lead.getFormDetail(leaddata.getLeadInformation().getFax().getLabel()), leaddata.getLeadInformation().getFax().getValue());
-		Assert.assertEquals(lead.getFormDetail("Lead Status"), leaddata.getLeadInformation().getLeadStatus().getValue());
+		Assert.assertEquals(lead.getFormDetail("Fax"), leadtestdata.getFieldValue("Lead Information","Fax"));
+		Assert.assertEquals(lead.getFormDetail("Lead Status"), leadtestdata.getFieldValue("Lead Information","Lead Status"));
 	}
 
-	//@Test(priority=7)
+	@Test(priority=7)
 	public void verify_details_from_db()
 	{
 		Lead dblead = lead.verify_details_from_db();
-		Assert.assertEquals(dblead.getFirstName(), leaddata.getLeadInformation().getFirstName().getValue());
-		Assert.assertEquals(dblead.getLastName(), leaddata.getLeadInformation().getLastName().getValue());
-		Assert.assertEquals(dblead.getStatus(), leaddata.getLeadInformation().getLeadStatus().getValue());
+		Assert.assertEquals(dblead.getFirstName(), leadtestdata.getFieldValue("Lead Information","First Name"));
+		Assert.assertEquals(dblead.getLastName(), leadtestdata.getFieldValue("Lead Information","Last Name"));
+		Assert.assertEquals(dblead.getStatus(), leadtestdata.getFieldValue("Lead Information","Lead Status"));
 	}
 
 }

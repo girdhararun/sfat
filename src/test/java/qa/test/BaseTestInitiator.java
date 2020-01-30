@@ -2,7 +2,6 @@ package qa.test;
 
 import java.util.Date;
 import org.openqa.selenium.WebDriver;
-import pojos.leaddata.LeadData;
 import qa.keywords.AccountAction;
 import qa.keywords.LeadAction;
 import qa.resources.Config;
@@ -21,7 +20,6 @@ public class BaseTestInitiator extends BaseActions
 
 	//DataClass
 	TestDataSetup leadtestdata;
-	LeadData leaddata;
 
 	protected BaseTestInitiator()
 	{
@@ -35,8 +33,7 @@ public class BaseTestInitiator extends BaseActions
 		leadtestdata = new TestDataSetup("LeadData.json");
 		leadtestdata.updateFieldValue("Lead Information", "Email", "auto"+time+"@mailinator.in");
 		leadtestdata.updateFieldValue("Lead Information","First Name",  "auto"+time);
-		leaddata = TestDataSetup.getData("LeadData.json",LeadData.class);
-		lead = new LeadAction(driver,leaddata);
+		lead = new LeadAction(driver,leadtestdata);
 		account = new AccountAction(driver);
 	}
 
