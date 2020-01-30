@@ -4,7 +4,6 @@ import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Lead;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pojos.leaddata.LeadData;
 import qa.resources.locators.Locators_Common;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
@@ -15,10 +14,10 @@ import java.util.List;
 
 public class LeadAction extends BaseActions
 {
-	private LeadData leaddata=null;
-	public LeadAction(WebDriver driver,LeadData leaddata) {
+	TestDataSetup leadtestdata;
+	public LeadAction(WebDriver driver,TestDataSetup leadtestdata) {
 		super(driver);
-		this.leaddata = leaddata;
+		this.leadtestdata = leadtestdata;
 	}
 	public GetFields leadFields = new GetFields("Lead",driver);
 
@@ -72,11 +71,9 @@ public class LeadAction extends BaseActions
 	public void update_form_details()
 	{
 		leadFields.getObject("Fax").set("654321");
-		leaddata.getLeadInformation().getFax().setValue("654321");
-
+		leadtestdata.updateFieldValue("Lead Information","Fax","654321");
 		leadFields.getObject("Lead Status").set("Closed - Converted");
-		leaddata.getLeadInformation().getLeadStatus().setValue("Closed - Converted");
-		
+		leadtestdata.updateFieldValue("Lead Information","Lead Status","Closed - Converted");
 		clickUsingJavaScript(webelement(Locators_Common.saveForm));
 		hardwait(2);
 	}
@@ -85,7 +82,7 @@ public class LeadAction extends BaseActions
 	{
 		QueryResult qr;
         ExecuteSOQL db = new ExecuteSOQL();
-        String query = "SELECT id,firstname,lastname,city,status,fax,phone,mobilephone,NumberOfEmployees,Rating FROM Lead Where email='"+leaddata.getLeadInformation().getEmail().getValue()+"'";
+        String query = "SELECT id,firstname,lastname,city,status,fax,phone,mobilephone,NumberOfEmployees,Rating FROM Lead Where email='"+leadtestdata.getFieldValue("Lead Information","Email")+"'";
         System.out.println(query);
         qr = db.ExecuteQuery(query);
         Lead lead = (Lead) qr.getRecords()[0];
