@@ -1,4 +1,4 @@
-package qa.resources.locators;
+package sft.locators;
 
 import sft.utils.Locator;
 

@@ -4,16 +4,17 @@ import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Lead;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import qa.resources.locators.Locators_Common;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
 import sft.SOQL.ExecuteSOQL;
+import sft.locators.Locators_Common;
 import sft.utils.BaseActions;
 
 import java.util.List;
 
 public class LeadAction extends BaseActions
 {
+    public Locators_Common common = new Locators_Common();
 	TestDataSetup leadtestdata;
 	public LeadAction(WebDriver driver,TestDataSetup leadtestdata) {
 		super(driver);
