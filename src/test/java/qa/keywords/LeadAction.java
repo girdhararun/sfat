@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
 import sft.SOQL.ExecuteSOQL;
+import sft.locators.Header_ONav;
 import sft.locators.Locators_Common;
 import sft.utils.BaseActions;
 
@@ -34,7 +35,7 @@ public class LeadAction extends BaseActions
 
 	public String open_tab(String tab)
 	{
-		clickUsingJavaScript(webelement(Locators_Common.navigation_tab, tab));
+		clickUsingJavaScript(webelement(Header_ONav.navigation_tab, tab));
 		return webelement(Locators_Common.pageHeading, tab).getText();
 	}
 	public String open_new_form()
