@@ -20,6 +20,7 @@ public class LeadAction extends BaseActions
 		super(driver);
 		this.leadtestdata = leadtestdata;
 	}
+
 	public GetFields leadFields = new GetFields("Lead",driver);
 
 	public String app_launch(String app)
@@ -30,9 +31,10 @@ public class LeadAction extends BaseActions
 		waitForVisibilityOfElement(Locators_Common.appName);
 		return webelement(Locators_Common.appName).getText();
 	}
+
 	public String open_tab(String tab)
 	{
-		clickUsingJavaScript(webelement(Locators_Common.tab, tab));
+		clickUsingJavaScript(webelement(Locators_Common.navigation_tab, tab));
 		return webelement(Locators_Common.pageHeading, tab).getText();
 	}
 	public String open_new_form()

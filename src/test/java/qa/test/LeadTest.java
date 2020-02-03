@@ -23,11 +23,15 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(getPageTitle(), "Home | Salesforce",
 				"Error in login");
 	}
+
 	@Test(priority=2, dependsOnMethods= {"verify_home_page"})
 	public void launch_sales_app()
 	{
-		Assert.assertEquals(lead.app_launch("Sales"), "Sales");
+
+	    Assert.assertEquals(lead.app_launch("Sales"), "Sales");
 	}
+
+
 	@Test(priority=3, dependsOnMethods={"launch_sales_app"})
 	public void open_new_lead_form()
 	{
