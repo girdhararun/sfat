@@ -8,7 +8,7 @@ import qa.resources.Config;
 
 import java.text.ParseException;
 
-public class LeadTest extends BaseTestInitiator
+public class LeadDemoTest extends BaseTestInitiator
 {
 
 	@BeforeClass
@@ -45,6 +45,7 @@ public class LeadTest extends BaseTestInitiator
 					leadtestdata.getFieldValue("Lead Information","First Name") + " " +
 					leadtestdata.getFieldValue("Lead Information","Last Name"));
 	}
+
 	@Test(priority=5,dependsOnMethods= {"fill_new_form"})
 	public void verify_form_details() throws ParseException
 	{
@@ -64,18 +65,7 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("Company"), leadtestdata.getFieldValue("Lead Information","Company"));
 		Assert.assertEquals(lead.getFormDetail("Fax"), leadtestdata.getFieldValue("Lead Information","Fax"));
 //		Assert.assertEquals(lead.getFormDetail("Title"), leadtestdata.getFieldValue("Lead Information","Title"));
-		Assert.assertEquals(lead.getFormDetail("Email"), leadtestdata.getFieldValue("Lead Information","Email"));
-		Assert.assertEquals(lead.getFormDetail("Lead Source"), leadtestdata.getFieldValue("Lead Information","Lead Source"));
-		Assert.assertEquals(lead.getFormDetail("Website"), leadtestdata.getFieldValue("Lead Information","Website"));
-		Assert.assertEquals(lead.getFormDetail("Industry"), leadtestdata.getFieldValue("Lead Information","Industry"));
-		Assert.assertEquals(lead.getFormDetail("Lead Status"), leadtestdata.getFieldValue("Lead Information","Lead Status"));
 		Assert.assertEquals(lead.getFormDetail("Rating"), leadtestdata.getFieldValue("Lead Information","Rating"));
-		Assert.assertEquals(lead.getFormDetail("Address"),
-						leadtestdata.getFieldValue("Address Information","Street")+"\n"+
-						leadtestdata.getFieldValue("Address Information","City")+", "+
-						leadtestdata.getFieldValue("Address Information","State/Province")+" "+
-						leadtestdata.getFieldValue("Address Information","Zip/Postal Code")+"\n"+
-						leadtestdata.getFieldValue("Address Information","Country"));
 		Assert.assertEquals(lead.getFormDetail("Product Interest"), leadtestdata.getFieldValue("Additional Information","Product Interest"));
 		Assert.assertEquals(lead.getFormDetail("Current Generator(s)"), leadtestdata.getFieldValue("Additional Information","Current Generator(s)"));
 		Assert.assertEquals(lead.getFormDetail("SIC Code"), leadtestdata.getFieldValue("Additional Information","SIC Code"));
