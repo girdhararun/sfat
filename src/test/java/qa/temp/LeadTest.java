@@ -69,7 +69,6 @@ public class LeadTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("Website"), leadtestdata.getFieldValue("Lead Information","Website"));
 		Assert.assertEquals(lead.getFormDetail("Industry"), leadtestdata.getFieldValue("Lead Information","Industry"));
 		Assert.assertEquals(lead.getFormDetail("Lead Status"), leadtestdata.getFieldValue("Lead Information","Lead Status"));
-		Assert.assertEquals(lead.getFormDetail("Annual Revenue"), "$3,000,000,000");
 		Assert.assertEquals(lead.getFormDetail("Rating"), leadtestdata.getFieldValue("Lead Information","Rating"));
 		Assert.assertEquals(lead.getFormDetail("Address"),
 						leadtestdata.getFieldValue("Address Information","Street")+"\n"+

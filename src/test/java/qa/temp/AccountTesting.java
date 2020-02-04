@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 import qa.resources.Config;
 
-public class AccountTest  extends BaseTestInitiator
+public class AccountTesting extends BaseTestInitiator
 {
 	@BeforeClass
 	public void tierUp()
