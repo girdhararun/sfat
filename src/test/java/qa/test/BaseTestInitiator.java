@@ -32,7 +32,7 @@ public class BaseTestInitiator extends BaseActions
 	{
 		long time= new Date().getTime();
 		leadtestdata = new TestDataSetup("LeadData.json");
-		leadtestdata.updateFieldValue("Lead Information", "Email", "auto"+time+"@mailinator.in");
+//		leadtestdata.updateFieldValue("Lead Information", "Email", "auto"+time+"@mailinator.in");
 		leadtestdata.updateFieldValue("Lead Information","First Name",  "auto"+time);
 		lead = new LeadAction(driver,leadtestdata);
 		account = new AccountAction(driver);

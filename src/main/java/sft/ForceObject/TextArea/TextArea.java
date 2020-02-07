@@ -11,7 +11,6 @@ import sft.ForceObject.SFField;
 import sft.locators.Locators_Get;
 import sft.ForceObject.ForceObject;
 import sft.utils.BaseActions;
-import sft.utils.SFBase;
 
 public class TextArea extends BaseActions implements ForceObject
 {
@@ -60,4 +59,8 @@ public class TextArea extends BaseActions implements ForceObject
 		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
 
+	public String edit_get() {	
+		return getWebElement().getAttribute("value");
+	}
+	
 }

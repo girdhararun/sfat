@@ -59,4 +59,8 @@ public class Input extends BaseActions implements ForceObject
 	public String get() {	
 		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
+	
+	public String edit_get() {	
+		return getWebElement().getAttribute("value");
+	}
 }

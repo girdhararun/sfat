@@ -24,6 +24,12 @@ public class LeadAction extends BaseActions
 
 	public GetFields leadFields = new GetFields("Lead",driver);
 
+	
+	public GetFields getLeadFields()
+	{
+		return leadFields;
+	}
+	
 	public String app_launch(String app)
 	{
 		click(Locators_Common.btn_appLauncher);
@@ -53,10 +59,18 @@ public class LeadAction extends BaseActions
 	}
 	public String fill_form_and_save(TestDataSetup testdata)
 	{
-		fillCompleteForm(testdata.getFields(), leadFields);
+//		fillCompleteForm(testdata.getFields(), leadFields);
+		fillFormByParts(testdata.getFieldset("Lead Information"),leadFields);
+		fillFormByParts(testdata.getFieldset("Address Information"),leadFields);
 		clickUsingJavaScript(webelement(Locators_Common.saveForm));
 		return webelement(Locators_Common.newFormBearer).getText();
 	}
+	
+	public void saveForm()
+	{
+		clickUsingJavaScript(webelement(Locators_Common.saveForm));
+	}
+	
 	public String getFormDetail(String field)
 	{
 		return leadFields.getObject(field).get();

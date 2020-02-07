@@ -7,6 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import sft.GetFields;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class BaseActions
 {
@@ -172,5 +175,14 @@ public class BaseActions
 			System.out.println(field.get("label") + "  " + field.get("value"));
 			formField.getObject(field.getString("label")).set(field.getString("value"));
 		}
+	}
+	public void fillFormByParts(Map<String,String> fields, GetFields formField)
+	{
+		for(Entry<String, String> field : fields.entrySet())
+		{
+			System.out.println(field.getKey() + "  " + field.getValue());
+			formField.getObject(field.getKey()).set(field.getValue());
+		}
+		hardwait(1);
 	}
 }
