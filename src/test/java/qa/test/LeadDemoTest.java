@@ -44,9 +44,17 @@ public class LeadDemoTest extends BaseTestInitiator
 		 Assert.assertEquals(lead.fill_form_and_save(leadtestdata),leadtestdata.getFieldValue("Lead Information","Salutation") + " " +
 					leadtestdata.getFieldValue("Lead Information","First Name") + " " +
 					leadtestdata.getFieldValue("Lead Information","Last Name"));
+		 lead.click_form_details_action_toggle_and_click("Edit");
+		 
+		 
+		System.out.println(">>>>>>>>>>>>>>>>>" + lead.getLeadFields().getObject("Street").edit_get());
+		System.out.println(">>>>>>>>>>>>>>>>>" + lead.getLeadFields().getObject("Salutation").edit_get());
+		System.out.println(">>>>>>>>>>>>>>>>>" +lead.getLeadFields().getObject("Phone").edit_get());
+		 
+		lead.saveForm();
 	}
 
-	@Test(priority=5,dependsOnMethods= {"fill_new_form"})
+	//@Test(priority=5,dependsOnMethods= {"fill_new_form"})
 	public void verify_form_details() throws ParseException
 	{
 		

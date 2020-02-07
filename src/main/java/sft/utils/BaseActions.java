@@ -183,5 +183,6 @@ public class BaseActions
 			System.out.println(field.getKey() + "  " + field.getValue());
 			formField.getObject(field.getKey()).set(field.getValue());
 		}
+		hardwait(1);
 	}
 }
