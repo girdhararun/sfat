@@ -4,21 +4,24 @@ import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Lead;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import qa.resources.locators.Locators_Common;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
 import sft.SOQL.ExecuteSOQL;
+import sft.locators.Header_ONav;
+import sft.locators.Locators_Common;
 import sft.utils.BaseActions;
 
 import java.util.List;
 
 public class LeadAction extends BaseActions
 {
+    public Locators_Common common = new Locators_Common();
 	TestDataSetup leadtestdata;
 	public LeadAction(WebDriver driver,TestDataSetup leadtestdata) {
 		super(driver);
 		this.leadtestdata = leadtestdata;
 	}
+
 	public GetFields leadFields = new GetFields("Lead",driver);
 
 	public String app_launch(String app)
@@ -29,9 +32,10 @@ public class LeadAction extends BaseActions
 		waitForVisibilityOfElement(Locators_Common.appName);
 		return webelement(Locators_Common.appName).getText();
 	}
+
 	public String open_tab(String tab)
 	{
-		clickUsingJavaScript(webelement(Locators_Common.tab, tab));
+		clickUsingJavaScript(webelement(Header_ONav.navigation_tab, tab));
 		return webelement(Locators_Common.pageHeading, tab).getText();
 	}
 	public String open_new_form()

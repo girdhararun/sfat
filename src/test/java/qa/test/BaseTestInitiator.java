@@ -1,14 +1,15 @@
 package qa.test;
 
-import java.util.Date;
 import org.openqa.selenium.WebDriver;
 import qa.keywords.AccountAction;
 import qa.keywords.LeadAction;
 import qa.resources.Config;
-import qa.resources.locators.Locators_Login;
 import qa.utils.TestDataSetup;
 import qa.utils.WebDriverGenerator;
+import sft.locators.Locators_Login;
 import sft.utils.BaseActions;
+
+import java.util.Date;
 
 public class BaseTestInitiator extends BaseActions
 {
