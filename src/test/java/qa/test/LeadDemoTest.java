@@ -75,7 +75,7 @@ public class LeadDemoTest extends BaseTestInitiator
 		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
 	}
 	
-	@Test(priority=6,dependsOnMethods= {"verify_form_details"})
+	//@Test(priority=6,dependsOnMethods= {"verify_form_details"})
 	public void update_form_details()
 	{
 		lead.click_form_details_action_toggle_and_click("Edit");
@@ -84,7 +84,7 @@ public class LeadDemoTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("Lead Status"), leadtestdata.getFieldValue("Lead Information","Lead Status"));
 	}
 
-	@Test(priority=7)
+	//@Test(priority=7)
 	public void verify_details_from_db()
 	{
 		Lead dblead = lead.verify_details_from_db();

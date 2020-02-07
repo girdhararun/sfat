@@ -38,9 +38,15 @@ public class DateTime extends BaseActions implements ForceObject
 	public String get() {
 		return webelement(Locators_Get.getEmail_ReferenceDetailUI,fieldName).getText();
 	}
-
+	
 	public void clear() {
 		System.out.println("[Alert] : Need to implement in DateTime");
+	}
+
+	@Override
+	public String edit_get() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

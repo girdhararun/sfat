@@ -59,4 +59,8 @@ public class TextArea extends BaseActions implements ForceObject
 		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
 
+	public String edit_get() {	
+		return getWebElement().getAttribute("value");
+	}
+	
 }

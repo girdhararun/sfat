@@ -53,7 +53,12 @@ public class LeadAction extends BaseActions
 	}
 	public String fill_form_and_save(TestDataSetup testdata)
 	{
-		fillCompleteForm(testdata.getFields(), leadFields);
+//		fillCompleteForm(testdata.getFields(), leadFields);
+		fillFormByParts(testdata.getFieldset("Lead Information"),leadFields);
+		fillFormByParts(testdata.getFieldset("Address Information"),leadFields);
+		System.out.println(">>>>>>>>>>>>>>>>>" + leadFields.getObject("Street").edit_get());
+		System.out.println(">>>>>>>>>>>>>>>>>" + leadFields.getObject("Salutation").edit_get());
+		System.out.println(">>>>>>>>>>>>>>>>>" + leadFields.getObject("Phone").edit_get());
 		clickUsingJavaScript(webelement(Locators_Common.saveForm));
 		return webelement(Locators_Common.newFormBearer).getText();
 	}

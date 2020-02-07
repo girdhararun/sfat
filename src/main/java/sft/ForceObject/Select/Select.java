@@ -68,7 +68,7 @@ public class Select extends BaseActions implements ForceObject
 	public void set(String value) {
 		select(value);
 	}
-
+	
 	public void clear() {
 
 	}
@@ -77,4 +77,18 @@ public class Select extends BaseActions implements ForceObject
 	public String get() {	
 		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
+	
+	public String edit_get() {
+		List<WebElement> divs = webelementsWithoutVisibility(By.cssSelector("div[class *='"+ domDataType +"']"));
+		for(WebElement div : divs)
+		{
+			String spanText = webelementWithoutVisibility(div,By.cssSelector("span")).getText().replace('*',' ').trim();
+			if(spanText.equalsIgnoreCase(fieldName))
+			{
+				return webelementWithoutVisibility(div,By.cssSelector("a")).getText();
+			}
+		}
+		return null;
+	}
+	
 }

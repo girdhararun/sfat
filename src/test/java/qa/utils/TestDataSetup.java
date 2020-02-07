@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import org.json.JSONObject;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -29,11 +31,11 @@ public class TestDataSetup implements ITestData
 	{
 		Map<String,String> map = new HashMap<String,String>();
 		JSONObject obj = (data.getJSONObject(fieldset));
-		Iterator<String> itr;
-		itr = obj.keys();
+		Iterator<String> itr = obj.keys();
 		while(itr.hasNext())
 		{
-			map.put(obj.getJSONObject(itr.next()).getString("label"), obj.getJSONObject(itr.next()).getString("value"));
+			String item = itr.next();
+			map.put(obj.getJSONObject(item).getString("label"), obj.getJSONObject(item).getString("value"));
 		}
 		return map;
 	}

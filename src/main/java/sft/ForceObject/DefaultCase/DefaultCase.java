@@ -36,4 +36,10 @@ public class DefaultCase extends BaseActions implements ForceObject
 		System.out.println("[Alert] : Need to implement in DefaultCase");
 		
 	}
+
+	@Override
+	public String edit_get() {
+		System.out.println("[Alert] : Need to implement in DefaultCase");
+		return null;
+	}
 }
