@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
-import sft.SOQL.ExecuteSOQL;
+import sft.soql.ExecuteSOQL;
 import sft.locators.Header_ONav;
 import sft.locators.Locators_Common;
 import sft.utils.BaseActions;

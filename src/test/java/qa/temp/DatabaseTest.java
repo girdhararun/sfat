@@ -1,6 +1,6 @@
 package qa.temp;
 
-//import sft.SOQL.ExecuteSampleSOQL;
+//import sft.soql.ExecuteSampleSOQL;
 //import sft.auth.GetDatabaseConnection;
 
 public class DatabaseTest {

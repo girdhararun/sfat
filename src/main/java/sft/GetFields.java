@@ -1,16 +1,16 @@
 package sft;
 
 import org.openqa.selenium.WebDriver;
-import sft.ForceObject.Checkbox.CheckBox;
-import sft.ForceObject.DateTime.DateTime;
-import sft.ForceObject.DefaultCase.DefaultCase;
-import sft.ForceObject.ForceObject;
-import sft.ForceObject.Input.*;
-import sft.ForceObject.SFField;
-import sft.ForceObject.Select.Select;
-import sft.ForceObject.TextArea.TextArea;
-import sft.SFObject.GetSFObject;
-import sft.SFObject.describeLayoutPOJO.*;
+import sft.forceObject.Checkbox.CheckBox;
+import sft.forceObject.DateTime.DateTime;
+import sft.forceObject.DefaultCase.DefaultCase;
+import sft.forceObject.ForceObject;
+import sft.forceObject.Input.*;
+import sft.forceObject.SFField;
+import sft.forceObject.Select.Select;
+import sft.forceObject.TextArea.TextArea;
+import sft.sFObject.GetSFObject;
+import sft.sFObject.describeLayoutPOJO.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
