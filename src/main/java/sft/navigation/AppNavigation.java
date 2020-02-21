@@ -4,6 +4,7 @@ import sft.auth.SftSetup;
 import sft.sfApps.GetSFApps;
 import sft.sfApps.describeAppsPOJO.App;
 import sft.sfApps.describeAppsPOJO.Apps;
+import sft.sfApps.describeAppsPOJO.NavItem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +40,13 @@ public class AppNavigation {
     }
 
     private Map<String, String> getAppNavItemsLink(String appName){
-        
+        Map<String, String> appsId = new HashMap<String, String>();
+        for (App app : apps.getApps()){
+            if(app.getLabel().equalsIgnoreCase(appName)){
+                for(NavItem navItem : app.getNavItems())
+                    appNavItemsLink.put(navItem.getLabel(),navItem.getContent());
+            }
+        }
         return appNavItemsLink;
     }
 
