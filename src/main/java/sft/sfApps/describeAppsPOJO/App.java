@@ -1,5 +1,5 @@
 
-package sft.sfApps;
+package sft.sfApps.describeAppsPOJO;
 
 import com.fasterxml.jackson.annotation.*;
 

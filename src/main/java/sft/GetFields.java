@@ -30,7 +30,6 @@ public final class GetFields {
 		driver = d;
 	}
 	
-	// Please Dont remove for a while :- Akash Verma
 	public static void main(String []arags)
 	{
 		GetFields g = new GetFields("Lead", null);
@@ -194,7 +193,7 @@ public final class GetFields {
 		return o;
 	}
 	
-	//For Debugging, please dont remove :- Akash Verma
+	//For Debugging
 	 private static void print_map(Map<String,SFField> map)
 	    {
 	    	Iterator<Entry<String, SFField>> itr = map.entrySet().iterator();

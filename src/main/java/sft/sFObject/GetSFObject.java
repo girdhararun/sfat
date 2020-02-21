@@ -14,7 +14,7 @@ public class GetSFObject
 	{
 		String endpoint = "sobjects" + "/" +obj+ "/" + "describe" + "/" + "layouts";
 		GetRequest getRequest = new GetRequest();
-		return getRequest.getResponseWithOauth(endpoint).getBody().toString();
+		return getRequest.getResponseWithOauth(endpoint).getBody().asString();
 	}
 
 	public static SFVFDescription get(String obj)
@@ -22,7 +22,7 @@ public class GetSFObject
 		SFVFDescription t = new SFVFDescription();
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			t = mapper.readValue(GetSFObject.getDescribeLayout(obj), SFVFDescription.class);
+			t = mapper.readValue(getDescribeLayout(obj), SFVFDescription.class);
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {

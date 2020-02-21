@@ -1,44 +1,47 @@
 package sft.navigation;
 
-import io.restassured.response.Response;
 import sft.auth.SftSetup;
-import sft.httpclient.GetRequest;
+import sft.sfApps.GetSFApps;
+import sft.sfApps.describeAppsPOJO.App;
+import sft.sfApps.describeAppsPOJO.Apps;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 public class AppNavigation {
-    final Map<String, String> appsId = new HashMap<String, String>();
+    Map<String, String> appsId = new HashMap<String, String>();
+    Map<String, String> appNavItemsLink = new HashMap<String, String>();
     final String baseUrl = SftSetup.getSftSetup().get("domain_url");
+    final GetSFApps getAppData = new GetSFApps();
+    Apps apps = new Apps();
 
-
-
-    private String getObjectLinks(){
-        String endpoint = "tabs";
-        GetRequest getRequest = new GetRequest();
-        Response tabsData = getRequest.getResponseWithOauth(endpoint);
-        return null;
+    AppNavigation(){
+        this.apps = getAppData.get();
     }
 
     public static void main(String[] args){
         AppNavigation test = new AppNavigation();
-        test.getAppsId();
-        System.out.println(test.appsId.get("Sales"));
+        System.out.println(test.apps.getApps().size());
+        System.out.println(test.getAppLink("lightning","Marketing"));
     }
-
 
     private Map<String, String> getAppsId(){
-        String endpoint = "appMenu/AppSwitcher";
-        GetRequest getRequest = new GetRequest();
-        Response appData = getRequest.getResponseWithOauth(endpoint);
-        List<String> navItem = appData.jsonPath().getList("appMenuItems.label");
-        List<String> navItemContent =appData.jsonPath().getList("appMenuItems.name");
-        Iterator<String> label = navItem.iterator();
-        Iterator<String> labelContent = navItemContent.iterator();
-        while (label.hasNext() && labelContent.hasNext()) appsId.put(label.next(), labelContent.next());
+        Map<String, String> appsId = new HashMap<String, String>();
+        for(App app : apps.getApps()){
+            appsId.put(app.getLabel(),app.getAppId());
+        }
         return appsId;
     }
+
+    private String getAppLink(String theme, String appLabel){
+        appsId = getAppsId();
+        return baseUrl+"/"+theme.toLowerCase()+"/app/"+appsId.get(appLabel);
+    }
+
+    private Map<String, String> getAppNavItemsLink(String appName){
+        
+        return appNavItemsLink;
+    }
+
 
 }
