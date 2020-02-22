@@ -5,11 +5,11 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sft.GetFields;
+import sft.navigation.AppNavigation;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 public class BaseActions
 {
@@ -185,4 +185,17 @@ public class BaseActions
 		}
 		hardwait(1);
 	}
+
+//-----------------------navigation-----------------------
+public void navApp(String sfObject){
+    AppNavigation nav = new AppNavigation();
+    launchUrl(nav.getAppNavLink("Sales"));
+    waitForPageToLoadCompletely();
+}
+
+    public void navObject(String sfObject){
+        AppNavigation nav = new AppNavigation();
+        launchUrl(nav.getObjNavLink(sfObject));
+        waitForPageToLoadCompletely();
+    }
 }

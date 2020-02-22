@@ -20,22 +20,14 @@ public class LeadDemoTest extends BaseTestInitiator
 	@Test(priority=1)
 	public void verify_home_page()
 	{
-		Assert.assertEquals(getPageTitle(), "Home | Salesforce",
+		Assert.assertEquals(lead.openApp("Sales"), "Home | Salesforce",
 				"Error in login");
 	}
 
-	@Test(priority=2, dependsOnMethods= {"verify_home_page"})
-	public void launch_sales_app()
-	{
-
-	    Assert.assertEquals(lead.app_launch("Sales"), "Sales");
-	}
-
-
-	@Test(priority=3, dependsOnMethods={"launch_sales_app"})
+	@Test(priority=3, dependsOnMethods={"verify_home_page"})
 	public void open_new_lead_form()
 	{
-		Assert.assertEquals(lead.open_tab("Leads"), "Leads");
+		Assert.assertEquals(lead.openObject("Leads"), "Leads");
 		Assert.assertEquals(lead.open_new_form(), "New Lead");
 	}
 	@Test(priority=4,dependsOnMethods={"open_new_lead_form"})
@@ -54,7 +46,7 @@ public class LeadDemoTest extends BaseTestInitiator
 		lead.saveForm();
 	}
 
-	//@Test(priority=5,dependsOnMethods= {"fill_new_form"})
+	@Test(priority=5,dependsOnMethods= {"fill_new_form"})
 	public void verify_form_details() throws ParseException
 	{
 		
@@ -83,7 +75,7 @@ public class LeadDemoTest extends BaseTestInitiator
 		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
 	}
 	
-	//@Test(priority=6,dependsOnMethods= {"verify_form_details"})
+	@Test(priority=6,dependsOnMethods= {"verify_form_details"})
 	public void update_form_details()
 	{
 		lead.click_form_details_action_toggle_and_click("Edit");
@@ -92,7 +84,7 @@ public class LeadDemoTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("Lead Status"), leadtestdata.getFieldValue("Lead Information","Lead Status"));
 	}
 
-	//@Test(priority=7)
+	@Test(priority=7)
 	public void verify_details_from_db()
 	{
 		Lead dblead = lead.verify_details_from_db();

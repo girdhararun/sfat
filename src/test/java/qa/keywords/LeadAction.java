@@ -6,9 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
-import sft.soql.ExecuteSOQL;
-import sft.locators.Header_ONav;
 import sft.locators.Locators_Common;
+import sft.soql.ExecuteSOQL;
 import sft.utils.BaseActions;
 
 import java.util.List;
@@ -39,11 +38,17 @@ public class LeadAction extends BaseActions
 		return webelement(Locators_Common.appName).getText();
 	}
 
-	public String open_tab(String tab)
+	public String openObject(String sfObject)
 	{
-		clickUsingJavaScript(webelement(Header_ONav.navigation_tab, tab));
-		return webelement(Locators_Common.pageHeading, tab).getText();
+//		clickUsingJavaScript(webelement(Header_ONav.navigation_tab, tab));
+
+        navObject(sfObject);
+		return webelement(Locators_Common.pageHeading, sfObject).getText();
 	}
+	public String openApp(String sfApp){
+	    navApp(sfApp);
+        return getPageTitle();
+    }
 	public String open_new_form()
 	{
 		click(Locators_Common.newForm);
@@ -81,7 +86,7 @@ public class LeadAction extends BaseActions
 	}
 	
 	public void click_form_details_action_toggle_and_click(String action)
-	{
+	{   waitForPageToLoadCompletely();
 		click(Locators_Common.formDetailsActionToggle);
 		click(Locators_Common.formDetailsActionToggleActions,action);
 	}
