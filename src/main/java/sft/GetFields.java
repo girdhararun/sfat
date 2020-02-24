@@ -158,6 +158,7 @@ public final class GetFields {
 
 	public ForceObject getObject(String field)
 	{
+	    System.out.println("Getting object type for :"+field);
 		SFField f;
 		String type="default_case";
 		if((f=edit_fields.get(field))==null)

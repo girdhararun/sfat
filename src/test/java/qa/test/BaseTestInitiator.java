@@ -9,8 +9,6 @@ import qa.utils.WebDriverGenerator;
 import sft.locators.Locators_Login;
 import sft.utils.BaseActions;
 
-import java.util.Date;
-
 public class BaseTestInitiator extends BaseActions
 {
 	private static WebDriver driver = new  WebDriverGenerator().getChromeDriver();
@@ -30,10 +28,7 @@ public class BaseTestInitiator extends BaseActions
 
 	private void init()
 	{
-		long time= new Date().getTime();
 		leadtestdata = new TestDataSetup("LeadData.json");
-//		leadtestdata.updateFieldValue("Lead Information", "Email", "auto"+time+"@mailinator.in");
-		leadtestdata.updateFieldValue("Lead Information","First Name",  "auto"+time);
 		lead = new LeadAction(driver,leadtestdata);
 		account = new AccountAction(driver);
 	}
