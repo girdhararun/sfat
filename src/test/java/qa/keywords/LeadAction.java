@@ -67,7 +67,8 @@ public class LeadAction extends BaseActions
 //		fillCompleteForm(testdata.getFields(), leadFields);
 		fillFormByParts(testdata.getFieldset("Lead Information"),leadFields);
 		fillFormByParts(testdata.getFieldset("Address Information"),leadFields);
-		clickUsingJavaScript(webelement(Locators_Common.saveForm));
+        fillFormByParts(testdata.getFieldset("Additional Information"),leadFields);
+        clickUsingJavaScript(webelement(Locators_Common.saveForm));
 		return webelement(Locators_Common.newFormBearer).getText();
 	}
 	
