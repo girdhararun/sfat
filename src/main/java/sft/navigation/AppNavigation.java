@@ -59,11 +59,11 @@ public class AppNavigation {
         return appNavItemsLink;
     }
 
-    public String getObjNavLink(String sfObject){
+    public String getObjNavLink(String sfObject) {
         return getAppNavItemsLink("Sales").get(sfObject);
     }
 
-    public String getAppNavLink(String sfApp){
-        return getAppLink("Lightning",sfApp);
+    public String getAppNavLink(String sfApp) {
+        return getAppLink("Lightning", sfApp);
     }
 }
