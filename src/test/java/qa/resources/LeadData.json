@@ -37,7 +37,7 @@
         },
         "Email": {
             "label": "Email",
-            "value": "auto1580378470117@mailinator.in"
+            "value": "auto1583145069330@mailinator.in"
         },
         "Rating": {
             "label": "Rating",
@@ -45,7 +45,7 @@
         },
         "First Name": {
             "label": "First Name",
-            "value": "auto1582533820972"
+            "value": "auto1583145069330"
         },
         "Title": {
             "label": "Title",
@@ -76,7 +76,7 @@
             "value": "Banking"
         },
         "Phone": {
-            "isRequired": true,
+            "isRequired": false,
             "editableForUpdate": true,
             "editableForNew": true,
             "label": "Phone",

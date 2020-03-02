@@ -12,7 +12,7 @@ public class EmailInput extends Input {
 
 	@Override
 	public String get() {
-		return webelementWithoutVisibility(Locators_Get.getEmail_ReferenceDetailUI,fieldName).getText();
+		return webelement(Locators_Get.getEmail_ReferenceDetailUI,fieldName).getText();
 	}
 	
 	

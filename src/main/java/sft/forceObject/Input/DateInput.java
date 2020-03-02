@@ -1,11 +1,11 @@
 package sft.forceObject.Input;
 
-import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import sft.forceObject.SFField;
+
+import java.util.List;
 
 public class DateInput extends Input{
 
@@ -26,7 +26,7 @@ public class DateInput extends Input{
 			if(dateFields.get(i).getText().replace('*',' ').trim().equals(fieldName))
 				break;
 		}
-		return webelementsWithoutVisibility(By.xpath("//div[contains(@class, '"+domDataType+"')]/input")).get(i);
+		return webelements(By.xpath("//div[contains(@class, '"+domDataType+"')]/input")).get(i);
 	}
 	
 }

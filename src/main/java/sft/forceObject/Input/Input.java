@@ -1,7 +1,5 @@
 package sft.forceObject.Input;
 
-import java.util.List;
-import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +8,9 @@ import sft.forceObject.ForceObject;
 import sft.forceObject.SFField;
 import sft.locators.Locators_Get;
 import sft.utils.BaseActions;
+
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -38,7 +39,7 @@ public class Input extends BaseActions implements ForceObject
 			String spanText = webelementWithoutVisibility(div,By.cssSelector("span")).getText().replace('*',' ').trim();
 			if(spanText.equalsIgnoreCase(fieldName))
 			{
-				return webelementWithoutVisibility(div,By.cssSelector("input"));
+				return webelement(div,By.cssSelector("input"));
 			}
 		}
 		return null;

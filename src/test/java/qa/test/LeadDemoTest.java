@@ -22,8 +22,7 @@ public class LeadDemoTest extends BaseTestInitiator
 
 	@Test
     public void verifyMeta(){
-//        lead.verifyRequiredFields();
-        verifyRequiredFields(leadtestdata);
+        verifyRequiredFields(leadtestdata,"Lead");
     }
 
 	@Test(priority=1)

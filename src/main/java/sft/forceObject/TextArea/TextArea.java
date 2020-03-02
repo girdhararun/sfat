@@ -1,16 +1,17 @@
 package sft.forceObject.TextArea;
 
-import java.util.List;
-import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import sft.DataFields;
+import sft.forceObject.ForceObject;
 import sft.forceObject.SFField;
 import sft.locators.Locators_Get;
-import sft.forceObject.ForceObject;
 import sft.utils.BaseActions;
+
+import java.util.List;
+import java.util.Map;
 
 public class TextArea extends BaseActions implements ForceObject
 {
@@ -38,7 +39,7 @@ public class TextArea extends BaseActions implements ForceObject
 			WebElement div = divs.get(i);
 			String spanText = webelementWithoutVisibility(div,By.cssSelector("span")).getText();
 			if(spanText.equalsIgnoreCase(fieldName))
-				return webelementWithoutVisibility(div,By.cssSelector("textarea"));
+				return webelement(div,By.cssSelector("textarea"));
 		}
 		return null;
 	}

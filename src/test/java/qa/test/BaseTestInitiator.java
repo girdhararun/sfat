@@ -45,17 +45,15 @@ public class BaseTestInitiator extends BaseActions {
         hardwait(15);
     }
 
-    public void verifyRequiredFields(TestDataSetup testData) {
-        GetFields g = new GetFields("Lead", null);
+    public void verifyRequiredFields(TestDataSetup testData, String sfObject) {
+        GetFields g = new GetFields(sfObject, null);
         Map<String, SFField> formfield = g.getEditFields();
-
                 for (JSONObject field : testData.getFields()) {
                     try{
-                    System.out.println(field.get("label") + "  " + field.get("value") +" "+field.get("isRequired"));
+                    System.out.println("Verified for : "+field.get("label") + "  " + field.get("value") +" "+field.get("isRequired"));
                         SFField itemField = formfield.get(field.get("label"));
-                        Assert.assertEquals(field.get("isRequired"),itemField.getRequired(),"isRequired verification failed for : "+field.get("label"));
+                        Assert.assertEquals(itemField.getRequired(),field.get("isRequired"),"isRequired verification failed for : "+field.get("label"));
                 }catch (Exception e){
-//                        System.out.println("Is Required Parameter not found for : "+field.get("label") );
                     }
                 }
 
