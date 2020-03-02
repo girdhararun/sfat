@@ -1,44 +1,66 @@
 package qa.test;
 
+import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import qa.keywords.AccountAction;
 import qa.keywords.LeadAction;
 import qa.resources.Config;
 import qa.utils.TestDataSetup;
 import qa.utils.WebDriverGenerator;
+import sft.GetFields;
+import sft.forceObject.SFField;
 import sft.locators.Locators_Login;
 import sft.utils.BaseActions;
 
-public class BaseTestInitiator extends BaseActions
-{
-	private static WebDriver driver = new  WebDriverGenerator().getChromeDriver();
+import java.util.Map;
 
-	//ActionClass
-	LeadAction lead;
-	AccountAction account;
+public class BaseTestInitiator extends BaseActions {
+    private static WebDriver driver = new WebDriverGenerator().getChromeDriver();
 
-	//DataClass
-	TestDataSetup leadtestdata;
+    SFField sfField;
+    //ActionClass
+    LeadAction lead;
+    AccountAction account;
 
-	protected BaseTestInitiator()
-	{
-		super(driver);
-		init();
-	}
+    //DataClass
+    TestDataSetup leadtestdata;
 
-	private void init()
-	{
-		leadtestdata = new TestDataSetup("LeadData.json");
-		lead = new LeadAction(driver,leadtestdata);
-		account = new AccountAction(driver);
-	}
+    protected BaseTestInitiator() {
+        super(driver);
+        init();
+    }
 
-	public void login(String username, String password)
-	{
-		launchUrl(Config.domain);
-		webelement(Locators_Login.input_username).sendKeys(username);
-		webelement(Locators_Login.input_password).sendKeys(password);
-		click(Locators_Login.btn_login);
-		hardwait(15);
-	}
+    private void init() {
+        leadtestdata = new TestDataSetup("LeadData.json");
+        lead = new LeadAction(driver, leadtestdata);
+        account = new AccountAction(driver);
+    }
+
+    public void login(String username, String password) {
+        launchUrl(Config.domain);
+        webelement(Locators_Login.input_username).sendKeys(username);
+        webelement(Locators_Login.input_password).sendKeys(password);
+        click(Locators_Login.btn_login);
+        hardwait(15);
+    }
+
+    public void verifyRequiredFields(TestDataSetup testData) {
+        GetFields g = new GetFields("Lead", null);
+        Map<String, SFField> formfield = g.getEditFields();
+
+                for (JSONObject field : testData.getFields()) {
+                    try{
+                    System.out.println(field.get("label") + "  " + field.get("value") +" "+field.get("isRequired"));
+                        SFField itemField = formfield.get(field.get("label"));
+                        Assert.assertEquals(field.get("isRequired"),itemField.getRequired(),"isRequired verification failed for : "+field.get("label"));
+                }catch (Exception e){
+//                        System.out.println("Is Required Parameter not found for : "+field.get("label") );
+                    }
+                }
+
+
+    }
+
+
 }

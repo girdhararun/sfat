@@ -20,6 +20,12 @@ public class LeadDemoTest extends BaseTestInitiator
 		login(Config.username, Config.password);
 	}
 
+	@Test
+    public void verifyMeta(){
+//        lead.verifyRequiredFields();
+        verifyRequiredFields(leadtestdata);
+    }
+
 	@Test(priority=1)
 	public void verify_home_page()
 	{

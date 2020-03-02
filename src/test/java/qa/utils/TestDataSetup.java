@@ -1,18 +1,13 @@
 package qa.utils;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import org.json.JSONObject;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
 import sft.utils.JsonIO;
+
+import java.io.IOException;
+import java.util.*;
 
 public class TestDataSetup implements ITestData
 {
@@ -60,8 +55,13 @@ public class TestDataSetup implements ITestData
 	
 	public String getFieldValue(String fieldSet , String label)
 	{
-		return ((JSONObject)((JSONObject)data.get(fieldSet)).get(label)).getString("value");
+		return getFieldProperty(fieldSet,label,"value");
 	}
+
+    public String getFieldProperty(String fieldSet , String label, String property)
+    {
+        return ((JSONObject)((JSONObject)data.get(fieldSet)).get(label)).getString(property);
+    }
 	public void updateFieldValue(String fieldSet , String label, String value)
 	{
 		data.put(fieldSet, ((JSONObject)data.get(fieldSet)).put(label, ((JSONObject)((JSONObject)data.get(fieldSet)).get(label)).put("value", value)));
