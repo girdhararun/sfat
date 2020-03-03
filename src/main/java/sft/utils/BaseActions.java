@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import sft.GetFields;
 import sft.navigation.AppNavigation;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,7 +15,8 @@ import java.util.Map.Entry;
 public class BaseActions {
     protected WebDriver driver = null;
     protected WebDriverWait wait = null;
-    protected static int explicitWait = Config.explicittWait;
+    public  ConfigReader driverConfig = new ConfigReader(System.getProperty("user.dir") + File.separator + "autoSetup.json");
+    protected  int explicitWait = Integer.parseInt(driverConfig.getSetupDetails().get("explicitWait"));
     protected JavascriptExecutor executor;
 
     public BaseActions(WebDriver driver) {
@@ -35,7 +37,7 @@ public class BaseActions {
     public void hardwait(int sec) {
         try {
             Thread.sleep(sec * 1000);
-            System.out.println("Wating.....");
+            System.out.println("Waiting.....");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -141,7 +143,6 @@ public class BaseActions {
     public void clickUsingJavaScript(WebElement element) {
         executor.executeScript("arguments[0].click()", element);
         waitForPageToLoadCompletely();
-
     }
     //-------------------------------------------------------------Click functions end------------------------------------------------------------------------//
 

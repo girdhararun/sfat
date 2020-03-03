@@ -5,14 +5,15 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import qa.keywords.AccountAction;
 import qa.keywords.LeadAction;
-import qa.resources.Config;
 import qa.utils.TestDataSetup;
 import qa.utils.WebDriverGenerator;
 import sft.GetFields;
 import sft.forceObject.SFField;
 import sft.locators.Locators_Login;
 import sft.utils.BaseActions;
+import sft.utils.ConfigReader;
 
+import java.io.File;
 import java.util.Map;
 
 public class BaseTestInitiator extends BaseActions {
@@ -26,6 +27,9 @@ public class BaseTestInitiator extends BaseActions {
     //DataClass
     TestDataSetup leadtestdata;
 
+    public Map<String, String> autoConfig;
+
+
     protected BaseTestInitiator() {
         super(driver);
         init();
@@ -35,10 +39,11 @@ public class BaseTestInitiator extends BaseActions {
         leadtestdata = new TestDataSetup("LeadData.json");
         lead = new LeadAction(driver, leadtestdata);
         account = new AccountAction(driver);
+        autoConfig = new ConfigReader(System.getProperty("user.dir") +File.separator+"autoSetup.json").getSetupDetails();
     }
 
     public void login(String username, String password) {
-        launchUrl(Config.domain);
+        launchUrl(autoConfig.get("domain"));
         webelement(Locators_Login.input_username).sendKeys(username);
         webelement(Locators_Login.input_password).sendKeys(password);
         click(Locators_Login.btn_login);

@@ -4,8 +4,6 @@ import com.sforce.soap.enterprise.sobject.Lead;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import qa.resources.Config;
-
 import java.text.ParseException;
 import java.util.Date;
 
@@ -17,7 +15,7 @@ public class LeadDemoTest extends BaseTestInitiator
     @BeforeClass
 	public void tierUp()
 	{
-		login(Config.username, Config.password);
+		login(autoConfig.get("username"), autoConfig.get("password"));
 	}
 
 	@Test

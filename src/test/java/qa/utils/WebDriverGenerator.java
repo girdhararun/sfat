@@ -1,18 +1,19 @@
 package qa.utils;
 
-import java.io.File;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import sft.utils.ConfigReader;
 
-import qa.resources.Config;
+import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public class WebDriverGenerator
 {
 	private WebDriver driver = null;
-	String driverPath = System.getProperty("user.dir")+File.separator+
+    public static ConfigReader driverConfig = new ConfigReader(System.getProperty("user.dir") + File.separator + "autoSetup.json");
+	private int implicitWait = Integer.parseInt(driverConfig.getSetupDetails().get("implicitWait"));
+    String driverPath = System.getProperty("user.dir")+File.separator+
 			"src"+File.separator+"test"+File.separator+"java"+File.separator+"qa"+File.separator+"resources";
 	public WebDriver getChromeDriver()
 	{
@@ -23,7 +24,7 @@ public class WebDriverGenerator
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--disable-notifications");
 		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(Config.implicitWait, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		return driver;
 	}

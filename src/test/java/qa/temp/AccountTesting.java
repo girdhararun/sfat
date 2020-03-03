@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import qa.resources.Config;
+//import qa.resources.Config;
 import qa.test.BaseTestInitiator;
 
 public class AccountTesting extends BaseTestInitiator
@@ -12,7 +12,7 @@ public class AccountTesting extends BaseTestInitiator
 	@BeforeClass
 	public void tierUp()
 	{
-		login(Config.username, Config.password);
+//		login(Config.username, Config.password);
 	}
 	
 	@Test(priority=1)

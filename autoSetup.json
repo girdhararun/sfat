@@ -1,0 +1,7 @@
+{
+    "domain": "https://info123-dev-ed.my.salesforce.com",
+    "username": "arungirdhar@qainfotech.com",
+    "password": "Info@2123",
+    "implicitWait": 30,
+    "explicitWait": 30
+}
