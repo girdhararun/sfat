@@ -12,7 +12,7 @@ public class Locators_Common extends Locator
 	public static Locator formTitle =new Locator(CSS,"article h2");
 	public static Locator saveForm = new Locator(CSS,"button[title='Save']");
 	public static Locator newFormBearer = new Locator(CSS,"h1 lightning-formatted-name");
-	public static Locator formDetails = new Locator(CSS,"ul[role='tablist'] a[data-label='Details']");
+	public static Locator tabBar = new Locator(CSS,"lightning-tab-bar [title='${tab}']");
 	public static Locator formDetailsActionToggle = new Locator(CSS,"div[class*='actionsContainer'] div[class='uiMenu'] div[class='uiPopupTrigger'] a");
 	public static Locator formDetailsActionToggleActions = new Locator(CSS,"div[role='menu'] a[title='${action}']");
 	//div[role='application tablist'] li:nth-child(3)  a>span:nth-child(1)

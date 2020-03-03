@@ -83,7 +83,7 @@ public class LeadAction extends BaseActions
 	}
 	public void open_form_details()
 	{
-		click(Locators_Common.formDetails);
+		click(Locators_Common.tabBar,"Details");
 	}
 	
 	public void click_form_details_action_toggle_and_click(String action)
