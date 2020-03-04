@@ -3,6 +3,7 @@ package qa.test;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import qa.keywords.AccountAction;
 import qa.keywords.LeadAction;
 import qa.utils.TestDataSetup;
@@ -25,7 +26,7 @@ public class BaseTestInitiator extends BaseActions {
     AccountAction account;
 
     //DataClass
-    TestDataSetup leadtestdata;
+    TestDataSetup testdata;
 
     public Map<String, String> autoConfig;
 
@@ -36,11 +37,19 @@ public class BaseTestInitiator extends BaseActions {
     }
 
     private void init() {
-        leadtestdata = new TestDataSetup("LeadData.json");
-        lead = new LeadAction(driver, leadtestdata);
+//        leadtestdata = new TestDataSetup();
+        lead = new LeadAction(driver);
         account = new AccountAction(driver);
         autoConfig = new ConfigReader(System.getProperty("user.dir") +File.separator+"autoSetup.json").getSetupDetails();
     }
+
+
+    @BeforeClass
+    public void tierUp()
+    {
+        login(autoConfig.get("username"), autoConfig.get("password"));
+    }
+
 
     public void login(String username, String password) {
         launchUrl(autoConfig.get("domain"));

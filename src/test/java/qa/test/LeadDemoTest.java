@@ -2,23 +2,18 @@ package qa.test;
 
 import com.sforce.soap.enterprise.sobject.Lead;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import qa.utils.TestDataSetup;
+
 import java.text.ParseException;
 import java.util.Date;
 
 public class LeadDemoTest extends BaseTestInitiator
 {
     long time= new Date().getTime();
+    TestDataSetup leadtestdata = new TestDataSetup("LeadData.json");
 
-
-    @BeforeClass
-	public void tierUp()
-	{
-		login(autoConfig.get("username"), autoConfig.get("password"));
-	}
-
-	@Test
+    @Test
     public void verifyMeta(){
         verifyRequiredFields(leadtestdata,"Lead");
     }
@@ -39,8 +34,8 @@ public class LeadDemoTest extends BaseTestInitiator
 	@Test(priority=4,dependsOnMethods={"open_new_lead_form"})
 	public void fill_new_form()
 	{
-        leadtestdata.updateFieldValue("Lead Information", "Email", "auto"+time+"@mailinator.in");
-        leadtestdata.updateFieldValue("Lead Information","First Name",  "auto"+time);
+        leadtestdata.updateDataValue("Lead Information", "Email", "auto"+time+"@mailinator.in");
+        leadtestdata.updateDataValue("Lead Information","First Name",  "auto"+time);
 		 Assert.assertEquals(lead.fill_form_and_save(leadtestdata),leadtestdata.getFieldValue("Lead Information","Salutation") + " " +
 					leadtestdata.getFieldValue("Lead Information","First Name") + " " +
 					leadtestdata.getFieldValue("Lead Information","Last Name"));
@@ -78,15 +73,18 @@ public class LeadDemoTest extends BaseTestInitiator
 		Assert.assertEquals(lead.getFormDetail("SIC Code"), leadtestdata.getFieldValue("Additional Information","SIC Code"));
 		Assert.assertEquals(lead.getFormDetail("Primary"), leadtestdata.getFieldValue("Additional Information","Primary"));
 
-		//Update file LeadData.json
-		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
+		leadtestdata.updateDataValue("Additional Information","SIC Code","987654");
 	}
 	
 	@Test(priority=6,dependsOnMethods= {"verify_form_details"})
 	public void update_form_details()
 	{
-		lead.click_form_details_action_toggle_and_click("Edit");
-		lead.update_form_details();
+//        leadtestdata.updateDataValue("Lead Information","Fax","654321");
+//        leadtestdata.updateDataValue("Lead Information","Lead Status","Closed - Converted");
+        lead.click_form_details_action_toggle_and_click("Edit");
+        lead.updateFormDetail(leadtestdata,"Lead Information","Fax","654321");
+        lead.updateFormDetail(leadtestdata, "Lead Information","Lead Status","Closed - Converted");
+        lead.saveForm();
 		Assert.assertEquals(lead.getFormDetail("Fax"), leadtestdata.getFieldValue("Lead Information","Fax"));
 		Assert.assertEquals(lead.getFormDetail("Lead Status"), leadtestdata.getFieldValue("Lead Information","Lead Status"));
 	}
@@ -94,7 +92,7 @@ public class LeadDemoTest extends BaseTestInitiator
 	@Test(priority=7)
 	public void verify_details_from_db()
 	{
-		Lead dblead = lead.verify_details_from_db();
+		Lead dblead = lead.get_Lead_details_db(leadtestdata.getFieldValue("Lead Information","Email"));
 		Assert.assertEquals(dblead.getFirstName(), leadtestdata.getFieldValue("Lead Information","First Name"));
 		Assert.assertEquals(dblead.getLastName(), leadtestdata.getFieldValue("Lead Information","Last Name"));
 		Assert.assertEquals(dblead.getStatus(), leadtestdata.getFieldValue("Lead Information","Lead Status"));

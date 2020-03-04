@@ -56,7 +56,7 @@ public class TestDataSetup implements ITestData {
         return ((JSONObject) ((JSONObject) data.get(fieldSet)).get(label)).getString(property);
     }
 
-    public void updateFieldValue(String fieldSet, String label, String value) {
+    public void updateDataValue(String fieldSet, String label, String value) {
         data.put(fieldSet, ((JSONObject) data.get(fieldSet)).put(label, ((JSONObject) ((JSONObject) data.get(fieldSet)).get(label)).put("value", value)));
     }
 

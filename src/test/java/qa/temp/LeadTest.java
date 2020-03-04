@@ -76,7 +76,7 @@ public class LeadTest extends BaseTestInitiator
 //		Assert.assertEquals(lead.getFormDetail("Primary"), leadtestdata.getFieldValue("Additional Information","Primary"));
 //
 //		//Update file LeadData.json
-//		leadtestdata.updateFieldValue("Additional Information","SIC Code","987654");
+//		leadtestdata.updateDataValue("Additional Information","SIC Code","987654");
 //	}
 //
 //	@Test(priority=6,dependsOnMethods= {"verify_form_details"})
