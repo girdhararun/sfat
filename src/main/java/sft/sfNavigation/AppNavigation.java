@@ -1,4 +1,4 @@
-package sft.navigation;
+package sft.sfNavigation;
 
 import org.junit.Assert;
 import sft.auth.SftSetup;

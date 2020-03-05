@@ -40,7 +40,7 @@ public class Select extends BaseActions implements ForceObject {
             }
         }
 
-        List<WebElement> options = webelementsWithoutVisibility(By.cssSelector("div[class*='select-options'][class*='visible'] ul li a"));
+        List<WebElement> options = webelements(By.cssSelector("div[class*='select-options'][class*='visible'] ul li a"));
         int size = options.size();
         for (int i = 0; i < size; i++) {
             options = webelementsWithoutVisibility(By.cssSelector("div[class*='select-options'][class*='visible'] ul li a"));

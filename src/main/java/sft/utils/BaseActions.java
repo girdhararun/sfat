@@ -5,7 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sft.GetFields;
-import sft.navigation.AppNavigation;
+import sft.sfNavigation.AppNavigation;
 
 import java.io.File;
 import java.util.List;
@@ -175,7 +175,7 @@ public class BaseActions {
         hardwait(1);
     }
 
-    //-----------------------navigation-----------------------
+    //-----------------------sfNavigation-----------------------
     public void navApp(String sfObject) {
         AppNavigation nav = new AppNavigation();
         launchUrl(nav.getAppNavLink("Sales"));

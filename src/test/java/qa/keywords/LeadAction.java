@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
 import sft.locators.Locators_Common;
+import sft.sfActions.headerActions;
 import sft.soql.ExecuteSOQL;
 import sft.utils.BaseActions;
 
@@ -15,27 +16,19 @@ import java.util.List;
 public class LeadAction extends BaseActions {
     public Locators_Common common = new Locators_Common();
     public GetFields leadFields;
+    public headerActions headActions;
 
     public LeadAction(WebDriver driver) {
         super(driver);
         leadFields = new GetFields("Lead", driver);
+        headActions = new headerActions(driver);
     }
 
     public GetFields getLeadFields() {
         return leadFields;
     }
 
-    public String app_launch(String app) {
-        click(Locators_Common.btn_appLauncher);
-        click(Locators_Common.btn_Sales, app);
-        waitForPageToLoadCompletely();
-        waitForVisibilityOfElement(Locators_Common.appName);
-        return webelement(Locators_Common.appName).getText();
-    }
-
     public String openObject(String sfObject) {
-//		clickUsingJavaScript(webelement(Header_ONav.navigation_tab, tab));
-
         navObject(sfObject);
         return webelement(Locators_Common.pageHeading, sfObject).getText();
     }
@@ -46,7 +39,10 @@ public class LeadAction extends BaseActions {
     }
 
     public String open_new_form() {
-        click(Locators_Common.newForm);
+        waitForPageToLoadCompletely();
+        click(Locators_Common.formDetailsActionToggle);
+        click(headActions.getAction("Send List Email"));
+//        click(Locators_Common.newForm);
         hardwait(5);
         List<WebElement> formTitles = webelementsWithoutVisibility(Locators_Common.formTitle);    //without
 
@@ -82,7 +78,7 @@ public class LeadAction extends BaseActions {
     public void click_form_details_action_toggle_and_click(String action) {
         waitForPageToLoadCompletely();
         click(Locators_Common.formDetailsActionToggle);
-        click(Locators_Common.formDetailsActionToggleActions, action);
+        click(headActions.getAction(action));
     }
 
     public void updateFormDetail(TestDataSetup leadtestdata, String fieldSet, String label, String value) {

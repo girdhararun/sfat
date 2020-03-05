@@ -21,11 +21,8 @@ public class GetEnterpriseConnection {
         ConnectorConfig config = new ConnectorConfig();
         config.setUsername(USERNAME);
         config.setPassword(PASSWORD);
-
         try {
-
             connection = Connector.newConnection(config);
-
             // display some current settings
             System.out.println("Auth EndPoint: " + config.getAuthEndpoint());
             System.out.println("Service EndPoint: " + config.getServiceEndpoint());

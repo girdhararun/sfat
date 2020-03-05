@@ -5,7 +5,9 @@ public class Locator
 	protected static final String CSS = "css";
 	protected static final String XPATH = "xpath";
 	protected static final String ID = "id";
-	public String type;
+    protected static final String CLASS = "class";
+
+    public String type;
 	public String value;
 	public Locator() {}
 	public Locator(Locator loc)
