@@ -58,10 +58,10 @@ public class LeadAction extends BaseActions {
     }
 
     public String fill_form_and_save(TestDataSetup testdata) {
-//		fillCompleteForm(testdata.getFields(), leadFields);
-        fillFormByParts(testdata.getFieldset("Lead Information"), leadFields);
-        fillFormByParts(testdata.getFieldset("Address Information"), leadFields);
-        fillFormByParts(testdata.getFieldset("Additional Information"), leadFields);
+		fillCompleteForm(testdata.getFields(), leadFields);
+//        fillFormByParts(testdata.getFieldset("Lead Information"), leadFields);
+//        fillFormByParts(testdata.getFieldset("Address Information"), leadFields);
+//        fillFormByParts(testdata.getFieldset("Additional Information"), leadFields);
         saveForm();
         return webelement(Locators_Common.newFormBearer).getText();
     }

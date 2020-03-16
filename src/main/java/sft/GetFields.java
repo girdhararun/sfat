@@ -22,6 +22,7 @@ public final class GetFields {
     private static Map<String, SFField> detail_fields = new HashMap<String, SFField>();
 
     public GetFields(String obj, WebDriver d) {
+        System.out.println("Connecting to Salesforce .......");
         editGenerater(obj);
         detailGenerater(obj);
         driver = d;
