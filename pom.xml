@@ -19,7 +19,6 @@
                 <version>3.0.0-M4</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <!--suppress UnresolvedMavenProperty -->
                         <suiteXmlFile>src/test/java/qa/resources/${xmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>

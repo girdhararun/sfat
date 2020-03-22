@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sft.GetFields;
+import sft.locators.getOneActions;
 import sft.sfNavigation.AppNavigation;
 
 import java.io.File;
@@ -186,5 +187,10 @@ public class BaseActions {
         AppNavigation nav = new AppNavigation();
         launchUrl(nav.getObjNavLink(sfObject));
         waitForPageToLoadCompletely();
+    }
+
+    public void oneAction(String action){
+        getOneActions oneAction = new getOneActions(driver);
+        oneAction.getAction(action);
     }
 }

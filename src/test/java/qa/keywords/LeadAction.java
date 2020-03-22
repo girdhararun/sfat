@@ -96,4 +96,6 @@ public class LeadAction extends BaseActions {
         Lead lead = (Lead) qr.getRecords()[0];
         return lead;
     }
+
+
 }
