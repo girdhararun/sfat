@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import sft.GetFields;
+import sft.locators.Locators_Modal;
 import sft.locators.getOneActions;
 import sft.sfNavigation.AppNavigation;
 
@@ -12,6 +13,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 
 public class BaseActions {
     protected WebDriver driver = null;
@@ -160,6 +162,30 @@ public class BaseActions {
             throw new StaleElementReferenceException("Stale element");
         }
     }
+    int timeout;
+
+    public boolean checkIfElementIsPresent(Locator locator){
+
+        boolean flag = false;
+        try{
+            WebElement element = driver.findElement(getLocator(locator));
+            if(element.isDisplayed())
+                flag = true;
+            else
+                flag = false;
+        }catch (NoSuchElementException e){
+            flag = false;
+        }
+        return flag;
+    }
+
+//    public void resetImplicitTimeout(int newTimeOut) {
+//        try {
+//            driver.manage().timeouts().implicitlyWait(newTimeOut, TimeUnit.SECONDS);
+//        } catch (Exception e) {
+//        }
+//    }
+
 
     public void fillCompleteForm(List<JSONObject> fields, GetFields formField) {
         for (JSONObject field : fields) {
@@ -189,8 +215,22 @@ public class BaseActions {
         waitForPageToLoadCompletely();
     }
 
+    //-----------------sfActions
+
     public void oneAction(String action){
         getOneActions oneAction = new getOneActions(driver);
         oneAction.getAction(action);
+    }
+
+    public String getModalHeading() {
+        waitForVisibilityOfElement(Locators_Modal.modalContainer);
+        waitForVisibilityOfElement(Locators_Modal.headingH2);
+        hardwait(2);
+        WebElement modalHeading = webelement(Locators_Modal.headingH2);
+        return modalHeading.getText();
+    }
+
+    public void closeModal() {
+        click(webelement(Locators_Modal.close));
     }
 }

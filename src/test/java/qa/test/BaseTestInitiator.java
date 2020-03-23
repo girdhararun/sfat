@@ -25,6 +25,7 @@ public class BaseTestInitiator extends BaseActions {
     //ActionClass
     LeadAction lead;
     AccountAction account;
+    String baseURL;
 
     //DataClass
     TestDataSetup testdata;
@@ -42,6 +43,7 @@ public class BaseTestInitiator extends BaseActions {
         lead = new LeadAction(driver);
         account = new AccountAction(driver);
         autoConfig = new ConfigReader(System.getProperty("user.dir") + File.separator + "autoSetup.json").getSetupDetails();
+        baseURL = autoConfig.get("domain");
     }
 
 
