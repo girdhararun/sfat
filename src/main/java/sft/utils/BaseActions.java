@@ -7,13 +7,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import sft.GetFields;
 import sft.locators.Locators_Modal;
 import sft.locators.getOneActions;
-import sft.sfNavigation.AppNavigation;
+import sft.navigation.AppNavigation;
 
 import java.io.File;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.TimeUnit;
 
 public class BaseActions {
     protected WebDriver driver = null;

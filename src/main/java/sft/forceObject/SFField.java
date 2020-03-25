@@ -1,8 +1,8 @@
 package sft.forceObject;
 
-import sft.sFObject.describeLayoutPOJO.Details;
+import sft.sfData.sFObject.describeLayoutPOJO.Details;
 
-public class SFField 
+public class SFField
 {
 	public void setLabel(String label) {
 		this.label = label;
@@ -34,7 +34,7 @@ public class SFField
 	public void setDetails(Details details) {
 		this.details = details;
 	}
-	
+
 	public String getLabel() {
 		return label;
 	}
@@ -65,8 +65,8 @@ public class SFField
 	public Details getDetails() {
 		return details;
 	}
-	
-	public void setFieldsData(String inFieldSet, String label, Boolean editableForNew, Boolean editableForUpdate,Boolean placeholder, 
+
+	public void setFieldsData(String inFieldSet, String label, Boolean editableForNew, Boolean editableForUpdate,Boolean placeholder,
 			Boolean required, Boolean isInuseCollapsibleSection, Boolean isInCollapsed, Boolean isCompound, Details details)
 	{
 		this.inFieldSet = inFieldSet;
@@ -80,7 +80,7 @@ public class SFField
 		this.isCompound = isCompound;
 		this.details = details;
 	}
-	
+
 	private String inFieldSet=null;
 	private String label=null;
 	private Boolean isCompound=false;

@@ -9,8 +9,8 @@ import sft.forceObject.Input.*;
 import sft.forceObject.SFField;
 import sft.forceObject.Select.Select;
 import sft.forceObject.TextArea.TextArea;
-import sft.sFObject.GetSFObject;
-import sft.sFObject.describeLayoutPOJO.*;
+import sft.sfData.sFObject.GetSFObject;
+import sft.sfData.sFObject.describeLayoutPOJO.*;
 
 import java.util.*;
 import java.util.Map.Entry;
