@@ -1,4 +1,4 @@
-package sft.sfActions;
+package sft.sfKeywords;
 
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
@@ -9,10 +9,10 @@ import sft.utils.BaseActions;
 
 import java.util.List;
 
-public class headerActions extends BaseActions {
+public class objectHeader extends BaseActions {
     private WebDriver driver;
 
-    public headerActions(WebDriver driver) {
+    public objectHeader(WebDriver driver) {
         super(driver);
         this.driver = driver;
     }

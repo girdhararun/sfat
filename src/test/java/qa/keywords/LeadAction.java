@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import qa.utils.TestDataSetup;
 import sft.GetFields;
 import sft.locators.Locators_Common;
-import sft.sfActions.headerActions;
+import sft.sfKeywords.objectHeader;
 import sft.soql.ExecuteSOQL;
 import sft.utils.BaseActions;
 
@@ -16,12 +16,12 @@ import java.util.List;
 public class LeadAction extends BaseActions {
     public Locators_Common common = new Locators_Common();
     public GetFields leadFields;
-    public headerActions headActions;
+    public objectHeader headActions;
 
     public LeadAction(WebDriver driver) {
         super(driver);
         leadFields = new GetFields("Lead", driver);
-        headActions = new headerActions(driver);
+        headActions = new objectHeader(driver);
     }
 
     public GetFields getLeadFields() {

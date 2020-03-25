@@ -3,7 +3,7 @@
 <suite name="Suite1" verbose="1" >
     <test name="Lead Demo" >
         <classes>
-            <class name="qa.test.LeadDemoTest" />
+            <class name="qa.test.HeaderActions" />
         </classes>
     </test>
 </suite>

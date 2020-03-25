@@ -3,7 +3,7 @@ package qa.test;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class headerActions extends BaseTestInitiator{
+public class HeaderActions extends BaseTestInitiator{
 
     @Test(priority = 1)
     public void checkLeadObjectVisibleAction()
@@ -33,6 +33,15 @@ public class headerActions extends BaseTestInitiator{
     public void checkDataHiddenAction(){
         lead.oneAction("Delete");
         Assert.assertEquals(lead.getModalHeading(),"Delete Lead", "Unable to open Delete lead Modal");
+        lead.closeModal();
+    }
+
+    @Test(priority = 5)
+    public void checkAccountObjectVisibleAction()
+    {
+        Assert.assertEquals(lead.openObject("Accounts"), "Accounts");
+        lead.oneAction("New");
+        Assert.assertEquals(lead.getModalHeading(),"New Account", "Unable to open New Account Modal");
         lead.closeModal();
     }
 
