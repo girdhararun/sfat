@@ -2,10 +2,10 @@ package sft.navigation;
 
 import org.junit.Assert;
 import sft.auth.SftSetup;
-import sft.sfData.sfApps.GetSFApps;
-import sft.sfData.sfApps.describeAppsPOJO.App;
-import sft.sfData.sfApps.describeAppsPOJO.Apps;
-import sft.sfData.sfApps.describeAppsPOJO.NavItem;
+import sft.sfData.apps.GetSFApps;
+import sft.sfData.apps.describeAppsPOJO.App;
+import sft.sfData.apps.describeAppsPOJO.Apps;
+import sft.sfData.apps.describeAppsPOJO.NavItem;
 
 import java.util.HashMap;
 import java.util.Map;

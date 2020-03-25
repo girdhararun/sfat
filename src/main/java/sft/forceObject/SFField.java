@@ -1,6 +1,6 @@
 package sft.forceObject;
 
-import sft.sfData.sFObject.describeLayoutPOJO.Details;
+import sft.sfData.objectDescribe.describeLayoutPOJO.Details;
 
 public class SFField
 {

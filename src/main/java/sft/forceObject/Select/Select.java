@@ -8,7 +8,7 @@ import sft.DataFields;
 import sft.forceObject.ForceObject;
 import sft.forceObject.SFField;
 import sft.locators.Locators_Get;
-import sft.sfData.sFObject.describeLayoutPOJO.PicklistValue;
+import sft.sfData.objectDescribe.describeLayoutPOJO.PicklistValue;
 import sft.utils.BaseActions;
 
 import java.util.List;
