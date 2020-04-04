@@ -18,6 +18,7 @@ public class SftSetup {
     final static String setup_file = System.getProperty("user.dir") + File.separator + "SftSetup.json";
 
     public static String generate_token() {
+        System.out.println("Getting access to SalesForce....");
         read_sftsetup();
         //Setting the base URI for all rest calls further
         RestAssured.baseURI = setup.get("domain_url") + "/" + setup.get("api_version") + "/";

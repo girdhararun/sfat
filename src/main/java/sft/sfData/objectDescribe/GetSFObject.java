@@ -1,16 +1,13 @@
 package sft.sfData.objectDescribe;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import sft.httpclient.GetRequest;
+import sft.sfData.BaseSFData;
 import sft.sfData.objectDescribe.describeLayoutPOJO.SFVFDescription;
 
-import java.io.IOException;
-
 public class GetSFObject
-{
-	public static String getDescribeLayout(final String obj)
+{    static BaseSFData jsonMap = new BaseSFData();
+
+    public static String getDescribeLayout(final String obj)
 	{
 		String endpoint = "sobjects" + "/" +obj+ "/" + "describe" + "/" + "layouts";
 		GetRequest getRequest = new GetRequest();
@@ -19,17 +16,9 @@ public class GetSFObject
 // SalesForce VisualForce
 	public static SFVFDescription get(String obj)
 	{
-		SFVFDescription t = new SFVFDescription();
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			t = mapper.readValue(getDescribeLayout(obj), SFVFDescription.class);
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		SFVFDescription t;
+		String objData = getDescribeLayout(obj);
+		t = jsonMap.getDescriptionInstance(objData,SFVFDescription.class);
 		return t;
 	}
 
