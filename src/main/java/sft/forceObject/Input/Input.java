@@ -3,9 +3,9 @@ package sft.forceObject.Input;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import sft.DataFields;
+import sft.sfData.ObjDataFields;
 import sft.forceObject.ForceObject;
-import sft.forceObject.SFField;
+import sft.forceObject.objField;
 import sft.locators.Locators_Get;
 import sft.utils.BaseActions;
 
@@ -17,10 +17,10 @@ import java.util.Map;
 public class Input extends BaseActions implements ForceObject
 {
 	protected String fieldName,domDataType;
-	private SFField details;
-	protected static Map<String,String> dataTypes = DataFields.fields();
+	private objField details;
+	protected static Map<String,String> dataTypes = ObjDataFields.fields();
 	protected String span;
-	public Input(SFField field,WebDriver driver)
+	public Input(objField field, WebDriver driver)
 	{
 		super(driver);
 		this.driver = driver;
@@ -45,7 +45,7 @@ public class Input extends BaseActions implements ForceObject
 		return null;
 	}
 
-	public void set(String value) 
+	public void set(String value)
 	{
 		getWebElement().clear();
 		getWebElement().sendKeys(value);
@@ -55,12 +55,12 @@ public class Input extends BaseActions implements ForceObject
 	{
 		getWebElement().clear();
 	}
-	
-	public String get() {	
+
+	public String get() {
 		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
-	
-	public String edit_get() {	
+
+	public String edit_get() {
 		return getWebElement().getAttribute("value");
 	}
 }

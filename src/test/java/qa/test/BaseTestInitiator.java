@@ -9,8 +9,8 @@ import qa.keywords.AccountAction;
 import qa.keywords.LeadAction;
 import qa.utils.TestDataSetup;
 import qa.utils.WebDriverGenerator;
-import sft.GetFields;
-import sft.forceObject.SFField;
+import sft.sfData.objectDescribe.GetFields;
+import sft.forceObject.objField;
 import sft.locators.Locators_Login;
 import sft.utils.BaseActions;
 import sft.utils.ConfigReader;
@@ -21,7 +21,7 @@ import java.util.Map;
 public class BaseTestInitiator extends BaseActions {
     private static WebDriver driver = new WebDriverGenerator().getChromeDriver();
 
-    SFField sfField;
+    objField sfField;
     //ActionClass
     LeadAction lead;
     AccountAction account;
@@ -63,11 +63,11 @@ public class BaseTestInitiator extends BaseActions {
 
     public void verifyRequiredFields(TestDataSetup testData, String sfObject) {
         GetFields g = new GetFields(sfObject, null);
-        Map<String, SFField> formfield = g.getEditFields();
+        Map<String, objField> formfield = g.getEditFields();
         for (JSONObject field : testData.getFields()) {
             try {
                 System.out.println("Verified for : " + field.get("label") + "  " + field.get("value") + " " + field.get("isRequired"));
-                SFField itemField = formfield.get(field.get("label"));
+                objField itemField = formfield.get(field.get("label"));
                 Assert.assertEquals(itemField.getRequired(), field.get("isRequired"), "isRequired verification failed for : " + field.get("label"));
             } catch (Exception e) {
             }

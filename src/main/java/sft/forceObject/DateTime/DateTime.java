@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.openqa.selenium.WebDriver;
 
-import sft.DataFields;
+import sft.sfData.ObjDataFields;
 import sft.forceObject.ForceObject;
-import sft.forceObject.SFField;
+import sft.forceObject.objField;
 import sft.locators.Locators_Get;
 import sft.utils.BaseActions;
 
@@ -14,10 +14,10 @@ public class DateTime extends BaseActions implements ForceObject
 {
 
 	protected String fieldName,domDataType;
-	private SFField details;
-	protected static Map<String,String> dataTypes = DataFields.fields();
+	private objField details;
+	protected static Map<String,String> dataTypes = ObjDataFields.fields();
 	protected String span;
-	public DateTime(SFField field,WebDriver driver)
+	public DateTime(objField field, WebDriver driver)
 	{
 		super(driver);
 		this.driver = driver;
@@ -29,14 +29,14 @@ public class DateTime extends BaseActions implements ForceObject
 	@Override
 	public void set(String value) {
 		System.out.println("[Alert] : Need to implement in DateTime");
-		
+
 	}
 
 	@Override
 	public String get() {
 		return webelement(Locators_Get.getEmail_ReferenceDetailUI,fieldName).getText();
 	}
-	
+
 	public void clear() {
 		System.out.println("[Alert] : Need to implement in DateTime");
 	}

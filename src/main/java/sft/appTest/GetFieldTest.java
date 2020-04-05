@@ -7,8 +7,8 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import sft.forceObject.Input.Input;
-import sft.forceObject.SFField;
-import sft.GetFields;
+import sft.forceObject.objField;
+import sft.sfData.objectDescribe.GetFields;
 
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public class GetFieldTest {
     @Test
     public void checkForceObjectCreation(){
         GetFields getfields = new GetFields("lead",d);
-        Map<String, SFField> editFiledsChk = getfields.getEditFields();
+        Map<String, objField> editFiledsChk = getfields.getEditFields();
         Assert.assertEquals(getfields.getObject("Country") instanceof Input, true);
     }
 

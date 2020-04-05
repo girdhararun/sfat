@@ -2,7 +2,7 @@ package sft.forceObject;
 
 import sft.sfData.objectDescribe.describeLayoutPOJO.Details;
 
-public class SFField
+public class objField
 {
 	public void setLabel(String label) {
 		this.label = label;

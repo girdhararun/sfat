@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import sft.DataFields;
+import sft.sfData.ObjDataFields;
 import sft.forceObject.ForceObject;
-import sft.forceObject.SFField;
+import sft.forceObject.objField;
 import sft.locators.Locators_Get;
 import sft.sfData.objectDescribe.describeLayoutPOJO.PicklistValue;
 import sft.utils.BaseActions;
@@ -17,10 +17,10 @@ import java.util.Map;
 public class Select extends BaseActions implements ForceObject {
     private String fieldName, domDataType;
     private WebDriver driver;
-    private static Map<String, String> dataTypes = DataFields.fields();
-    private SFField details;
+    private static Map<String, String> dataTypes = ObjDataFields.fields();
+    private objField details;
 
-    public Select(SFField field, WebDriver driver) {
+    public Select(objField field, WebDriver driver) {
         super(driver);
         this.driver = driver;
         details = field;

@@ -17,15 +17,15 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.sforce.ws.ConnectionException;
-import sft.GetFields;
+import sft.sfData.objectDescribe.GetFields;
 import sft.auth.SftSetup;
 
-public class NewOpportunities 
+public class NewOpportunities
 {
 	static WebDriver driver;
 	WebDriverWait wait;
 	GetFields opportunities;
-	
+
 	@BeforeClass
 	public void tierUp()
 	{
@@ -36,8 +36,8 @@ public class NewOpportunities
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		wait = new WebDriverWait(driver,30000);
-		
-		
+
+
 		opportunities = new GetFields("Opportunity",driver);
 	}
 	@Test(priority=1)
@@ -47,7 +47,7 @@ public class NewOpportunities
 		driver.findElement(By.cssSelector("input[id=\"username\"]")).sendKeys("akash.verma@qainfotech.com");
 		driver.findElement(By.cssSelector("input[id=\"password\"]")).sendKeys("akashvermaqa68");
 		driver.findElement(By.cssSelector("input[id=\"Login\"]")).click();
-	}	
+	}
 	@Test(priority=2)
 	public void app_launch()
 	{
@@ -57,7 +57,7 @@ public class NewOpportunities
 	}
 	@Test(priority=3)
 	public void create_new_opportunities()
-	{	
+	{
 		click_js("a[title='Opportunities']");
 		click(By.cssSelector("a[title=\"New\"]"));
 		hardwait(2);
@@ -65,7 +65,7 @@ public class NewOpportunities
 
 	@Test(priority=4)
 	public void fill_form1() throws ConnectionException
-	{	
+	{
 		opportunities.getObject("Amount").set("10000");
 		opportunities.getObject("Private").set("click");
 	}
@@ -83,7 +83,7 @@ public class NewOpportunities
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
-	
+
 	protected void click_js(String locator)
 	{
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -103,9 +103,9 @@ public class NewOpportunities
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	protected void send_keys(WebElement e, String k)
 	{
 		if(e != null)

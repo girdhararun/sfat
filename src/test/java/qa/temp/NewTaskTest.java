@@ -20,16 +20,16 @@ import org.testng.annotations.Test;
 
 import com.sforce.ws.ConnectionException;
 
-import sft.GetFields;
+import sft.sfData.objectDescribe.GetFields;
 import sft.auth.SftSetup;
 
-public class NewTaskTest 
+public class NewTaskTest
 {
 	static WebDriver driver;
 	WebDriverWait wait;
 	GetFields taskFields;
-	
-	
+
+
 	@BeforeClass
 	public void tierUp()
 	{
@@ -40,11 +40,11 @@ public class NewTaskTest
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		wait = new WebDriverWait(driver,30000);
-		
-		
+
+
 		taskFields = new GetFields("Task",driver);
 	}
-	
+
 	@Test(priority=1)
 	public void login()
 	{
@@ -52,7 +52,7 @@ public class NewTaskTest
 		driver.findElement(By.cssSelector("input[id=\"username\"]")).sendKeys("akash.verma@qainfotech.com");
 		driver.findElement(By.cssSelector("input[id=\"password\"]")).sendKeys("akashvermaqa68");
 		driver.findElement(By.cssSelector("input[id=\"Login\"]")).click();
-	}	
+	}
 	@Test(priority=2)
 	public void app_launch()
 	{
@@ -62,7 +62,7 @@ public class NewTaskTest
 	}
 	@Test(priority=3)
 	public void create_new_lead()
-	{	
+	{
 		click_js("a[title='Tasks']");
 		click(By.cssSelector("li[class='oneActionsDropDown'] a"));
 		click(By.cssSelector("li[role='presentation'] a[title='New Task']"));
@@ -74,7 +74,7 @@ public class NewTaskTest
 		taskFields.getObject("Due Date").set("3/10/2020");
 	}
 
-	
+
 	@AfterClass
 	public void tierDown()
 	{
@@ -89,14 +89,14 @@ public class NewTaskTest
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
-	
+
 	public void click_js(String locator)
 	{
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		String script = "document.querySelector(\"html\").querySelector(\""+locator+"\").click()";
 		executor.executeScript(script);
 	}
-	
+
 	public void hardwait(int sec)
 	{
 		try {
@@ -119,9 +119,9 @@ public class NewTaskTest
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void send_keys(WebElement e, String k)
 	{
 		if(e != null)

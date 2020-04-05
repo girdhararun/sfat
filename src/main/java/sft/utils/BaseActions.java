@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import sft.GetFields;
+import sft.sfData.objectDescribe.GetFields;
 import sft.locators.Locators_Modal;
 import sft.locators.getOneActions;
 import sft.navigation.AppNavigation;

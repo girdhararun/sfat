@@ -18,7 +18,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import com.sforce.ws.ConnectionException;
-import sft.GetFields;
+import sft.sfData.objectDescribe.GetFields;
 import sft.auth.SftSetup;
 
 public class NewLeadTest
@@ -26,7 +26,7 @@ public class NewLeadTest
 	static WebDriver driver;
 	WebDriverWait wait;
 	GetFields leadFields;
-	
+
 	@BeforeClass
 	public void tierUp()
 	{
@@ -37,8 +37,8 @@ public class NewLeadTest
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		wait = new WebDriverWait(driver,30000);
-		
-		
+
+
 		leadFields = new GetFields("Lead",driver);
 	}
 	@Test(priority=1)
@@ -48,7 +48,7 @@ public class NewLeadTest
 		driver.findElement(By.cssSelector("input[id=\"username\"]")).sendKeys("akash.verma@qainfotech.com");
 		driver.findElement(By.cssSelector("input[id=\"password\"]")).sendKeys("akashvermaqa68");
 		driver.findElement(By.cssSelector("input[id=\"Login\"]")).click();
-	}	
+	}
 	@Test(priority=2)
 	public void app_launch()
 	{
@@ -58,23 +58,23 @@ public class NewLeadTest
 	}
 	@Test(priority=3)
 	public void create_new_lead()
-	{	
+	{
 		click_js("a[title='Leads']");
 		click(By.cssSelector("a[title=\"New\"]"));
 	}
 
 	@Test(priority=4)
 	public void fill_form1() throws ConnectionException
-	{	
+	{
 		leadFields.getObject("Phone").set("7065586031");
 		leadFields.getObject("Description").set("My Description");
 //		leadFields.getObject("Description").clear();
-		
+
 		leadFields.getObject("Rating").set("Warm");
 		leadFields.getObject("Rating").set("Wa");
 	}
 
-	
+
 	@AfterClass
 	public void tierDown()
 	{
@@ -88,7 +88,7 @@ public class NewLeadTest
 		wait.until(ExpectedConditions.visibilityOf(element));
 		element.click();
 	}
-	
+
 	protected void click_js(String locator)
 	{
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -108,9 +108,9 @@ public class NewLeadTest
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	protected void send_keys(WebElement e, String k)
 	{
 		if(e != null)

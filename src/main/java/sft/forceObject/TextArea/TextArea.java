@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import sft.DataFields;
+import sft.sfData.ObjDataFields;
 import sft.forceObject.ForceObject;
-import sft.forceObject.SFField;
+import sft.forceObject.objField;
 import sft.locators.Locators_Get;
 import sft.utils.BaseActions;
 
@@ -18,10 +18,10 @@ public class TextArea extends BaseActions implements ForceObject
 
 	private String fieldName,domDataType;
 	private WebDriver driver;
-	private SFField details;
-	private static Map<String,String> dataTypes = DataFields.fields();
+	private objField details;
+	private static Map<String,String> dataTypes = ObjDataFields.fields();
 
-	public TextArea(SFField field,WebDriver driver)
+	public TextArea(objField field, WebDriver driver)
 	{
 		super(driver);
 		this.driver = driver;
@@ -44,7 +44,7 @@ public class TextArea extends BaseActions implements ForceObject
 		return null;
 	}
 
-	public void set(String value) 
+	public void set(String value)
 	{
 		getWebElement().clear();
 		getWebElement().sendKeys(value, Keys.ENTER);
@@ -60,8 +60,8 @@ public class TextArea extends BaseActions implements ForceObject
 		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
 
-	public String edit_get() {	
+	public String edit_get() {
 		return getWebElement().getAttribute("value");
 	}
-	
+
 }

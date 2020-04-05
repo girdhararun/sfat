@@ -1,9 +1,9 @@
-package sft;
+package sft.sfData;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataFields 
+public class ObjDataFields
 {
 	public static final String PHONE = "uiInputPhone";	//phone
 	public static final String EMAIL = "uiInputEmail";	//email
@@ -16,7 +16,7 @@ public class DataFields
 	public static final String SEARCHINPUT = "forceSearchInputLookupDesktop";
 	public static final String DATE = "uiInput--datetime";
 	public static final String CHECKBOX = "uiInput--checkbox";
-	
+
 	//To add
 	public static final String COMBOBOX = "forceTextEnumLookup";
 	public static final String DATETIME = "";

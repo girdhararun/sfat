@@ -5,7 +5,7 @@ import com.sforce.soap.enterprise.sobject.Lead;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import qa.utils.TestDataSetup;
-import sft.GetFields;
+import sft.sfData.objectDescribe.GetFields;
 import sft.locators.Locators_Common;
 import sft.keywords.objectHeader;
 import sft.soql.ExecuteSOQL;

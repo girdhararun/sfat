@@ -2,11 +2,11 @@ package sft.forceObject.Input;
 
 import org.openqa.selenium.WebDriver;
 
-import sft.forceObject.SFField;
+import sft.forceObject.objField;
 
 public class StringInput extends Input{
 
-	public StringInput(SFField field, WebDriver driver) {
+	public StringInput(objField field, WebDriver driver) {
 		super(field, driver);
 	}
 

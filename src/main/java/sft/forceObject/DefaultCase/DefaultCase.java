@@ -2,7 +2,7 @@ package sft.forceObject.DefaultCase;
 
 import org.openqa.selenium.WebDriver;
 import sft.forceObject.ForceObject;
-import sft.forceObject.SFField;
+import sft.forceObject.objField;
 import sft.locators.Locators_Get;
 import sft.utils.BaseActions;
 
@@ -10,7 +10,7 @@ public class DefaultCase extends BaseActions implements ForceObject
 {
 	protected String span;
 	protected String fieldName;
-	public DefaultCase(SFField field,WebDriver driver)
+	public DefaultCase(objField field, WebDriver driver)
 	{
 		super(driver);
 		this.driver = driver;
@@ -21,7 +21,7 @@ public class DefaultCase extends BaseActions implements ForceObject
 	@Override
 	public void set(String value) {
 		System.out.println("[Alert] : Need to implement in DefaultCase");
-		
+
 	}
 
 	@Override
@@ -29,10 +29,10 @@ public class DefaultCase extends BaseActions implements ForceObject
 		return webelement(Locators_Get.getFormDetailsUI,fieldName).getText();
 	}
 
-	
+
 	public void clear() {
 		System.out.println("[Alert] : Need to implement in DefaultCase");
-		
+
 	}
 
 	@Override

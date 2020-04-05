@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import sft.httpclient.GetRequest;
 import sft.sfData.BaseSFData;
 import sft.sfData.quickActions.describeQuickActionsPOJO.AllActions;
+import sft.sfData.quickActions.describeQuickActionsPOJO.Describe;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ public class GetSFQuickAction {
 
     BaseSFData jsonMap = new BaseSFData();
 
-    public JSONArray getQuickActionsData() {
+    private JSONArray getQuickActionsData() {
         String endpoint = "quickActions";
         GetRequest getRequest = new GetRequest();
         String responseBody = getRequest.getResponseWithOauth(endpoint).getBody().asString();
@@ -31,7 +32,7 @@ public class GetSFQuickAction {
         return actionsURL;
     }
 
-    public String get(String quickAction) {
+    private String getActionData(String quickAction) {
         Map<String, String> actionsURLs;
         actionsURLs = getDescriptionLinks();
         String endpoint = null;
@@ -51,9 +52,15 @@ public class GetSFQuickAction {
         return responseBody;
     }
 
+    public Describe getAction(String quickAction){
+        String actionData = getActionData(quickAction);
+        Describe action = jsonMap.getDescriptionInstance(actionData, Describe.class);
+        return action;
+    }
+
     public static void main(String[] args) {
         GetSFQuickAction qAction = new GetSFQuickAction();
-        qAction.get("Log a Call");
+        qAction.getActionData("Log a Call");
     }
 
 }

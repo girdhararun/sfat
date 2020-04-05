@@ -1,4 +1,4 @@
-package sft;
+package sft.sfData.objectDescribe;
 
 import org.openqa.selenium.WebDriver;
 import sft.forceObject.Checkbox.CheckBox;
@@ -6,10 +6,9 @@ import sft.forceObject.DateTime.DateTime;
 import sft.forceObject.DefaultCase.DefaultCase;
 import sft.forceObject.ForceObject;
 import sft.forceObject.Input.*;
-import sft.forceObject.SFField;
+import sft.forceObject.objField;
 import sft.forceObject.Select.Select;
 import sft.forceObject.TextArea.TextArea;
-import sft.sfData.objectDescribe.GetSFObject;
 import sft.sfData.objectDescribe.describeLayoutPOJO.*;
 
 import java.util.*;
@@ -18,8 +17,8 @@ import java.util.Map.Entry;
 public final class GetFields {
 
     private WebDriver driver;
-    private static Map<String, SFField> edit_fields = new HashMap<String, SFField>();
-    private static Map<String, SFField> detail_fields = new HashMap<String, SFField>();
+    private static Map<String, objField> edit_fields = new HashMap<String, objField>();
+    private static Map<String, objField> detail_fields = new HashMap<String, objField>();
 
     public GetFields(String obj, WebDriver d) {
         editGenerater(obj);
@@ -32,13 +31,13 @@ public final class GetFields {
         g.print_map(g.getDetailFields());
     }
 
-    public Map<String, SFField> getEditFields() {
+    public Map<String, objField> getEditFields() {
         return edit_fields;
     }
 
 
 
-    public Map<String, SFField> getDetailFields() {
+    public Map<String, objField> getDetailFields() {
         return detail_fields;
     }
 
@@ -59,7 +58,7 @@ public final class GetFields {
 
                     for (int l = 0; l < layoutItems.size(); l++) {
 
-                        SFField df = new SFField();
+                        objField df = new objField();
                         df.setFieldsData(fieldset, layoutItems.get(l).getLabel(), layoutItems.get(l).getEditableForNew(),
                             layoutItems.get(l).getEditableForUpdate(), layoutItems.get(l).getPlaceholder(),
                             layoutItems.get(l).getRequired(), collapsedSection, collapse, null, null);
@@ -71,7 +70,7 @@ public final class GetFields {
                             List<Component__1> components = layoutComponents.get(m).getComponents();
                             if (components.size() != 0) {
                                 for (int z = 0; z < components.size(); z++) {
-                                    SFField df2 = new SFField();
+                                    objField df2 = new objField();
                                     df2.setFieldsData(fieldset,
                                         components.get(z).getDetails().getLabel(), layoutItems.get(l).getEditableForNew(),
                                         layoutItems.get(l).getEditableForUpdate(), layoutItems.get(l).getPlaceholder(),
@@ -107,7 +106,7 @@ public final class GetFields {
 
                     for (int l = 0; l < layoutItems.size(); l++) {
 
-                        SFField df = new SFField();
+                        objField df = new objField();
                         df.setFieldsData(fieldset, layoutItems.get(l).getLabel(), layoutItems.get(l).getEditableForNew(),
                             layoutItems.get(l).getEditableForUpdate(), layoutItems.get(l).getPlaceholder(),
                             layoutItems.get(l).getRequired(), collapsedSection, collapse, null, null);
@@ -119,7 +118,7 @@ public final class GetFields {
                             List<Component> components = layoutComponents.get(m).getComponents();
                             if (components.size() != 0) {
                                 for (int z = 0; z < components.size(); z++) {
-                                    SFField df2 = new SFField();
+                                    objField df2 = new objField();
                                     df2.setFieldsData(fieldset,
                                         components.get(z).getDetails().getLabel(), layoutItems.get(l).getEditableForNew(),
                                         layoutItems.get(l).getEditableForUpdate(), layoutItems.get(l).getPlaceholder(),
@@ -137,17 +136,16 @@ public final class GetFields {
         }
     }
 
-
     public ForceObject getObject(String field) {
         System.out.println("Getting object type for :" + field);
-        SFField f;
+        objField f;
         String type = "default_case";
         if ((f = edit_fields.get(field)) == null)
             f = detail_fields.get(field);
         if (f != null)
             type = f.getDetails().getType();
         else {
-            f = new SFField();
+            f = new objField();
             f.setLabel(field);
         }
 
@@ -207,11 +205,11 @@ public final class GetFields {
     }
 
     //For Debugging
-    private static void print_map(Map<String, SFField> map) {
-        Iterator<Entry<String, SFField>> itr = map.entrySet().iterator();
+    private static void print_map(Map<String, objField> map) {
+        Iterator<Entry<String, objField>> itr = map.entrySet().iterator();
         System.out.print("\n\n");
         while (itr.hasNext()) {
-            Entry<String, SFField> entry = itr.next();
+            Entry<String, objField> entry = itr.next();
             System.out.println(entry.getKey() + " : " + entry.getValue().getLabel() + ":" + entry.getValue().getDetails().getType() + " : "+entry.getValue().getRequired());
         }
         System.out.print("\n\n");
