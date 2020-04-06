@@ -2,6 +2,7 @@ package sft.locators;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Reporter;
 import sft.utils.BaseActions;
 
 import java.util.List;
@@ -17,9 +18,13 @@ public class getOneActions extends BaseActions {
 
     public void getAction(String action) {
         waitForPageToLoadCompletely();
-        waitForVisibilityOfElement(objectHeader.action_ribbon);
-        webelement(objectHeader.action_ribbon); //wait for header
+        hardwait(3);
+        WebElement actionRibbon = lastElement(webelementsWithoutVisibility(objectHeader.action_ribbon));
+        waitForVisibilityOfElement(actionRibbon);
+//        webelement(objectHeader.action_ribbon); //wait for header
+        System.out.println("what abt here");
         WebElement actionElement = getActionElement(action);
+        Reporter.log("Select One Action : "+action);
         if (actionElement != null)
             click(actionElement);
         else
@@ -28,9 +33,10 @@ public class getOneActions extends BaseActions {
 
     private WebElement getActionElement(String actions) {
         String title;
-        List<WebElement> ulActions = webelements(objectHeader.actionRibbon_links);
+        List<WebElement> ulActions = webelementsWithoutVisibility(objectHeader.actionRibbon_links);
         for (WebElement ulAction : ulActions) {
             title = ulAction.getAttribute("title");
+            Reporter.log("looking into : "+title,10);
             if (title.equalsIgnoreCase(actions))
                 return ulAction;
         }
@@ -38,7 +44,7 @@ public class getOneActions extends BaseActions {
     }
 
     private WebElement getMoreActionElements(String action){
-        click(webelement(objectHeader.actionRibbon_dropDownLink));
+        click(lastElement(webelementsWithoutVisibility(objectHeader.actionRibbon_dropDownLink)));
         click(webelement(objectHeader.actionRibbon_moreActions,action));
         return null;
     }

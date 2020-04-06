@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Reporter;
 import sft.sfData.objectDescribe.GetFields;
 import sft.locators.Locators_Modal;
 import sft.locators.getOneActions;
@@ -146,17 +147,22 @@ public class BaseActions {
         executor.executeScript("arguments[0].click()", element);
         waitForPageToLoadCompletely();
     }
+
+    public WebElement lastElement(List<WebElement> elements){
+        return elements.get(elements.size()-1);
+    }
     //-------------------------------------------------------------Click functions end------------------------------------------------------------------------//
 
-    public void waitForVisibilityOfElement(Locator locator) {
+    public void waitForVisibilityOfElement(WebElement element) {
+        Reporter.log("Waiting for visibility",10);
         try {
-            wait.until(ExpectedConditions.visibilityOf(webelement(locator)));
+            wait.until(ExpectedConditions.visibilityOf(element));
         } catch (StaleElementReferenceException e) {
             for (int i = 0; i < 5; i++) {
-                if (webelement(locator).isDisplayed())
+                if (element.isDisplayed())
                     return;
                 else
-                    hardwait(3);
+                    hardwait(1);
             }
             throw new StaleElementReferenceException("Stale element");
         }
@@ -217,13 +223,14 @@ public class BaseActions {
     //-----------------sfActions
 
     public void oneAction(String action){
+        System.out.println("Reached HERE");
         getOneActions oneAction = new getOneActions(driver);
         oneAction.getAction(action);
     }
 
     public String getModalHeading() {
-        waitForVisibilityOfElement(Locators_Modal.modalContainer);
-        waitForVisibilityOfElement(Locators_Modal.headingH2);
+        waitForVisibilityOfElement(webelementWithoutVisibility(Locators_Modal.modalContainer));
+        waitForVisibilityOfElement(webelementWithoutVisibility(Locators_Modal.headingH2));
         hardwait(2);
         WebElement modalHeading = webelement(Locators_Modal.headingH2);
         return modalHeading.getText();
