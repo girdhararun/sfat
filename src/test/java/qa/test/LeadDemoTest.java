@@ -39,23 +39,24 @@ public class LeadDemoTest extends BaseTestInitiator
 		 Assert.assertEquals(lead.fill_form_and_save(leadtestdata),leadtestdata.getFieldValue("Lead Information","Salutation") + " " +
 					leadtestdata.getFieldValue("Lead Information","First Name") + " " +
 					leadtestdata.getFieldValue("Lead Information","Last Name"));
-		 lead.click_form_details_action_toggle_and_click("Edit");
-		 
-		 // Reading from edit form
+//		 lead.click_form_details_action_toggle_and_click("Edit");
+        lead.oneAction("Edit");
+
+        // Reading from edit form
 		System.out.println(">>>>>>>>>>>>>>>>>" + lead.getLeadFields().getObject("Street").edit_get());
 		System.out.println(">>>>>>>>>>>>>>>>>" + lead.getLeadFields().getObject("Salutation").edit_get());
 		System.out.println(">>>>>>>>>>>>>>>>>" +lead.getLeadFields().getObject("Phone").edit_get());
-		 
+
 		lead.saveForm();
 	}
 
 	@Test(priority=5,dependsOnMethods= {"fill_new_form"})
 	public void verify_form_details() throws ParseException
 	{
-		
-		
+
+
 		System.out.println(leadtestdata.getField("['Lead Information']['Phone']['value']"));
-		
+
 		lead.open_form_details();
 
 		//Using testdata from json directly
@@ -75,13 +76,13 @@ public class LeadDemoTest extends BaseTestInitiator
 
 		leadtestdata.updateDataValue("Additional Information","SIC Code","987654");
 	}
-	
+
 	@Test(priority=6,dependsOnMethods= {"verify_form_details"})
 	public void update_form_details()
 	{
 //        leadtestdata.updateDataValue("Lead Information","Fax","654321");
 //        leadtestdata.updateDataValue("Lead Information","Lead Status","Closed - Converted");
-        lead.click_form_details_action_toggle_and_click("Edit");
+        lead.oneAction("Edit");
         lead.updateFormDetail(leadtestdata,"Lead Information","Fax","654321");
         lead.updateFormDetail(leadtestdata, "Lead Information","Lead Status","Closed - Converted");
         lead.saveForm();

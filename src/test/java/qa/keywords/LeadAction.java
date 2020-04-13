@@ -4,6 +4,7 @@ import com.sforce.soap.enterprise.QueryResult;
 import com.sforce.soap.enterprise.sobject.Lead;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Reporter;
 import qa.utils.TestDataSetup;
 import sft.sfData.objectDescribe.GetFields;
 import sft.locators.Locators_Common;
@@ -58,11 +59,13 @@ public class LeadAction extends BaseActions {
         fillFormByParts(testdata.getFieldset("Lead Information"), leadFields);
         fillFormByParts(testdata.getFieldset("Address Information"), leadFields);
         fillFormByParts(testdata.getFieldset("Additional Information"), leadFields);
+        fillFormByParts(testdata.getFieldset("Description Information"), leadFields);
         saveForm();
         return webelement(Locators_Common.newFormBearer).getText();
     }
 
     public void saveForm() {
+        Reporter.log("Save Lead Details : ",2);
         clickUsingJavaScript(webelement(Locators_Common.saveForm));
         hardwait(1);
     }
