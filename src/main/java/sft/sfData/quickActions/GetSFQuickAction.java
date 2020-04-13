@@ -1,6 +1,8 @@
 package sft.sfData.quickActions;
 
 import org.json.JSONArray;
+import org.junit.Assert;
+import org.junit.Test;
 import sft.httpclient.GetRequest;
 import sft.sfData.BaseSFData;
 import sft.sfData.quickActions.describeQuickActionsPOJO.AllActions;
@@ -43,16 +45,20 @@ public class GetSFQuickAction {
         } catch (NullPointerException e) {
             System.out.println("Select from following actions only : ");
             for (Map.Entry<String, String> entry : actionsURLs.entrySet()) {
-                    System.out.println(entry.getKey().toUpperCase() + " : " + entry.getValue());
+                System.out.println(entry.getKey().toUpperCase() + " : " + entry.getValue());
             }
         }
         GetRequest getRequest = new GetRequest();
-        endpoint = endpoint.split("quickActions")[1];
-        String responseBody = getRequest.getResponseWithOauth("/quickActions"+endpoint).getBody().asString();
+        try {
+            endpoint = endpoint.split("quickActions")[1];
+        } catch (NullPointerException e) {
+            return null;
+        }
+        String responseBody = getRequest.getResponseWithOauth("/quickActions" + endpoint).getBody().asString();
         return responseBody;
     }
 
-    public Describe getAction(String quickAction){
+    public Describe getAction(String quickAction) {
         String actionData = getActionData(quickAction);
         Describe action = jsonMap.getDescriptionInstance(actionData, Describe.class);
         return action;
@@ -60,7 +66,13 @@ public class GetSFQuickAction {
 
     public static void main(String[] args) {
         GetSFQuickAction qAction = new GetSFQuickAction();
-        qAction.getActionData("Log a Call");
+        System.out.println(qAction.getActionData("Log a Call"));
+    }
+
+    @Test
+    public void check_response_details() {
+        GetSFQuickAction qAction = new GetSFQuickAction();
+        Assert.assertTrue("Response not received for Quick Action", qAction.getActionData("Log a Call") != null);
     }
 
 }

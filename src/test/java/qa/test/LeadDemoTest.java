@@ -80,8 +80,6 @@ public class LeadDemoTest extends BaseTestInitiator
 	@Test(priority=6,dependsOnMethods= {"verify_form_details"})
 	public void update_form_details()
 	{
-//        leadtestdata.updateDataValue("Lead Information","Fax","654321");
-//        leadtestdata.updateDataValue("Lead Information","Lead Status","Closed - Converted");
         lead.oneAction("Edit");
         lead.updateFormDetail(leadtestdata,"Lead Information","Fax","654321");
         lead.updateFormDetail(leadtestdata, "Lead Information","Lead Status","Closed - Converted");
