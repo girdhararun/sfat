@@ -17,10 +17,13 @@ public class GetQAFields {
     qaField qaField = new qaField();
     private static Map<String, Details> edit_fields = new HashMap<String, Details>();
 
+    public GetQAFields() {
+    }
 
-    public GetQAFields(String qaObj, WebDriver d) {
-        driver = d;
+    public GetQAFields(String qaObj) {
         quickAction = new GetSFQuickAction();
+        editQuickAction(qaObj);
+
     }
 
     public Map<String, Details> getEditFields() {
@@ -45,7 +48,19 @@ public class GetQAFields {
     }
 
     @Test
-    public void check_QuickField_Details_Received(){
+    public void check_QuickField_Details_Received() {
+        GetQAFields test = new GetQAFields("Log a call");
+        edit_fields = test.getEditFields();
+        System.out.println(edit_fields.get(0).getLabel() + edit_fields.get(0).getType());
+    }
 
+    public static void main(String []args){
+        GetQAFields test = new GetQAFields("Log a call");
+        edit_fields = test.getEditFields();
+        System.out.println(edit_fields.size());
+        for (Map.Entry<String, Details> entry : edit_fields.entrySet())
+            System.out.println("Key = " + entry.getKey() +
+                ", Value = " + entry.getValue().getType());
+//        System.out.println(edit_fields.get(0).getLabel());
     }
 }

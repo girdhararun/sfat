@@ -18,7 +18,8 @@ public class ObjDataFields
 	public static final String CHECKBOX = "uiInput--checkbox";
 
 	//To add
-	public static final String COMBOBOX = "forceTextEnumLookup";
+    public static final String COMBOBOX = "forceTextEnumLookup";
+    public static final String REFERENCE = "forceTextEnumLookup";
 	public static final String DATETIME = "";
 
 	public static Map<String,String> fields()

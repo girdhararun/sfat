@@ -9,12 +9,13 @@ import sft.forceObject.Input.*;
 import sft.forceObject.objField;
 import sft.forceObject.Select.Select;
 import sft.forceObject.TextArea.TextArea;
+import sft.sfData.BaseSFData;
 import sft.sfData.objectDescribe.describeLayoutPOJO.*;
 
 import java.util.*;
 import java.util.Map.Entry;
 
-public final class GetFields {
+public final class GetFields extends BaseSFData {
 
     private WebDriver driver;
     private static Map<String, objField> edit_fields = new HashMap<String, objField>();
@@ -150,68 +151,9 @@ public final class GetFields {
         }
 
         ForceObject o = null;
-        switch (type) {
-            case "phone":
-                o = new PhoneInput(f, driver);
-                break;
-            case "email":
-                o = new EmailInput(f, driver);
-                break;
-            case "url":
-                o = new UrlInput(f, driver);
-                break;
-            case "_int":
-                o = new IntInput(f, driver);
-                break;
-            case "int":
-                o = new IntInput(f, driver);
-                break;
-            case "_double":
-                o = new DoubleInput(f, driver);
-                break;
-            case "double":
-                o = new DoubleInput(f, driver);
-                break;
-            case "string":
-                o = new StringInput(f, driver);
-                break;
-            case "currency":
-                o = new CurrencyInput(f, driver);
-                break;
-            case "reference":
-                o = new ReferenceInput(f, driver);
-                break;
-            case "date":
-                o = new DateInput(f, driver);
-                break;
-            case "textarea":
-                o = new TextArea(f, driver);
-                break;
-            case "picklist":
-                o = new Select(f, driver);
-                break;
-            case "boolean":
-                o = new CheckBox(f, driver);
-                break;
-            case "datetime":
-                o = new DateTime(f, driver);
-                break;
-            default:
-                o = new DefaultCase(f, driver);
-                //Dont remove for debugging
-                //System.out.println("[Error]-------------------------Matching Data Type not found for " + f.getLabel()+" : " +f.getDetails().getType() + "----------------------------");
-        }
+       o = getType(f,type);
         return o;
     }
 
-    //For Debugging
-    private static void print_map(Map<String, objField> map) {
-        Iterator<Entry<String, objField>> itr = map.entrySet().iterator();
-        System.out.print("\n\n");
-        while (itr.hasNext()) {
-            Entry<String, objField> entry = itr.next();
-            System.out.println(entry.getKey() + " : " + entry.getValue().getLabel() + ":" + entry.getValue().getDetails().getType() + " : "+entry.getValue().getRequired());
-        }
-        System.out.print("\n\n");
-    }
+
 }
