@@ -22,12 +22,13 @@ public final class GetFields extends BaseSFData {
     private static Map<String, objField> detail_fields = new HashMap<String, objField>();
 
     public GetFields(String obj, WebDriver d) {
+        super(d);
         editGenerater(obj);
         detailGenerater(obj);
         driver = d;
     }
 
-    public static void main(String[] arags) {
+    public static void main(String[] args) {
         GetFields g = new GetFields("Lead", null);
         g.print_map(g.getDetailFields());
     }
