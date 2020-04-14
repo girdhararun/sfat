@@ -2,15 +2,20 @@ package sft.sfData.quickActions;
 
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import sft.forceObject.ForceObject;
 import sft.forceObject.objField;
 import sft.forceObject.qaField;
+import sft.sfData.BaseSFData;
 import sft.sfData.quickActions.describeQuickActionsPOJO.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
-public class GetQAFields {
+public class GetQAFields extends BaseSFData {
     private Describe actionObj;
     private WebDriver driver;
     GetSFQuickAction quickAction;
@@ -20,7 +25,8 @@ public class GetQAFields {
     public GetQAFields() {
     }
 
-    public GetQAFields(String qaObj) {
+    public GetQAFields(String qaObj, WebDriver d) {
+        super(d);
         quickAction = new GetSFQuickAction();
         editQuickAction(qaObj);
 
@@ -49,18 +55,49 @@ public class GetQAFields {
 
     @Test
     public void check_QuickField_Details_Received() {
-        GetQAFields test = new GetQAFields("Log a call");
+        WebDriver d = new ChromeDriver();
+        GetQAFields test = new GetQAFields("Log a call",d);
         edit_fields = test.getEditFields();
         System.out.println(edit_fields.get(0).getLabel() + edit_fields.get(0).getType());
     }
 
     public static void main(String []args){
-        GetQAFields test = new GetQAFields("Log a call");
+        WebDriver d;
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
+        d = new ChromeDriver(options);
+        d.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        d.manage().window().maximize();
+
+        GetQAFields test = new GetQAFields("Log a call",d);
         edit_fields = test.getEditFields();
         System.out.println(edit_fields.size());
         for (Map.Entry<String, Details> entry : edit_fields.entrySet())
-            System.out.println("Key = " + entry.getKey() +
+        {  System.out.println("Key = " + entry.getKey() +
                 ", Value = " + entry.getValue().getType());
+        ForceObject o = null;
+        BaseSFData testt = new BaseSFData();
+        o = testt.getType(entry.getValue(),entry.getValue().getType());
+            System.out.println(o.get());
+        }
 //        System.out.println(edit_fields.get(0).getLabel());
     }
+
+//    public ForceObject getObject(String field) {
+//        System.out.println("Getting object type for :" + field);
+//        Details f;
+//        String type = "default_case";
+//        if ((f = edit_fields.get(field)) == null)
+//            f = detail_fields.get(field);
+//        if (f != null)
+//            type = f.getDetails().getType();
+//        else {
+//            f = new Details();
+//            f.setLabel(field);
+//        }
+//
+//        ForceObject o = null;
+//        o = getType(f,type);
+//        return o;
+//    }
 }

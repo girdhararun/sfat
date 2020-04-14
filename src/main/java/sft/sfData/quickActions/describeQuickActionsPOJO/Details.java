@@ -1,15 +1,19 @@
 
 package sft.sfData.quickActions.describeQuickActionsPOJO;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import sft.forceObject.objField;
+import sft.sfData.objectDescribe.describeLayoutPOJO.PicklistValue;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -71,7 +75,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "updateable",
     "writeRequiresMasterRead"
 })
-public class Details {
+public class Details extends objField {
 
     @JsonProperty("aggregatable")
     private Boolean aggregatable;
@@ -116,7 +120,7 @@ public class Details {
     @JsonProperty("externalId")
     private Boolean externalId;
     @JsonProperty("extraTypeInfo")
-    private Object extraTypeInfo;
+    private String extraTypeInfo;
     @JsonProperty("filterable")
     private Boolean filterable;
     @JsonProperty("filteredLookupInfo")
@@ -152,7 +156,7 @@ public class Details {
     @JsonProperty("permissionable")
     private Boolean permissionable;
     @JsonProperty("picklistValues")
-    private List<PicklistValue> picklistValues = null;
+    private List<sft.sfData.objectDescribe.describeLayoutPOJO.PicklistValue> picklistValues = new ArrayList<PicklistValue>();
     @JsonProperty("polymorphicForeignKey")
     private Boolean polymorphicForeignKey;
     @JsonProperty("precision")
@@ -401,12 +405,12 @@ public class Details {
     }
 
     @JsonProperty("extraTypeInfo")
-    public Object getExtraTypeInfo() {
+    public String getExtraTypeInfo() {
         return extraTypeInfo;
     }
 
     @JsonProperty("extraTypeInfo")
-    public void setExtraTypeInfo(Object extraTypeInfo) {
+    public void setExtraTypeInfo(String extraTypeInfo) {
         this.extraTypeInfo = extraTypeInfo;
     }
 
@@ -580,13 +584,24 @@ public class Details {
         this.permissionable = permissionable;
     }
 
+//    @JsonProperty("picklistValues")
+//    public List<PicklistValue> getPicklistValues() {
+//        return picklistValues;
+//    }
+//
+//    @JsonProperty("picklistValues")
+//    public void setPicklistValues(List<PicklistValue> picklistValues) {
+//        this.picklistValues = picklistValues;
+//    }
+
+
     @JsonProperty("picklistValues")
-    public List<PicklistValue> getPicklistValues() {
+    public List<sft.sfData.objectDescribe.describeLayoutPOJO.PicklistValue> getPicklistValues() {
         return picklistValues;
     }
 
     @JsonProperty("picklistValues")
-    public void setPicklistValues(List<PicklistValue> picklistValues) {
+    public void setPicklistValues(List<sft.sfData.objectDescribe.describeLayoutPOJO.PicklistValue> picklistValues) {
         this.picklistValues = picklistValues;
     }
 
