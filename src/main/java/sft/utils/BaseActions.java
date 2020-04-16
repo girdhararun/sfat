@@ -9,6 +9,7 @@ import sft.sfData.objectDescribe.GetFields;
 import sft.locators.Locators_Modal;
 import sft.locators.getOneActions;
 import sft.navigation.AppNavigation;
+import sft.sfData.quickActions.GetQAFields;
 
 import java.io.File;
 import java.util.List;
@@ -203,6 +204,14 @@ public class BaseActions {
         for (Entry<String, String> field : fields.entrySet()) {
             System.out.println(field.getKey() + "  " + field.getValue());
             formField.getObject(field.getKey()).set(field.getValue());
+        }
+        hardwait(1);
+    }
+
+    public void fillQuickFormByParts(Map<String, String> fields, GetQAFields formField) {
+        for (Entry<String, String> field : fields.entrySet()) {
+            System.out.println(field.getKey() + "  " + field.getValue());
+            formField.getObject(field.getKey(),driver).set(field.getValue());
         }
         hardwait(1);
     }
