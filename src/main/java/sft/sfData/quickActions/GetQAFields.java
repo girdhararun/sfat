@@ -56,14 +56,11 @@ public class GetQAFields extends BaseSFData {
     }
 
 
-    public static void main( String []args) {
-//        WebDriver d = new ChromeDriver();
-        GetQAFields test = new GetQAFields("Log a call",null);
-//        edit_fields = test.getEditFields();
-//        System.out.println(edit_fields.get(0).getLabel() + edit_fields.get(0).getType());
-        System.out.println(edit_fields);
-        test.print_map1(test.getEditFields());
-
+    public static void main(String[] args) {
+        GetQAFields test = new GetQAFields("Log a call", null);
+//        System.out.println(edit_fields);
+//        test.print_map1(test.getEditFields());
+        test.getObject("Related To",null);
     }
 
     public void print_map1(Map<String, Details> map) {
@@ -71,9 +68,8 @@ public class GetQAFields extends BaseSFData {
         System.out.print("\n\n");
         while (itr.hasNext()) {
             Map.Entry<String, Details> entry = itr.next();
-            System.out.println(entry.getKey() + " : " + entry.getValue().getLabel() +" : "+ entry.getValue().getAggregatable() + " : "+entry.getValue().getType());
+            System.out.println(entry.getKey() + " : " + entry.getValue().getLabel() + " : " + entry.getValue().getAggregatable() + " : " + entry.getValue().getType());
         }
-        System.out.print("\n\n");
     }
 
 //    public static void main(String []args){
@@ -100,15 +96,15 @@ public class GetQAFields extends BaseSFData {
 
     public ForceObject getObject(String field, WebDriver d) {
 
-        GetQAFields test = new GetQAFields(field,d);
+        GetQAFields test = new GetQAFields(field, d);
         edit_fields = test.getEditFields();
         System.out.println(edit_fields.size());
-        for (Map.Entry<String, Details> entry : edit_fields.entrySet())
-        {  System.out.println("Key = " + entry.getKey() +
-            ", Value = " + entry.getValue().getType());
+        for (Map.Entry<String, Details> entry : edit_fields.entrySet()) {
+            System.out.println("Key = " + entry.getKey() +
+                ", Value = " + entry.getValue().getType());
             ForceObject o = null;
             BaseSFData testt = new BaseSFData();
-            o = testt.getType(entry.getValue(),entry.getValue().getType());
+            o = testt.getType(entry.getValue(), entry.getValue().getType());
             System.out.println(o.get());
         }
 //        System.out.println("Getting object type for :" + field);
