@@ -20,7 +20,7 @@ public class getOneActions extends BaseActions {
         waitForPageToLoadCompletely();
         hardwait(3);
         WebElement actionRibbon = lastElement(webelementsWithoutVisibility(objectHeader.action_ribbon));
-        waitForVisibilityOfElement(actionRibbon);
+//        waitForVisibilityOfElement(actionRibbon);
 //        webelement(objectHeader.action_ribbon); //wait for header
         System.out.println("what abt here");
         WebElement actionElement = getActionElement(action);

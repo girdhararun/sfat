@@ -53,12 +53,8 @@ public class LeadDemoTest extends BaseTestInitiator
 	@Test(priority=5,dependsOnMethods= {"fill_new_form"})
 	public void verify_form_details() throws ParseException
 	{
-
-
 		System.out.println(leadtestdata.getField("['Lead Information']['Phone']['value']"));
-
 		lead.open_form_details();
-
 		//Using testdata from json directly
 		Assert.assertEquals(lead.getFormDetail("Name"),
 			leadtestdata.getFieldValue("Lead Information","Salutation") + " " +
