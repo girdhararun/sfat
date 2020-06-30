@@ -1,11 +1,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1" verbose="1" >
-    <test name="Header Action Check" >
-        <classes>
-            <class name="qa.test.HeaderActions" />
-        </classes>
-    </test>
+    <listeners>
+        <listener class-name="sft.utils.ExtentReporterNG" />
+    </listeners>
+<!--    <test name="Header Action Check" >-->
+<!--        <classes>-->
+<!--            <class name="qa.test.HeaderActions" />-->
+<!--        </classes>-->
+<!--    </test>-->
     <test name="Lead Demo Check" >
         <classes>
             <class name="qa.test.LeadDemoTest" />
