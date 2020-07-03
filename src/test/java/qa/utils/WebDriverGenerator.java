@@ -12,24 +12,27 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class WebDriverGenerator
-{
-	private WebDriver driver = null;
+public class WebDriverGenerator {
+    private WebDriver driver = null;
     public static ConfigReader driverConfig = new ConfigReader(System.getProperty("user.dir") + File.separator + "autoSetup.json");
-	private int implicitWait = Integer.parseInt(driverConfig.getSetupDetails().get("implicitWait"));
-    String driverPath = System.getProperty("user.dir")+File.separator+
-			"src"+File.separator+"test"+File.separator+"java"+File.separator+"qa"+File.separator+"resources";
-	public WebDriver getChromeDriver()
-	{
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-notifications");
-		driver = new ChromeDriver(options);
-		driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
-		return driver;
-	}
+    private int implicitWait = Integer.parseInt(driverConfig.getSetupDetails().get("implicitWait"));
+    String driverPath = System.getProperty("user.dir") + File.separator +
+        "src" + File.separator + "test" + File.separator + "java" + File.separator + "qa" + File.separator + "resources";
 
-	public WebDriver remoteChromeDriver(){
+    public WebDriver getChromeDriver() {
+        if (System.getProperty("os.name").contains("Windows"))
+            System.setProperty("webdriver.chrome.driver", driverPath + File.separator + "chromedriver.exe");
+        else
+            System.setProperty("webdriver.chrome.driver", driverPath + File.separator + "chromedriver");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
+        driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
+        return driver;
+    }
+
+    public WebDriver remoteChromeDriver() {
         DesiredCapabilities cap = null;
         cap = DesiredCapabilities.chrome();
         String seleniuhubaddress = driverConfig.getSetupDetails().get("remoteAddress");
@@ -39,7 +42,7 @@ public class WebDriverGenerator
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        driver = new RemoteWebDriver(selserverhost,cap);
+        driver = new RemoteWebDriver(selserverhost, cap);
         driver.manage().timeouts().implicitlyWait(implicitWait, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         return driver;
