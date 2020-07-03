@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.Map;
 
 public class BaseTestInitiator extends BaseActions {
-    private static WebDriver driver = new WebDriverGenerator().remoteChromeDriver();
+    private static WebDriver driver = new WebDriverGenerator().getChromeDriver();
 
     objField sfField;
     //ActionClass
