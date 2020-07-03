@@ -3,5 +3,6 @@
     "username": "arungirdhar@qainfotech.com",
     "password": "Sales@123",
     "implicitWait": 30,
-    "explicitWait": 60
+    "explicitWait": 60,
+    "remoteAddress": "http://192.168.29.168:4444/wd/hub"
 }

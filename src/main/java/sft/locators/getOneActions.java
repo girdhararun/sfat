@@ -22,7 +22,6 @@ public class getOneActions extends BaseActions {
         WebElement actionRibbon = lastElement(webelementsWithoutVisibility(objectHeader.action_ribbon));
 //        waitForVisibilityOfElement(actionRibbon);
 //        webelement(objectHeader.action_ribbon); //wait for header
-        System.out.println("what abt here");
         WebElement actionElement = getActionElement(action);
         Reporter.log("Select One Action : "+action);
         if (actionElement != null)

@@ -3,6 +3,7 @@ package sft.forceObject.Input;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Reporter;
 import sft.sfData.ObjDataFields;
 import sft.forceObject.ForceObject;
 import sft.forceObject.objField;
@@ -49,6 +50,7 @@ public class Input extends BaseActions implements ForceObject
 	{
 		getWebElement().clear();
 		getWebElement().sendKeys(value);
+        Reporter.log("SET Value for label : "+fieldName+" as : "+value);
 	}
 
 	public void clear()

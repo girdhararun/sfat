@@ -208,22 +208,23 @@ public class BaseActions {
     }
 
     //-----------------------sfNavigation-----------------------
-    public void navApp(String sfObject) {
+    public void navApp(String sfApp) {
         AppNavigation nav = new AppNavigation();
-        launchUrl(nav.getAppNavLink("Sales"));
+        launchUrl(nav.getAppNavLink(sfApp));
         waitForPageToLoadCompletely();
+        Reporter.log("App Navigation to : "+sfApp);
     }
 
     public void navObject(String sfObject) {
         AppNavigation nav = new AppNavigation();
         launchUrl(nav.getObjNavLink(sfObject));
         waitForPageToLoadCompletely();
+        Reporter.log("Object Navigation to : "+sfObject);
     }
 
     //-----------------sfActions
 
     public void oneAction(String action){
-        System.out.println("Reached HERE");
         getOneActions oneAction = new getOneActions(driver);
         oneAction.getAction(action);
     }

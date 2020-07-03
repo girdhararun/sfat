@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
+import org.testng.Reporter;
 import sft.utils.JsonIO;
 
 import java.io.IOException;
@@ -58,6 +59,7 @@ public class TestDataSetup implements ITestData {
 
     public void updateDataValue(String fieldSet, String label, String value) {
         data.put(fieldSet, ((JSONObject) data.get(fieldSet)).put(label, ((JSONObject) ((JSONObject) data.get(fieldSet)).get(label)).put("value", value)));
+        Reporter.log("Set Label : "+label + " Value : "+value);
     }
 
     public void updateTestData(JSONObject data) {

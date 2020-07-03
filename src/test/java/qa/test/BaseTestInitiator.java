@@ -3,6 +3,7 @@ package qa.test;
 import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import qa.keywords.AccountAction;
@@ -19,7 +20,7 @@ import java.io.File;
 import java.util.Map;
 
 public class BaseTestInitiator extends BaseActions {
-    private static WebDriver driver = new WebDriverGenerator().getChromeDriver();
+    private static WebDriver driver = new WebDriverGenerator().remoteChromeDriver();
 
     objField sfField;
     //ActionClass
@@ -47,10 +48,7 @@ public class BaseTestInitiator extends BaseActions {
     }
 
 
-    @BeforeClass
-    public void tierUp() {
-        login(autoConfig.get("username"), autoConfig.get("password"));
-    }
+
 
 
     public void login(String username, String password) {
@@ -69,6 +67,7 @@ public class BaseTestInitiator extends BaseActions {
                 System.out.println("Verified for : " + field.get("label") + "  " + field.get("value") + " " + field.get("isRequired"));
                 objField itemField = formfield.get(field.get("label"));
                 Assert.assertEquals(itemField.getRequired(), field.get("isRequired"), "isRequired verification failed for : " + field.get("label"));
+                Reporter.log("isRequired verification for : "+itemField.getLabel());
             } catch (Exception e) {
             }
         }
@@ -78,8 +77,8 @@ public class BaseTestInitiator extends BaseActions {
 
     @AfterTest
     public void tierDown() {
-        hardwait(10);
-//        driver.quit();
+//        hardwait(10);
+        driver.quit();
     }
 
 }
