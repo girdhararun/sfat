@@ -1,0 +1,11 @@
+{
+    "username": "arungirdhar@qainfotech.com",
+    "password": "Sales@1230tkDcRiDTqUFscGJCKQYJ4nh",
+    "grant_type": "password",
+    "client_id": "3MVG9G9pzCUSkzZtcYdU8rvZezyH7TX_Go57XfQXD0YiqTXen1Z1E2B9RiYNsDR4p6cofvdT.KockRlLTYgpp",
+    "client_secret": "F8B02F1667C2CED6B160B5BD8C7DCCEDB39E60620FC1D2DA8EF5DDC9AACBEDDB",
+    "oauth_url": "https://login.salesforce.com/services/oauth2/token",
+    "domain_url": "https://info123-dev-ed.my.salesforce.com",
+    "api_version": "services/data/v47.0",
+    "soap_c": "services/Soap/c/47.0"
+}
