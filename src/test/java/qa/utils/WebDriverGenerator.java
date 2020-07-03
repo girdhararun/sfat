@@ -22,8 +22,8 @@ public class WebDriverGenerator {
     public WebDriver getChromeDriver() {
         if (System.getProperty("os.name").contains("Windows"))
             System.setProperty("webdriver.chrome.driver", driverPath + File.separator + "chromedriver.exe");
-        else
-            System.setProperty("webdriver.chrome.driver", driverPath + File.separator + "chromedriver");
+//        else
+//            System.setProperty("webdriver.chrome.driver", driverPath + File.separator + "chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         driver = new ChromeDriver(options);
