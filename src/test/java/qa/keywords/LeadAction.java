@@ -71,7 +71,9 @@ public class LeadAction extends BaseActions {
     }
 
     public String getFormDetail(String field) {
-        return leadFields.getObject(field).get();
+        String fieldValue = leadFields.getObject(field).get();
+        Reporter.log("Getting value for field : "+field +" as : "+fieldValue);
+        return fieldValue;
     }
 
     public void open_form_details() {
@@ -99,6 +101,4 @@ public class LeadAction extends BaseActions {
         Lead lead = (Lead) qr.getRecords()[0];
         return lead;
     }
-
-
 }
